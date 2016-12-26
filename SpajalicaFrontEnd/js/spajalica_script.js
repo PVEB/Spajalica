@@ -1,5 +1,3 @@
-/* Credit: http://www.templatemo.com */
-
 var menuDisabled = false;
 
 jQuery(function($) {
@@ -29,8 +27,7 @@ jQuery(function($) {
 	
 	//for image slide on menu item click(normal) and responsive
 	$("#menu-list a, #responsive a").on('click',function(e){
-            
-			
+
 			if(this.className == "external") {
                 return;
             }
@@ -57,7 +54,7 @@ jQuery(function($) {
                 $.backstretch(imgSrc, {speed: 500}); //backstretch for background fade in/out
                 
                 // content slide in/out
-                $("section.active").animate({left:$("section.active").outerWidth()}, 400,function(){
+                $("section.active").animate({left:$("section.active").outerWidth()}, 600,function(){
                     $(this).removeClass("active");
                     $(this).hide();
                     $(name+"-text").show();
@@ -65,7 +62,7 @@ jQuery(function($) {
                         $(this).addClass("active");
                         
                         google.maps.event.trigger(map, 'resize'); // resize map
-                        $.backstretch("resize"); // resize the background image
+                        //$.backstretch("resize"); // resize the background image
                         
                         menuDisabled = false; // enable the menu
                     });
@@ -82,6 +79,10 @@ jQuery(function($) {
 var map = '';
 
 function initialize() {
+
+    var width = $(window).width() - 200;
+    $("#home-text").width(width);
+
     var mapOptions = {
       zoom: 14,
       center: new google.maps.LatLng(37.769725, -122.462154)
