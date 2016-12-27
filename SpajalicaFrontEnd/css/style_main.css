@@ -53,13 +53,13 @@ img {
      overflow: hidden;
 }
 
-.templatemo-site-title {
+.temp-site-title {
     color: #fff !important; 
     text-shadow: 0px 2px 3px rgba(0, 0, 0, 1);
 	font-size: 40px;
 }
 
-.templatemo-site-title a, .templatemo-site-title a:hover { 
+.temp-site-title a, .temp-site-title a:hover {
 	color: #fff;
 	text-decoration: none;
 }
@@ -91,13 +91,13 @@ img.slide {
     position: absolute;
 }
 
-.templatemo-content {
+.temp-content {
     position: static;
     overflow: hidden; 
     margin-top: 36%;
 }
 
-.templatemo-content section {
+.temp-content section {
     font-family: 'Raleway', sans-serif;
     position: relative; 
     overflow: hidden;
@@ -106,17 +106,20 @@ img.slide {
     padding-bottom: 20px;
 }
 
+.row {
+    padding-top: 0%;
+}
 
-.templatemo-content-wrapper {
+.temp-content-wrapper {
     overflow: hidden;
 }
 
-.templatemo-content h2 {
+.temp-content h2 {
     color: #000;
     font-family: 'Raleway', sans-serif;
 }
 
-.templatemo-content p {
+.temp-content p {
     font-family: 'Raleway', sans-serif;
     color: #000;
     font-size: 16px;
@@ -182,7 +185,7 @@ img.slide {
 	margin-bottom: 10px;
 }
 
-.templatemo-content {
+.temp-content {
     padding-bottom: 6%;
     padding-left: 1%;
     padding-right: 1%;
