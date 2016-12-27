@@ -62,7 +62,7 @@ jQuery(function($) {
                         $(this).addClass("active");
                         
                         google.maps.event.trigger(map, 'resize'); // resize map
-                        //$.backstretch("resize"); // resize the background image
+                        $.backstretch("resize"); // resize the background image
                         
                         menuDisabled = false; // enable the menu
                     });
@@ -80,8 +80,8 @@ var map = '';
 
 function initialize() {
 
-    var width = $(window).width() - 200;
-    $("#home-text").width(width);
+    // var width = $(window).width() - 200;
+    // $("#home-text").width(width);
 
     var mapOptions = {
       zoom: 14,
