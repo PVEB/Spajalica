@@ -93,8 +93,8 @@ img.slide {
 
 .temp-content {
     position: static;
-    overflow: hidden; 
-    margin-top: 36%;
+    overflow: hidden;
+    margin-top: 100px;
 }
 
 .temp-content section {
@@ -104,10 +104,6 @@ img.slide {
     top: 0; 
     background-color: rgba(255,255,255,0.75);
     padding-bottom: 20px;
-}
-
-.row {
-    padding-top: 0%;
 }
 
 .temp-content-wrapper {
