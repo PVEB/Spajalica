@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/Spajalica.iml" filepath="$PROJECT_DIR$/.idea/Spajalica.iml" />
+      <module fileurl="file://$PROJECT_DIR$/SpajalicaFrontEnd/.idea/SpajalicaFrontEnd.iml" filepath="$PROJECT_DIR$/SpajalicaFrontEnd/.idea/SpajalicaFrontEnd.iml" />
     </modules>
   </component>
 </project>
