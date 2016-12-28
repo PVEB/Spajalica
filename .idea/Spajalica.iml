@@ -22,11 +22,9 @@
       <library name="PHARS">
         <CLASSES>
           <root url="phar://$MODULE_DIR$/SpajalicaBackEnd/composer.phar/" />
-          <root url="phar://$MODULE_DIR$/SpajalicaBackEnd/composer_2.phar/" />
         </CLASSES>
         <SOURCES>
           <root url="phar://$MODULE_DIR$/SpajalicaBackEnd/composer.phar/" />
-          <root url="phar://$MODULE_DIR$/SpajalicaBackEnd/composer_2.phar/" />
         </SOURCES>
       </library>
     </orderEntry>
