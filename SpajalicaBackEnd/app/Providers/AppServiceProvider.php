@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace SpajalicaBackEnd\Providers;
 
 use Illuminate\Support\ServiceProvider;
 

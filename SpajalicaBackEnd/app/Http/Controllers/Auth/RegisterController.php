@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace SpajalicaBackEnd\Http\Controllers\Auth;
 
-use App\User;
+use SpajalicaBackEnd\User;
 use Validator;
-use App\Http\Controllers\Controller;
+use SpajalicaBackEnd\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
