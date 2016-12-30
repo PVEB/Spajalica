@@ -102,7 +102,7 @@ img.slide {
     position: relative; 
     overflow: hidden;
     top: 0; 
-    background-color: rgba(255,255,255,0.75);
+    background-color: rgba(128,128,128,0.75);
     padding-bottom: 20px;
 }
 
@@ -111,13 +111,19 @@ img.slide {
 }
 
 .temp-content h2 {
-    color: #000;
+    color: #fff;
+    font-family: 'Raleway', sans-serif;
+}
+
+.temp-content a {
+    color: #eca;
+    font-style: italic;
     font-family: 'Raleway', sans-serif;
 }
 
 .temp-content p {
     font-family: 'Raleway', sans-serif;
-    color: #000;
+    color: #fff;
     font-size: 16px;
 }
 
