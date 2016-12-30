@@ -172,11 +172,11 @@ return [
         /*
          * Application Service Providers...
          */
-        SpajalicaBackEnd\Providers\AppServiceProvider::class,
-        SpajalicaBackEnd\Providers\AuthServiceProvider::class,
-        // SpajalicaBackEnd\Providers\BroadcastServiceProvider::class,
-        SpajalicaBackEnd\Providers\EventServiceProvider::class,
-        SpajalicaBackEnd\Providers\RouteServiceProvider::class,
+        App\Providers\AppServiceProvider::class,
+        App\Providers\AuthServiceProvider::class,
+        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\EventServiceProvider::class,
+        App\Providers\RouteServiceProvider::class,
 
     ],
 
