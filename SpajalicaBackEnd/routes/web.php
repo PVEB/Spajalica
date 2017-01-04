@@ -22,3 +22,7 @@ Route::get('ID/{id}',function($id){
 Route::get('hello', function () {
     return '<h1>Hello World</h1>';
 });
+
+Route::get('Profile/{id}', 'ProfileController@Show');
+
+Route::post('Profile/zahtev', 'ProfileController@Transform');
