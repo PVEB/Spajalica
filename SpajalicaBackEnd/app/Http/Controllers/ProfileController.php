@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Input;
 
 
 class GlupOdgovor {
@@ -29,15 +29,15 @@ class ProfileController extends Controller
         return json_encode($odgovor);
     }
 
-    public function Transform(Request $request)
+    public function Transform()
     {
-        //$zahtev = Request::json()->all();
-        //$zahtev = $request->input('prvi', 40);
-        //$post = Post::create($request->all());
-        //$zahtev = $request->acceptsJson();
-        $id = 25;
-        //pravi neki JSON od objekta
-        return $id;
+        $data = Input::all();
+        $odgovor = json_decode(json_encode($data));
+        $odgovor->prvi = 2*$odgovor->prvi;
+        $odgovor->drugi = 2*$odgovor->drugi;
+
+        //pravi neki JSON od niza
+        return json_encode($odgovor); //json_encode($data);
     }
 }
 
