@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]>      <html ng-app="SpajalicaFrontEnd" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html ng-app="SpajalicaFrontEnd" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html ng-app="SpajalicaFrontEnd" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html ng-app="SpajalicaFrontEnd" class="no-js"> <!--<![endif]-->
     <head>
         <meta charset="utf-8">
         <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
@@ -11,6 +11,8 @@
 		<meta name="description" content="" />
         <meta name="viewport" content="width=device-width">
 
+        <script src="js/angular.min.js"></script>
+        <script src="js/ProfileController.js"></script>
         <!-- Google Web Font Embed -->
         <link href='http://fonts.googleapis.com/css?family=Raleway:400,600,500,300,700' rel='stylesheet' type='text/css'>
 
@@ -62,59 +64,27 @@
                     <div class="temp-content">
 
                         <section id="home-text" class="active">
-                            <div class="col-sm-12 col-md-12 col-lg-12">
+                            <div ng-controller = "ProfileController" class="col-sm-12 col-md-12 col-lg-12">
                                 <h2>Ovde ide profilna strana</h2>
-                                <p>Ovo je neka rečenica. Ovo je neka rečenica. Ovo je neka rečenica. </p>
+                                <p>Ovde dolazi PRVI_BROJ: <input ng-model="prviBroj" type="number"/> </p>
+                                <p>Ovde dolazi DRUGI_BROJ: <input ng-model="drugiBroj" type="number"/> </p>
+                                <p> <input type="button" value="Vrati" ng-click="postdata(prviBroj, drugiBroj)" /> nešto sa BE: {{ prom1 }} {{ prom2 }} </p>
+                                <p>Output Message : {{msg}}</p>
+                                <p>StatusCode: {{statusval}}</p>
+                                <p>Status: {{statustext}}</p>
+                                <p>Response Headers: {{headers}}</p>
                                 <p> Ovo je neka rečenica. Ovo je neka rečenica.
                                     <a rel="nofollow" href="http://unsplash.com" target="_blank">Ovo je neki link.</a>
-                                </p>
-                                <p> Ovo je neka rečenica. Ovo je neka rečenica. Ovo je neka rečenica. Ovo je neka rečenica. </p>
-                                <p> Ovo je neka rečenica. Ovo je neka rečenica.</p>
-                                <p>Ovo je neka rečenica. Ovo je neka rečenica. Ovo je neka rečenica. Ovo je neka
-                                    rečenica. Ovo je neka rečenica. Ovo je neka rečenica. Ovo je neka rečenica. Ovo je
-                                    neka rečenica. Ovo je neka rečenica. Ovo je neka rečenica.
-                                </p>
-                                <p>Ovo je neka rečenica. Ovo je neka rečenica. Ovo je neka rečenica. </p>
-                                <p> Ovo je neka rečenica. Ovo je neka rečenica.
-                                    <a rel="nofollow" href="http://unsplash.com" target="_blank">Ovo je neki link.</a>
-                                </p>
-                                <p> Ovo je neka rečenica. Ovo je neka rečenica. Ovo je neka rečenica. Ovo je neka rečenica. </p>
-                                <p> Ovo je neka rečenica. Ovo je neka rečenica.</p>
-                                <p>Ovo je neka rečenica. Ovo je neka rečenica. Ovo je neka rečenica. Ovo je neka
-                                    rečenica. Ovo je neka rečenica. Ovo je neka rečenica. Ovo je neka rečenica. Ovo je
-                                    neka rečenica. Ovo je neka rečenica. Ovo je neka rečenica.
-                                </p>
-                                <p>Ovo je neka rečenica. Ovo je neka rečenica. Ovo je neka rečenica. </p>
-                                <p> Ovo je neka rečenica. Ovo je neka rečenica.
-                                    <a rel="nofollow" href="http://unsplash.com" target="_blank">Ovo je neki link.</a>
-                                </p>
-                                <p> Ovo je neka rečenica. Ovo je neka rečenica. Ovo je neka rečenica. Ovo je neka rečenica. </p>
-                                <p> Ovo je neka rečenica. Ovo je neka rečenica.</p>
-                                <p>Ovo je neka rečenica. Ovo je neka rečenica. Ovo je neka rečenica. Ovo je neka
-                                    rečenica. Ovo je neka rečenica. Ovo je neka rečenica. Ovo je neka rečenica. Ovo je
-                                    neka rečenica. Ovo je neka rečenica. Ovo je neka rečenica.
-                                </p>
-                                <p>Ovo je neka rečenica. Ovo je neka rečenica. Ovo je neka rečenica. </p>
-                                <p> Ovo je neka rečenica. Ovo je neka rečenica.
-                                    <a rel="nofollow" href="http://unsplash.com" target="_blank">Ovo je neki link.</a>
-                                </p>
-                                <p> Ovo je neka rečenica. Ovo je neka rečenica. Ovo je neka rečenica. Ovo je neka rečenica. </p>
-                                <p> Ovo je neka rečenica. Ovo je neka rečenica.</p>
-                                <p>Ovo je neka rečenica. Ovo je neka rečenica. Ovo je neka rečenica. Ovo je neka
-                                    rečenica. Ovo je neka rečenica. Ovo je neka rečenica. Ovo je neka rečenica. Ovo je
-                                    neka rečenica. Ovo je neka rečenica. Ovo je neka rečenica.
                                 </p>
                             </div>
                         </section><!-- /.home-text -->
 
                         <section id="news-text" class="inactive">
                             <h2 class="text-center">Strana sa novostima</h2>
-                            <div class="col-sm-6 col-md-6">
+                            <div class="col-sm-12 col-md-12 col-lg-12">
                                 <p>Ovde idu sve novosti, nešto kao news feed. Ovo je neka rečenica.. Ovo je neka
                                     rečenica. Ovo je neka rečenica. Ovo je neka rečenica. Ovo je neka rečenica. Ovo je
                                     neka rečenica. Ovo je neka rečenica.Ovo je neka rečenica.</p>
-                            </div>
-                            <div class="col-sm-6 col-md-6">
                                 <p>Suspendisse risus urna, posuere id orci ut, facilisis accumsan ipsum. Etiam sodales
                                     consequat purus non vulputate. Aliquam erat volutpat. Sed vehicula lacinia porta.
                                     Vivamus faucibus dui nulla, a aliquet nunc porta in.</p>
@@ -123,17 +93,13 @@
 
                         <section id="match-text" class="inactive">
                             <h2 class="text-center">Algoritam spajanja!</h2>
-                            <div class="col-sm-4 col-md-4">
+                            <div class="col-sm-12 col-md-12 col-lg-12">
                                 <h3>Jedan sektor</h3>
                                 <p>Nullam vitae lectus dui. Donec vulputate ac tortor id convallis. Sed nisi mauris,
                                     laoreet vitae lacus at, viverra viverra neque. Curabitur nec aliquam lacus.</p>
-                            </div>
-                            <div class="col-sm-4 col-md-4">
                                 <h3>Drugi sektor</h3>
                                 <p>Maecenas aliquam vitae urna sit amet elementum. Cras consequat libero nisi, vel
                                     condimentum nibh eleifend ut. Donec consequat arcu.</p>
-                            </div>
-                            <div class="col-sm-4 col-md-4">
                                 <h3>Treći sektor</h3>
                                 <p>In tellus ipsum, ullamcorper vitae justo sit amet, mattis consequat tortor.
                                     Suspendisse risus urna, posuere id orci ut, facilisis accumsan ipsum.</p>
@@ -180,19 +146,10 @@
 
                         <section id="suggestions-text" class="inactive">
                             <div class="col-sm-12 col-md-12">
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-12"><h2>Pretraga</h2></div>
-                                    <div class="clearfix"></div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-sm-6 col-md-6">
-                                        <div id="map-canvas"></div>
-                                        <p>990 Digital Street, New Forest Area, San Francisco, CA 10660</p>
-                                    </div>
-
-                                    <div class="clearfix"></div>
-                                </div>
+                                <h2>Pretraga</h2>
+                                <p>Ovo je jedna rečenica. Ovo je jedna rečenica. Ovo je jedna rečenica.
+                                    Ovo je jedna rečenica. Ovo je jedna rečenica. Ovo je jedna rečenica. Ovo je jedna
+                                    rečenica. Ovo je jedna rečenica.</p>
                             </div>
                         </section><!-- /.suggestions-text -->
                     </div><!-- /.temp-content -->
@@ -211,7 +168,6 @@
             <div id="status">&nbsp;</div>
         </div><!-- /#preloader -->
 
-        <script src="js/angular.js"></script>
         <script src="js/jquery.min.js"></script>
         <script src="js/jquery.backstretch.min.js"></script>
         <script src="js/spajalica_script.js"></script>

@@ -21,6 +21,12 @@ hr {
     padding: 0;
 }
 
+input, textarea {
+    background-color : #ccc;
+    color: #000;
+    text-align: center;
+}
+
 img {
     vertical-align: middle;
 }
@@ -111,6 +117,11 @@ img.slide {
 }
 
 .temp-content h2 {
+    color: #fff;
+    font-family: 'Raleway', sans-serif;
+}
+
+.temp-content h3 {
     color: #fff;
     font-family: 'Raleway', sans-serif;
 }

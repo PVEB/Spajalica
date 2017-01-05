@@ -25,7 +25,4 @@ Route::get('hello', function () {
 
 Route::get('Profile/{id}', 'ProfileController@Show');
 
-Route::post('Profile/zahtev', 'ProfileController@Transform');
-//Route::get('/test/{squirrel}', ['uses' =>'SomeController@doSomething']);
-
-//Route::post('Profile/zahtev', function(){return "Hello World";});
+Route::post('Profile', 'ProfileController@Transform');
