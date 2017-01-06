@@ -13,6 +13,9 @@ use Illuminate\Http\Request;
 |
 */
 
+header('Access-Control-Allow-Origin: http://localhost:63342');
+header('Access-Control-Allow-Credentials: true');
+
 Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');

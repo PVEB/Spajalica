@@ -13,10 +13,13 @@ angular.module("SpajalicaFrontEnd", [])
                 prvi: prviBroj
             };
             $http.post('http://localhost:8000/Profile',
-                        JSON.stringify(data)).then(
+                        data).then(
                function (response) {
                     if (response.data)
                         $scope.msg = "Post Data Submitted Successfully!";
+                    console.log()
+                        $scope.prom1 = response.data.prvi;
+                        $scope.prom2 = response.data.drugi;
             }, function (response) {
                     $scope.msg = "Service not Exists";
                     $scope.statusval = response.status;
