@@ -1,0 +1,50 @@
+login_info
+	user_id
+	email/user_name
+	pass
+
+user_info
+	user_id
+	first_name
+	last_name
+	date_joined
+	date_birth
+	sex
+	location
+	
+user_preferance
+	user_id
+	...
+	
+user_profile
+	user_id
+	profile_picture
+	lang
+	relationship_status
+	
+user_activity
+	user_id
+	activity_id
+	activity_data..
+	
+user_follows
+	user_id
+	followed_user_id
+	
+user_blocks
+	user_id
+	blocked_user_id
+	
+user_messages
+	user_id
+	user_id2
+	message
+	date
+
+user_pref_tags
+	user_id
+	pref_id
+	
+preference_tags
+	pref_id
+	pref_name

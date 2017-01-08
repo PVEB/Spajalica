@@ -10,8 +10,7 @@ angular.module("SpajalicaFrontEnd", [])
                 drugi: drugiBroj,
                 prvi: prviBroj
             };
-            $http.post('http://localhost:8000/Profile',
-                        data).then(
+            $http.post('http://localhost:8000/Profile', data).then(
                function (response) {
                     if (response.data)
                         $scope.msg = "Post Data Submitted Successfully!";

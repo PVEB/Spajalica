@@ -37,14 +37,7 @@ class ProfileController extends Controller
         $odgovor->drugi = 2*$odgovor->drugi;
 
         //pravi neki JSON od niza
-        return json_encode($odgovor); //json_encode($data);
-    }
-
-    public function Opt(){
-        return response('hello from the other side!', 200)
-            ->header('Access-Control-Allow-Methods', 'POST, GET, OPTIONS, PUT, DELETE')
-            ->header('Access-Control-Allow-Headers', 'accept, content-type,  text/html');
-
+        return json_encode($odgovor);
     }
 }
 
