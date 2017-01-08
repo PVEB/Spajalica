@@ -25,8 +25,4 @@ Route::get('hello', function () {
 
 Route::get('Profile/{id}', 'ProfileController@Show');
 
-//$router->group(['prefix' => 'api', 'middleware' => 'cors'], function ($router) {
-//    $router->post('Profile', 'ProfileController@Transform');
-//});
-
 Route::post('Profile', 'ProfileController@Transform')->middleware(\App\Http\Middleware\Cors::class);
