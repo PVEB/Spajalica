@@ -21,7 +21,8 @@ class LoginController extends Controller
         $data = Input::all();
         $res = json_decode(json_encode($data), FALSE);
 
-        $results = DB::select('select * from users where userName = ? and lozinka = ?', [$res->userName, $res->password]);
+        $results = DB::select('select * from users where userName = ? and password = ?',
+                               [$res->userName, $res->password]);
 
         if (count($results) > 0)
         {
@@ -36,14 +37,11 @@ class LoginController extends Controller
     public function AddUser()
     {
         $data = Input::all();
-        $results = DB::select('select * from users where userName = ? and lozinka = ?', $data.userName, $data.password);
-        if (count($results))
-        {
-            return $results[0];
-        }
-        else
-        {
-            return 0;
-        }
+        $res = json_decode(json_encode($data), FALSE);
+
+        DB::insert('insert into users (userName, email, password) values (?, ?, ?)',
+                    [$res->userName, $res->email, $res->password]);
+
+        return 200;
     }
 }

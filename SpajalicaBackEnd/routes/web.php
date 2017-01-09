@@ -27,4 +27,6 @@ Route::get('Profile/{id}', 'ProfileController@Show');
 
 Route::post('Profile', 'ProfileController@Transform')->middleware(\App\Http\Middleware\Cors::class);
 
-Route::post('LoginVerify', 'LoginController@VerifyUser');
+Route::post('LoginVerify', 'LoginController@VerifyUser')->middleware(\App\Http\Middleware\Cors::class);
+
+Route::post('LoginRegister', 'LoginController@AddUser')->middleware(\App\Http\Middleware\Cors::class);

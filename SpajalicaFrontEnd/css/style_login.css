@@ -45,6 +45,7 @@ body {
     -moz-transition: all 0.1s linear;
     transition: all 0.1s linear;
 }
+
 .panel-login input:hover,
 .panel-login input:focus {
     outline:none;

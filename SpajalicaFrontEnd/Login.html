@@ -31,12 +31,12 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-12" ng-controller = "LoginController">
-                            <form id="login-form" action="http://phpoll.com/login/process" method="post" role="form" style="display: block;">
+                            <form id="login-form" method="post" role="form" style="display: block;">
                                 <div class="form-group">
-                                    <input ng-model="userName" type="text" name="username" id="username-log" tabindex="1" class="form-control" placeholder="Корисничко име" value="">
+                                    <input ng-style="nameStyle" ng-model="userName" type="text" name="username" id="username-log" tabindex="1" class="form-control" placeholder="Корисничко име" value="">
                                 </div>
                                 <div class="form-group">
-                                    <input ng-model="password" type="password" name="password" id="password-log" tabindex="2" class="form-control" placeholder="Лозинка">
+                                    <input ng-style="passStyle" ng-model="password" type="password" name="password" id="password-log" tabindex="2" class="form-control" placeholder="Лозинка">
                                 </div>
                                 <div class="form-group text-center">
                                     <input type="checkbox" tabindex="3" class="" name="remember" id="remember">
@@ -61,21 +61,21 @@
                             </form>
                             <form id="register-form" action="http://phpoll.com/register/process" method="post" role="form" style="display: none;">
                                 <div class="form-group">
-                                    <input type="text" name="username" id="username-register" tabindex="1" class="form-control" placeholder="Корисничко име" value="">
+                                    <input type="text" ng-model="userNameReg" ng-style="nameStyleReg" name="username" id="username-register" tabindex="1" class="form-control" placeholder="Корисничко име" value="">
                                 </div>
                                 <div class="form-group">
-                                    <input type="email" name="email" id="email" tabindex="1" class="form-control" placeholder="Мејл адреса" value="">
+                                    <input type="email" ng-model="emailReg" ng-style="emailStyleReg" name="email" id="email" tabindex="1" class="form-control" placeholder="Мејл адреса" value="">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" name="password" id="password-register" tabindex="2" class="form-control" placeholder="Лозинка">
+                                    <input type="password" ng-model="passReg" ng-style="passStyleReg" name="password" id="password-register" tabindex="2" class="form-control" placeholder="Лозинка">
                                 </div>
                                 <div class="form-group">
-                                    <input type="password" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Потврдите лозинку">
+                                    <input type="password"  ng-model="passReg2" ng-style="passStyleReg2" name="confirm-password" id="confirm-password" tabindex="2" class="form-control" placeholder="Потврдите лозинку">
                                 </div>
                                 <div class="form-group">
                                     <div class="row">
                                         <div class="col-sm-6 col-sm-offset-3">
-                                            <input type="submit" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Региструјте се одмах">
+                                            <input type="submit" ng-click="register(userNameReg, emailReg, passReg, passReg2)" name="register-submit" id="register-submit" tabindex="4" class="form-control btn btn-register" value="Региструјте се одмах">
                                         </div>
                                     </div>
                                 </div>
