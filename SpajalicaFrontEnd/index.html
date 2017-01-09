@@ -10,14 +10,14 @@
     	<meta name="keywords" content="" />
 		<meta name="description" content="" />
         <meta name="viewport" content="width=device-width">
-
         <script src="js/angular.min.js"></script>
-        <script src="js/Controllers/ProfileController.js"></script>
-        <!-- Google Web Font Embed -->
-        <link href='http://fonts.googleapis.com/css?family=Raleway:400,600,500,300,700' rel='stylesheet' type='text/css'>
+        <script src="js/app.js"></script>
 
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/style_main.css">
+
+        <script src="js/Services/SharedData.js"></script>
+        <script src="js/Controllers/IndexController.js"></script>
     </head>
     <body>
         <div id="main-wrapper">
@@ -28,9 +28,9 @@
                         activate Google Chrome Frame</a> to improve your experience.</p>
             <![endif]-->
 
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 affix text-center" style="z-index: 1;">
+            <div ng-controller="TitleController" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 affix text-center" style="z-index: 1;">
                 <h1 class="temp-site-title">
-                        <a href="#">Ime Prezime</a>
+                        <a href="#">{{nickname}}</a>
                         <img src="images/btn-menu-1.png" alt="main menu" id="m-btn" class="pull-right visible-xs visible-sm" >
                 </h1>
 
@@ -39,12 +39,13 @@
 
             <div class="menu visible-md visible-lg">
                 <ul id="menu-list">
-                    <li class="active home-menu"><a href="#home">Profil</a></li>
-                    <li class="news-menu"><a href="#news">Novosti</a></li>
-                    <li class="match-menu"><a href="#match">Spoji!</a></li>
-                    <li class="messages-menu"><a href="#messages">Poruke</a></li>
-                    <li class="suggestions-menu"><a href="#suggestions">Pretraga</a></li>
-                    <li class="settings-menu"><a href="#settings">Podešavanja</a></li>
+                    <li class="active home-menu"><a href="#home">Профил</a></li>
+                    <li class="news-menu"><a href="#news">Новости</a></li>
+                    <li class="match-menu"><a href="#match">Споји!</a></li>
+                    <li class="messages-menu"><a href="#messages">Поруке</a></li>
+                    <li class="suggestions-menu"><a href="#suggestions">Претрага</a></li>
+                    <li class="settings-menu"><a href="#settings">Подешавања</a></li>
+                    <li class="logout-menu"><a href="#">Излогуј се</a></li>
                 </ul>
             </div><!-- /.menu -->
 

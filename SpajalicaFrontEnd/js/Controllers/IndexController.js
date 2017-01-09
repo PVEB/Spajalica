@@ -3,7 +3,7 @@
  */
 
 angular.module("SpajalicaFrontEnd", [])
-    .controller("ProfileController", function($scope, $http) {
+    .controller("ProfileController", function ($scope, $http) {
 
         $scope.postdata = function (prviBroj, drugiBroj) {
             var data = {
@@ -23,4 +23,7 @@ angular.module("SpajalicaFrontEnd", [])
                     $scope.headers = response.headers();
             });
         };
-});
+    })
+    .controller("TitleController", function ($scope, $window) {
+        $scope.nickname = $window.sessionStorage.device;
+    });
