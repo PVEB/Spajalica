@@ -56,7 +56,7 @@ angular.module("SpajalicaFrontEnd", [])
                     if (response.data == 200)
                     {
                         console.log("I did something");
-                        $window.sessionStorage.device.userName = userName;
+                        $window.sessionStorage.device = userNameReg;
                         $window.location.href = './index.html';
                     }
                     else
