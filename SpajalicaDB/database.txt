@@ -1,7 +1,8 @@
 login_info
 	user_id
-	email/user_name
-	pass
+	user_name
+	email
+	password
 
 user_info
 	user_id
