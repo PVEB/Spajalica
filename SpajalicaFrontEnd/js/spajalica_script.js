@@ -72,17 +72,3 @@ jQuery(function($) {
     });
 
 });
-
-var map = '';
-
-function initialize() {
-
-    // var width = $(window).width() - 200;
-    // $("#home-text").width(width);
-
-    var mapOptions = {
-      zoom: 14,
-      center: new google.maps.LatLng(37.769725, -122.462154)
-    };
-    map = new google.maps.Map(document.getElementById('map-canvas'),  mapOptions);
-}

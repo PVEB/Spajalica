@@ -16,7 +16,7 @@ user_info +
 	lang
 	relationship_status
 	
-user_preferance +
+user_preference +
 	user_id
 	...
 	

@@ -22,12 +22,12 @@ angular.module("SpajalicaFrontEnd", [])
                     }
                     else
                     {
-                        console.log("User not found...");
+                        console.log("User not found");
                         $scope.nameStyle = {'border': '1px solid red'};
                         $scope.passStyle = {'border': '1px solid red'};
                     }
                 }, function (response) {
-                    console.log("I failed...");
+                    console.log("Failed request");
                     $scope.nameStyle = {'border': '1px solid red'};
                     $scope.passStyle = {'border': '1px solid red'};
                 });
@@ -61,14 +61,14 @@ angular.module("SpajalicaFrontEnd", [])
                     }
                     else
                     {
-                        console.log("User not found...");
+                        console.log("User not found");
                         $scope.nameStyleReg = {'border': '1px solid red'};
                         $scope.emailStyleReg = {'border': '1px solid red'};
                         $scope.passStyleReg = {'border': '1px solid red'};
                         $scope.passStyleReg2 = {'border': '1px solid red'};
                     }
                 }, function (response) {
-                    console.log("I failed... " + response.status);
+                    console.log("Failed request" + response.status);
                     $scope.nameStyleReg = {'border': '1px solid red'};
                     $scope.emailStyleReg = {'border': '1px solid red'};
                     $scope.passStyleReg = {'border': '1px solid red'};
