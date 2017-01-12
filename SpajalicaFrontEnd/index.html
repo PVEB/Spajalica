@@ -16,7 +16,6 @@
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/style_main.css">
 
-        <script src="js/Services/SharedData.js"></script>
         <script src="js/Controllers/IndexController.js"></script>
     </head>
     <body>
@@ -39,7 +38,7 @@
 
             <div class="menu visible-md visible-lg">
                 <ul id="menu-list">
-                    <li class="home-menu"><a href="#home">Профил</a></li>
+                    <li class="home-menu active"><a href="#home">Профил</a></li>
                     <li class="news-menu"><a href="#news">Новости</a></li>
                     <li class="match-menu"><a href="#match">Споји!</a></li>
                     <li class="messages-menu"><a href="#messages">Поруке</a></li>
@@ -63,27 +62,13 @@
             <div class="row">
                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-4 col-md-offset-4 temp-content-wrapper">
                     <div class="temp-content">
-
-                        <section id="welcome-text" class="active">
-                            <div class="col-sm-12 col-md-12 col-lg-12">
-                                <h2>Добродошли</h2>
-                                <p>Почните са уређивањем свог профила, или одмах крените на претрагу.</p>
-                            </div>
-                        </section><!-- /.welcome-text -->
-
-                        <section id="home-text" class="inactive">
+                        <section id="home-text" class="active">
                             <div ng-controller = "ProfileController" class="col-sm-12 col-md-12 col-lg-12">
-                                <h2>Ovde ide profilna strana</h2>
-                                <p>Ovde dolazi PRVI_BROJ: <input ng-model="prviBroj" type="number"/> </p>
-                                <p>Ovde dolazi DRUGI_BROJ: <input ng-model="drugiBroj" type="number"/> </p>
-                                <p> <input type="button" value="Vrati" ng-click="postdata(prviBroj, drugiBroj)" /> nešto sa BE: Prvi: {{ prom1 }}| Drugi: {{ prom2 }} </p>
-                                <p>Output Message : {{msg}}</p>
-                                <p>StatusCode: {{statusval}}</p>
-                                <p>Status: {{statustext}}</p>
-                                <p>Response Headers: {{headers}}</p>
-                                <p> Ovo je neka rečenica. Ovo je neka rečenica.
-                                    <a rel="nofollow" href="http://unsplash.com" target="_blank">Ovo je neki link.</a>
-                                </p>
+                                <h2>Корисник: {{nickname}}</h2>
+
+                                <div ng-repeat="info in responseObject track by $index">
+                                    <p> {{ info }} </p>
+                                </div>
                             </div>
                         </section><!-- /.home-text -->
 
@@ -143,12 +128,14 @@
                         </section><!-- /.messages-text -->
 
                         <section id="settings-text" class="inactive">
-                            <div class="col-sm-12 col-md-12">
-                                <h2>Podešavanja</h2>
-                                <p>Ovde idu podešavanja. </p>
-                                <p>Ovo je jedna rečenica. Ovo je jedna rečenica. Ovo je jedna rečenica.
-                                    Ovo je jedna rečenica. Ovo je jedna rečenica. Ovo je jedna rečenica. Ovo je jedna
-                                    rečenica. Ovo je jedna rečenica.</p>
+                            <div ng-controller="SettingsController" class="col-sm-12 col-md-12">
+                                <h2>Промените своје информације</h2>
+                                <div ng-repeat="info in responseObject track by $index" >
+                                    <span>{{info.name}}</span><input value="{{ info.value }}" ng-model="sendValues[$index]" type="text">
+                                </div>
+                                <div>
+                                    <button ng-click="saveData(sendValues)">Сачувај</button>
+                                </div>
                             </div>
                         </section><!-- /.settings-text -->
 

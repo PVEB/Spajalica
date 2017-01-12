@@ -5,7 +5,7 @@
 angular.module('SpajalicaFrontEnd', [])
     .service('SharedData', function SharedData(){
 
-        var userData = {userName: 'error'};
+        var userData;
 
         return userData;
 });
