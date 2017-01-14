@@ -3,6 +3,8 @@
  */
 
 $(function() {
+    $.backstretch("images/login_background.jpg", {speed: 500});
+
     $('#login-form-link').click(function(e) {
         $("#login-form").delay(100).fadeIn(100);
         $("#register-form").fadeOut(100);

@@ -59,7 +59,6 @@ angular.module("SpajalicaFrontEnd", [])
         };
 
         var userInfo = [];
-        var sendValues;
 
         $http.post('http://localhost:8000/ShowProfile', data).then(
             function (response) {
@@ -78,7 +77,7 @@ angular.module("SpajalicaFrontEnd", [])
                 userInfo.push({name: "Статус везе: ", value: response.data.relationshipStatus});
 
                 $scope.responseObject = userInfo;
-                sendValues = new Array(userInfo.length);
+                $scope.sendValues = new Array(userInfo.length);
 
             }, function (response) {
                 console.log("Service not Exists: " +
