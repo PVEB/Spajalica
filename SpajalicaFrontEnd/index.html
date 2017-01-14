@@ -131,10 +131,12 @@
                             <div ng-controller="SettingsController" class="col-sm-12 col-md-12">
                                 <h2>Промените своје информације</h2>
                                 <div ng-repeat="info in responseObject track by $index" >
-                                    <span>{{info.name}}</span><input value="{{ info.value }}" type="text">
+                                    <span>{{info.label}}</span>
+                                    <input type="text" ng-model="savedData.selected[info.name]" ng-true-value="'{{info.name}}'" ng-false-value="{{null}}" placeholder="{{info.value}}">
+
                                 </div>
                                 <div>
-                                    <button>Сачувај</button>
+                                    <button ng-click="saveData()">Сачувај</button>
                                 </div>
                             </div>
                         </section><!-- /.settings-text -->

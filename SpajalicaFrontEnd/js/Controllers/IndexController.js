@@ -43,8 +43,7 @@ angular.module("SpajalicaFrontEnd", [])
             }, function (response) {
                 console.log("Service not Exists: " +
                     response.status + "|" +
-                    response.statusText + "|" +
-                    response.headers());
+                    response.statusText + "|");
             });
 
         $scope.nickname = $window.sessionStorage.device;
@@ -60,6 +59,11 @@ angular.module("SpajalicaFrontEnd", [])
 
         var userInfo = [];
 
+        $scope.savedData = {
+            selected:{},
+            userName: $window.sessionStorage.device
+        };
+
         $http.post('http://localhost:8000/ShowProfile', data).then(
             function (response) {
                 if (response.data)
@@ -68,25 +72,35 @@ angular.module("SpajalicaFrontEnd", [])
                     console.log(response.data);
                 }
 
-                userInfo.push({name: "Име: ", value: response.data.firstName});
-                userInfo.push({name: "Презиме: ", value: response.data.lastName});
-                userInfo.push({name: "Датум рођења: ", value: response.data.birthDate});
-                userInfo.push({name: "Датум приступа: ", value: response.data.joinedDate});
-                userInfo.push({name: "Пол: ", value: response.data.sex});
-                userInfo.push({name: "Место: ", value: response.data.location});
-                userInfo.push({name: "Статус везе: ", value: response.data.relationshipStatus});
+                userInfo.push({label: "Име: ", value: response.data.firstName, name: "firstName"});
+                userInfo.push({label: "Презиме: ", value: response.data.lastName, name: "lastName"});
+                userInfo.push({label: "Датум рођења: ", value: response.data.birthDate, name: "birthDate"});
+                userInfo.push({label: "Пол: ", value: response.data.sex, name: "sex"});
+                userInfo.push({label: "Место: ", value: response.data.location, name: "location"});
+                userInfo.push({label: "Статус везе: ", value: response.data.relationshipStatus, name: "relationshipStatus"});
 
                 $scope.responseObject = userInfo;
-                $scope.sendValues = new Array(userInfo.length);
 
             }, function (response) {
                 console.log("Service not Exists: " +
                     response.status + "|" +
-                    response.statusText + "|" +
-                    response.headers());
+                    response.statusText + "|");
             });
 
-        $scope.saveData = function (valuesSubmitted) {
-            console.log(valuesSubmitted);
-        }
+        $scope.saveData = function () {
+            console.log($scope.savedData);
+
+            $http.post('http://localhost:8000/UpdateProfile', $scope.savedData).then(
+                function (response) {
+                    if (response.data)
+                    {
+                        console.log("Successfully sent data");
+                        console.log(response.data);
+                    }
+                }, function (response) {
+                    console.log("Service not Exists: " +
+                        response.status + "|" +
+                        response.statusText + "|");
+                });
+        };
     });

@@ -23,10 +23,10 @@ Route::get('hello', function () {
     return '<h1>Hello World</h1>';
 });
 
-Route::post('Profile', 'ProfileController@Transform')->middleware(\App\Http\Middleware\Cors::class);
-
 Route::post('ShowProfile', 'ProfileController@Show')->middleware(\App\Http\Middleware\Cors::class);
 
 Route::post('LoginVerify', 'LoginController@VerifyUser')->middleware(\App\Http\Middleware\Cors::class);
 
 Route::post('LoginRegister', 'LoginController@AddUser')->middleware(\App\Http\Middleware\Cors::class);
+
+Route::post('UpdateProfile', 'SettingsController@Update')->middleware(\App\Http\Middleware\Cors::class);

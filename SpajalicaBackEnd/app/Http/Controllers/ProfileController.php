@@ -45,16 +45,5 @@ class ProfileController extends Controller
             return 0;
         }
     }
-
-    public function Transform()
-    {
-        $data = Input::all();
-        $odgovor = json_decode(json_encode($data));
-        $odgovor->prvi = 2*$odgovor->prvi;
-        $odgovor->drugi = 2*$odgovor->drugi;
-
-        //pravi neki JSON od niza
-        return json_encode($odgovor);
-    }
 }
 
