@@ -96,6 +96,7 @@ angular.module("SpajalicaFrontEnd", [])
                     {
                         console.log("Successfully sent data");
                         console.log(response.data);
+                        $window.location.reload();
                     }
                 }, function (response) {
                     console.log("Service not Exists: " +
