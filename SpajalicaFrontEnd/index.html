@@ -10,12 +10,12 @@
     	<meta name="keywords" content="" />
 		<meta name="description" content="" />
         <meta name="viewport" content="width=device-width">
-        <script src="js/angular.min.js"></script>
-        <script src="js/app.js"></script>
 
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/style_main.css">
 
+        <script src="js/angular.min.js"></script>
+        <!--<script src="js/app.js"></script>-->
         <script src="js/Controllers/IndexController.js"></script>
     </head>
     <body>
@@ -44,7 +44,9 @@
                     <li class="messages-menu"><a href="#messages">Поруке</a></li>
                     <li class="suggestions-menu"><a href="#suggestions">Претрага</a></li>
                     <li class="settings-menu"><a href="#settings">Подешавања</a></li>
-                    <li class="logout-menu"><a href="#">Излогуј се</a></li>
+                    <li class="logout-menu" ng-controller="LogoutController">
+                        <a href="#" ng-click="LogOut()">Излогуј се</a>
+                    </li>
                 </ul>
             </div><!-- /.menu -->
 
@@ -132,8 +134,9 @@
                                 <h2>Промените своје информације</h2>
                                 <div ng-repeat="info in responseObject track by $index" >
                                     <span>{{info.label}}</span>
-                                    <input type="text" ng-model="savedData.selected[info.name]" ng-true-value="'{{info.name}}'" ng-false-value="{{null}}" placeholder="{{info.value}}">
-
+                                    <input class="settings-input" type="text" ng-model="savedData.selected[info.name]" ng-true-value="'{{info.name}}'"
+                                           ng-false-value="{{null}}" placeholder="{{info.value}}" ng-style="settingsInputStyle">
+                                    <span class="help">{{info.hoverMessage}}</span>
                                 </div>
                                 <div>
                                     <button ng-click="saveData()">Сачувај</button>
