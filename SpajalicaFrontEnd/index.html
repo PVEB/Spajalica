@@ -102,27 +102,31 @@
                         </section><!-- /.match-text -->
 
                         <section id="messages-text" class="inactive">
-                            <div class="col-sm-12 col-md-12">
+                            <div class="col-sm-12 col-md-12" ng-controller="MessagesController">
                                 <h2>Poruke</h2>
                                 <div class="col-sm-12 col-md-12">
-                                    <form action="#" method="post">
-
+                                    <form ng-submit="submitOnEnter(receiver, message)">
                                         <div class="form-group">
                                             <!--<label for="contact_name">Name:</label>-->
-                                            <input type="text" id="contact_name" class="form-control"
-                                                   placeholder="Name"/>
+                                            <input ng-model="receiver" type="text" id="contact_name" class="form-control"
+                                                   placeholder="Корисничко име"/>
                                         </div>
                                         <div class="form-group">
-                                            <!--<label for="contact_email">Email:</label>-->
-                                            <input type="text" id="contact_email" class="form-control"
-                                                   placeholder="Email Address"/>
+                                            <div class="messages-container">
+                                                <div ng-repeat="message in messageArray track by $index">
+                                                    <p class="sender">{{message.sent.messageText}}</p>
+                                                    <span class="message-time">{{message.sent.messageTime}}</span>
+                                                    <p class="recipient">{{message.received.messageText}}</p>
+                                                    <span class="message-time">{{message.received.messageTime}}</span>
+                                                </div>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <!--<label for="contact_message">Message:</label>-->
-                                            <textarea id="contact_message" class="form-control" rows="7"
-                                                      placeholder="Write a message"></textarea>
+                                            <input ng-model="message" type="text" id="contact_message" class="form-control"
+                                                   placeholder="Куцајте поруку"/>
                                         </div>
-                                        <button type="submit" class="btn btn-primary">Send</button>
+                                        <button ng-click="sendMessage(receiver, message)" class="btn btn-primary">Пошаљи</button>
 
                                     </form>
                                 </div>
@@ -139,7 +143,7 @@
                                     <span class="help">{{info.hoverMessage}}</span>
                                 </div>
                                 <div>
-                                    <button ng-click="saveData()">Сачувај</button>
+                                    <button ng-click="saveData()" class="btn btn-primary">Сачувај</button>
                                 </div>
                             </div>
                         </section><!-- /.settings-text -->

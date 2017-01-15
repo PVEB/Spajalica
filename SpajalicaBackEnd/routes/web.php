@@ -30,3 +30,7 @@ Route::post('LoginVerify', 'LoginController@VerifyUser')->middleware(\App\Http\M
 Route::post('LoginRegister', 'LoginController@AddUser')->middleware(\App\Http\Middleware\Cors::class);
 
 Route::post('UpdateProfile', 'SettingsController@Update')->middleware(\App\Http\Middleware\Cors::class);
+
+Route::post('SendMessage', 'MessagesController@Send')->middleware(\App\Http\Middleware\Cors::class);
+
+Route::post('GetMessages', 'MessagesController@GetMessages')->middleware(\App\Http\Middleware\Cors::class);

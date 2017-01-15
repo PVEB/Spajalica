@@ -126,4 +126,63 @@ angular.module("SpajalicaFrontEnd", [])
             $window.sessionStorage.device = null;
             $window.location.href = './Login.html';
         };
+    })
+    .controller("MessagesController", function ($scope, $window, $http) {
+        
+        $scope.submitOnEnter = function (receiver, message) {
+            var getMessagesData = {
+                sender: $window.sessionStorage.device,
+                receiver: receiver
+            };
+
+            console.log(getMessagesData.receiver+"|"+getMessagesData.sender);
+
+            $http.post('http://localhost:8000/GetMessages', getMessagesData).then(
+                function (response) {
+                    if (response.data)
+                    {
+                        console.log("Successfully sent message");
+                        console.log(response.data);
+                        $scope.messageArray = angular.copy(response.data);
+                        $scope.message = "";
+                    }
+                    else
+                    {
+                        console.log("Message not sent");
+                    }
+                }, function (response) {
+                    console.log("Service not Exists: " +
+                        response.status + "|" +
+                        response.statusText + "|");
+                });
+        };
+
+        $scope.sendMessage = function (receiver, message) {
+
+            if(angular.isUndefined(receiver) || angular.isUndefined(message))
+                return;
+
+            var data = {
+                sender: $window.sessionStorage.device,
+                receiver: receiver,
+                message: message
+            };
+
+            $http.post('http://localhost:8000/SendMessage', data).then(
+                function (response) {
+                    if (response.data)
+                    {
+                        console.log("Successfully sent message");
+                        $scope.message = "";
+                    }
+                    else
+                    {
+                        console.log("Message not sent");
+                    }
+                }, function (response) {
+                    console.log("Service not Exists: " +
+                        response.status + "|" +
+                        response.statusText + "|");
+                });
+        }
     });
