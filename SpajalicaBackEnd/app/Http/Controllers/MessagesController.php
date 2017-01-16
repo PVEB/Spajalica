@@ -66,4 +66,14 @@ class MessagesController extends Controller
 
         return json_encode($response);
     }
+
+    public function GetUsers()
+    {
+        $data = Input::all();
+        $res = json_decode(json_encode($data));
+
+        $usersInfo = DB::select('select userName from loginInfo where userName <> ?', [$res->userName]);
+
+        return json_encode($usersInfo);
+    }
 }

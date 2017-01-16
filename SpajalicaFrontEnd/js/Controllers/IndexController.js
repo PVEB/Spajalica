@@ -128,6 +128,27 @@ angular.module("SpajalicaFrontEnd", [])
         };
     })
     .controller("MessagesController", function ($scope, $window, $http) {
+
+        //$scope.userNames = ["test", "admin", "Marko"];
+
+        $http.post('http://localhost:8000/GetUsers',
+                    {userName: $window.sessionStorage.device}).then(
+            function (response) {
+                if (response.data)
+                {
+                    console.log("Successfully retrieved users");
+                    console.log(response.data);
+                    $scope.userNames = angular.copy(response.data);
+                }
+                else
+                {
+                    console.log("Users not retrieved");
+                }
+            }, function (response) {
+                console.log("Service not Exists: " +
+                    response.status + "|" +
+                    response.statusText + "|");
+            });
         
         $scope.submitOnEnter = function (receiver, message) {
             var getMessagesData = {
@@ -143,6 +164,9 @@ angular.module("SpajalicaFrontEnd", [])
                     {
                         console.log("Successfully retrieved messages");
                         console.log(response.data);
+
+
+
                         $scope.messageArray = angular.copy(response.data);
                         $scope.message = "";
                     }

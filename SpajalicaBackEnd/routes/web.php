@@ -34,3 +34,5 @@ Route::post('UpdateProfile', 'SettingsController@Update')->middleware(\App\Http\
 Route::post('SendMessage', 'MessagesController@Send')->middleware(\App\Http\Middleware\Cors::class);
 
 Route::post('GetMessages', 'MessagesController@GetMessages')->middleware(\App\Http\Middleware\Cors::class);
+
+Route::post('GetUsers', 'MessagesController@GetUsers')->middleware(\App\Http\Middleware\Cors::class);

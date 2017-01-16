@@ -109,8 +109,13 @@
                                         <div class="btn-group btn-group-justified">
                                             <!--<label for="contact_name">Name:</label>-->
                                             <div class="btn-group" role="group">
-                                                <input ng-model="receiver" type="text" class="btn btn-info"
-                                                       placeholder="Корисничко име"/>
+                                                <input ng-model="receiver" type="text" class="btn btn-default"
+                                                       placeholder="Корисничко име" list="users">
+                                                <datalist id="users">
+                                                    <option ng-repeat="userName in userNames track by $index">
+                                                        {{userName.userName}}
+                                                    </option>
+                                                </datalist>
                                             </div>
                                             <div class="btn-group" role="group">
                                                 <button id="refresh1" ng-click="submitOnEnter(receiver, message)" class="btn btn-primary">
