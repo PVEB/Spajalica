@@ -105,19 +105,30 @@
                             <div class="col-sm-12 col-md-12" ng-controller="MessagesController">
                                 <h2>Poruke</h2>
                                 <div class="col-sm-12 col-md-12">
-                                    <form ng-submit="submitOnEnter(receiver, message)">
-                                        <div class="form-group">
+                                    <form>
+                                        <div class="btn-group btn-group-justified">
                                             <!--<label for="contact_name">Name:</label>-->
-                                            <input ng-model="receiver" type="text" id="contact_name" class="form-control"
-                                                   placeholder="Корисничко име"/>
+                                            <div class="btn-group" role="group">
+                                                <input ng-model="receiver" type="text" class="btn btn-info"
+                                                       placeholder="Корисничко име"/>
+                                            </div>
+                                            <div class="btn-group" role="group">
+                                                <button id="refresh1" ng-click="submitOnEnter(receiver, message)" class="btn btn-primary">
+                                                    Освежи
+                                                </button>
+                                            </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="messages-container">
                                                 <div ng-repeat="message in messageArray track by $index">
-                                                    <p class="sender">{{message.sent.messageText}}</p>
-                                                    <span class="message-time">{{message.sent.messageTime}}</span>
-                                                    <p class="recipient">{{message.received.messageText}}</p>
-                                                    <span class="message-time">{{message.received.messageTime}}</span>
+                                                    <div>
+                                                        <p class="sender">{{message.sent.messageText}}</p>
+                                                        <span class="message-time">{{message.sent.messageTime}}</span>
+                                                    </div>
+                                                    <div>
+                                                        <p class="recipient">{{message.received.messageText}}</p>
+                                                        <span class="message-time">{{message.received.messageTime}}</span>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
