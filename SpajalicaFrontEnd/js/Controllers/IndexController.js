@@ -141,14 +141,14 @@ angular.module("SpajalicaFrontEnd", [])
                 function (response) {
                     if (response.data)
                     {
-                        console.log("Successfully sent message");
+                        console.log("Successfully retrieved messages");
                         console.log(response.data);
                         $scope.messageArray = angular.copy(response.data);
                         $scope.message = "";
                     }
                     else
                     {
-                        console.log("Message not sent");
+                        console.log("Message not retrieved");
                     }
                 }, function (response) {
                     console.log("Service not Exists: " +

@@ -329,10 +329,10 @@ img.slide {
 }
 
 .message-time {
-    background-color: #59B2E0;
+    background-color: #616161;
     /*border-radius: 10px;*/
     display: none;
     opacity: 0.9;
-    /*padding: 10px;*/
+    padding: 10px;
     z-index: 100;
 }
