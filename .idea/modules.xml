@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project version="4">
-  <component name="ProjectModuleManager">
-    <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Spajalica.iml" filepath="$PROJECT_DIR$/.idea/Spajalica.iml" />
-      <module fileurl="file://$PROJECT_DIR$/SpajalicaFrontEnd/.idea/SpajalicaFrontEnd.iml" filepath="$PROJECT_DIR$/SpajalicaFrontEnd/.idea/SpajalicaFrontEnd.iml" />
-    </modules>
-  </component>
-</project>
