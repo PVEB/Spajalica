@@ -107,7 +107,6 @@
                                 <div class="col-sm-12 col-md-12">
                                     <form>
                                         <div class="btn-group btn-group-justified">
-                                            <!--<label for="contact_name">Name:</label>-->
                                             <div class="btn-group" role="group">
                                                 <form ng-submit="submitOnEnter(receiver, message)">
                                                     <input ng-model="receiver" type="text" class="btn btn-default"
@@ -120,7 +119,7 @@
                                                 </form>
                                             </div>
                                             <div class="btn-group" role="group">
-                                                <button id="refresh1" ng-click="submitOnEnter(receiver, message)" class="btn btn-primary">
+                                                <button ng-click="submitOnEnter(receiver, message)" class="btn btn-primary">
                                                     Освежи
                                                 </button>
                                             </div>
@@ -170,10 +169,29 @@
 
                         <section id="suggestions-text" class="inactive">
                             <div class="col-sm-12 col-md-12">
-                                <h2>Pretraga</h2>
-                                <p>Ovo je jedna rečenica. Ovo je jedna rečenica. Ovo je jedna rečenica.
-                                    Ovo je jedna rečenica. Ovo je jedna rečenica. Ovo je jedna rečenica. Ovo je jedna
-                                    rečenica. Ovo je jedna rečenica.</p>
+                                <h2>Претрага</h2>
+
+                                <div class="btn-group btn-group-justified">
+                                    <!--<label for="contact_name">Name:</label>-->
+                                    <div class="btn-group" role="group">
+                                        <form ng-submit="search(criteria)">
+                                            <input ng-model="criteria" placeholder="Критеријум претраге" class="form-control" />
+                                        </form>
+                                    </div>
+                                    <div class="btn-group" role="group">
+                                        <button ng-click="search(criteria)" class="btn btn-primary">
+                                            Тражи
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="btn-group-justified">
+
+                                    <div class="btn-group" role="group">
+                                        <button ng-click="follow(userName)" class="btn btn-primary">
+                                            Прати
+                                        </button>
+                                    </div>
+                                </div>
                             </div>
                         </section><!-- /.suggestions-text -->
                     </div><!-- /.temp-content -->
