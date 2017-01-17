@@ -109,13 +109,15 @@
                                         <div class="btn-group btn-group-justified">
                                             <!--<label for="contact_name">Name:</label>-->
                                             <div class="btn-group" role="group">
-                                                <input ng-model="receiver" type="text" class="btn btn-default"
-                                                       placeholder="Корисничко име" list="users">
-                                                <datalist id="users">
-                                                    <option ng-repeat="userName in userNames track by $index">
-                                                        {{userName.userName}}
-                                                    </option>
-                                                </datalist>
+                                                <form ng-submit="submitOnEnter(receiver, message)">
+                                                    <input ng-model="receiver" type="text" class="btn btn-default"
+                                                           placeholder="Корисничко име" list="users">
+                                                    <datalist id="users">
+                                                        <option ng-repeat="userName in userNames track by $index">
+                                                            {{userName.userName}}
+                                                        </option>
+                                                    </datalist>
+                                                </form>
                                             </div>
                                             <div class="btn-group" role="group">
                                                 <button id="refresh1" ng-click="submitOnEnter(receiver, message)" class="btn btn-primary">
@@ -139,8 +141,10 @@
                                         </div>
                                         <div class="form-group">
                                             <!--<label for="contact_message">Message:</label>-->
-                                            <input ng-model="message" type="text" id="contact_message" class="form-control"
-                                                   placeholder="Куцајте поруку"/>
+                                            <form ng-submit="sendMessage(receiver, message)">
+                                                <input ng-model="message" type="text" id="contact_message" class="form-control"
+                                                       placeholder="Куцајте поруку"/>
+                                            </form>
                                         </div>
                                         <button ng-click="sendMessage(receiver, message)" class="btn btn-primary">Пошаљи</button>
 
@@ -177,7 +181,7 @@
 
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 footer">
                     <p class="footer-text">
-                        <span>Copyright &copy; Spajalica &reg; I ostali fensi znaci... xD </span>
+                        <span>Сва права заштићена &copy; Спајалица &reg; ... xD </span>
                     </p>
                 </div><!-- /.footer -->
             </div>

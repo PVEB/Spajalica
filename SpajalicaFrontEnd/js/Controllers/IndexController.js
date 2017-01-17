@@ -164,9 +164,6 @@ angular.module("SpajalicaFrontEnd", [])
                     {
                         console.log("Successfully retrieved messages");
                         console.log(response.data);
-
-
-
                         $scope.messageArray = angular.copy(response.data);
                         $scope.message = "";
                     }
