@@ -38,3 +38,9 @@ Route::post('GetMessages', 'MessagesController@GetMessages')->middleware(\App\Ht
 Route::post('GetUsers', 'MessagesController@GetUsers')->middleware(\App\Http\Middleware\Cors::class);
 
 Route::post('GetFollowListUsers', 'SearchController@GetUsers')->middleware(\App\Http\Middleware\Cors::class);
+
+Route::post('SearchUserCriteria', 'SearchController@SearchUsers')->middleware(\App\Http\Middleware\Cors::class);
+
+Route::post('BlockUser', 'SearchController@BlockUser')->middleware(\App\Http\Middleware\Cors::class);
+
+Route::post('FollowUser', 'SearchController@FollowUser')->middleware(\App\Http\Middleware\Cors::class);
