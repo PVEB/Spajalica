@@ -129,8 +129,6 @@ angular.module("SpajalicaFrontEnd", [])
     })
     .controller("MessagesController", function ($scope, $window, $http) {
 
-        //$scope.userNames = ["test", "admin", "Marko"];
-
         $http.post('http://localhost:8000/GetUsers',
                     {userName: $window.sessionStorage.device}).then(
             function (response) {
@@ -206,4 +204,7 @@ angular.module("SpajalicaFrontEnd", [])
                         response.statusText + "|");
                 });
         }
+    })
+    .controller("MessagesController", function ($scope, $window, $http) {
+
     });

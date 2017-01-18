@@ -75,19 +75,20 @@
                         </section><!-- /.home-text -->
 
                         <section id="news-text" class="inactive">
-                            <h2 class="text-center">Strana sa novostima</h2>
+                            <h2 class="text-center">Новости</h2>
                             <div class="col-sm-12 col-md-12 col-lg-12">
-                                <p>Ovde idu sve novosti, nešto kao news feed. Ovo je neka rečenica.. Ovo je neka
-                                    rečenica. Ovo je neka rečenica. Ovo je neka rečenica. Ovo je neka rečenica. Ovo je
-                                    neka rečenica. Ovo je neka rečenica.Ovo je neka rečenica.</p>
-                                <p>Suspendisse risus urna, posuere id orci ut, facilisis accumsan ipsum. Etiam sodales
-                                    consequat purus non vulputate. Aliquam erat volutpat. Sed vehicula lacinia porta.
-                                    Vivamus faucibus dui nulla, a aliquet nunc porta in.</p>
+                                <input ng-model="criteria" placeholder="Напиши нешто..." class="form-control" />
+
+                                <div class="form-group">
+                                    <textarea class="form-group">
+                                        Prvi status...
+                                    </textarea>
+                                </div>
                             </div>
                         </section><!-- /.news-text -->
 
                         <section id="match-text" class="inactive">
-                            <h2 class="text-center">Algoritam spajanja!</h2>
+                            <h2 class="text-center">Споји!</h2>
                             <div class="col-sm-12 col-md-12 col-lg-12">
                                 <h3>Jedan sektor</h3>
                                 <p>Nullam vitae lectus dui. Donec vulputate ac tortor id convallis. Sed nisi mauris,
@@ -103,7 +104,7 @@
 
                         <section id="messages-text" class="inactive">
                             <div class="col-sm-12 col-md-12" ng-controller="MessagesController">
-                                <h2>Poruke</h2>
+                                <h2>Поруке</h2>
                                 <div class="col-sm-12 col-md-12">
                                     <form>
                                         <div class="btn-group btn-group-justified">
@@ -168,7 +169,7 @@
                         </section><!-- /.settings-text -->
 
                         <section id="suggestions-text" class="inactive">
-                            <div class="col-sm-12 col-md-12">
+                            <div class="col-sm-12 col-md-12" ng-controller="SearchController">
                                 <h2>Претрага</h2>
 
                                 <div class="btn-group btn-group-justified">
@@ -185,10 +186,14 @@
                                     </div>
                                 </div>
                                 <div class="btn-group-justified">
-
                                     <div class="btn-group" role="group">
                                         <button ng-click="follow(userName)" class="btn btn-primary">
                                             Прати
+                                        </button>
+                                    </div>
+                                    <div class="btn-group" role="group">
+                                        <button ng-click="block(userName)" class="btn btn-primary">
+                                            Блокирај
                                         </button>
                                     </div>
                                 </div>
