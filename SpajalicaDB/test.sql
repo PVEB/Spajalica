@@ -1,8 +1,13 @@
 use spajalicadb;
 
-select l.userName, u.statusMessage, u.statusTime, u.statusLocation '.
-                               'from userstatusupdates u join logininfo l on l.idloginInfo = u.idloginInfo'.
-                               'where l.idloginInfo <> ?
+SELECT 
+    l.userName, u.statusMessage, u.statusTime, u.statusLocation
+FROM
+    userstatusupdates u
+        JOIN
+    logininfo l ON l.idloginInfo = u.idloginInfo
+WHERE
+    l.idloginInfo <> 2;
 
 SELECT li.userName
 FROM loginInfo li
@@ -15,3 +20,15 @@ WHERE li.idloginInfo <> 1
 					 FROM userFollows uf
 					 WHERE uf.idloginInfo = 1 AND uf.idFollowed = li.idloginInfo)		
 ORDER BY li.userName;
+
+use spajalicadb;
+select pt.preferenceName 
+from preferenceTags pt join userProfileTags upt 
+	on pt.idPreferenceTags = upt.idPreferenceTags
+						join loginInfo li
+	on upt.idLoginInfo = li.idLoginInfo
+where li.userName = 'test';
+
+select idPreferenceTags from preferenceTags
+where preferenceName = 'plavuse'
+

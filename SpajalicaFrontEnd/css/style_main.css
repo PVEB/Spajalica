@@ -263,11 +263,7 @@ img.slide {
 /*}*/
 
 .settings-input {
-    border-radius:40px;
-    background-color: white;
-    color: black;
-    border: 1px solid #4CAF50; /* Green */
-    font-size: 13px;
+    /*float: right;*/
 }
 
 .settings-input:hover + .help {

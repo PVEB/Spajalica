@@ -17,8 +17,9 @@ class NewsController extends Controller
 
         $statuses = DB::select('select l.userName, u.statusMessage, u.statusTime, u.statusLocation '.
                                'from userstatusupdates u join logininfo l on l.idloginInfo = u.idloginInfo '.
-                               'where l.idloginInfo <> ? and exists (select * from userFollows uf '.
-                               'where uf.idloginInfo = ? and uf.idFollowed = l.idloginInfo) ',
+                               'where l.idloginInfo = ? or exists (select * from userFollows uf '.
+                               'where uf.idloginInfo = ? and uf.idFollowed = l.idloginInfo) '.
+                               'order by u.statusTime desc',
                                [$userID[0]->idloginInfo, $userID[0]->idloginInfo]);
 
         return json_encode($statuses);

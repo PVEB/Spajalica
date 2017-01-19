@@ -54,4 +54,62 @@ class SettingsController extends Controller
 
         return 200;
     }
+
+    public function GetPrefTags()
+    {
+        $data = Input::all();
+        $res = json_decode(json_encode($data));
+
+        $loginInfo = DB::select('select * from loginInfo where userName = ?', [$res->userName]);
+    }
+
+    public function InsertPrefTag()
+    {
+        $data = Input::all();
+        $res = json_decode(json_encode($data));
+    }
+
+    public function GetUserTags()
+    {
+        $data = Input::all();
+        $res = json_decode(json_encode($data));
+
+        $userTags = DB::select('select pt.preferenceName '.
+                               'from preferenceTags pt join userProfileTags upt  '.
+                               'on pt.idPreferenceTags = upt.idPreferenceTags '.
+                               'join loginInfo li '.
+                               'on upt.idLoginInfo = li.idLoginInfo '.
+                               'where li.userName = ?', [$res->userName]);
+
+        return json_encode($userTags);
+    }
+
+    public function InsertUserTag()
+    {
+        $data = Input::all();
+        $res = json_decode(json_encode($data));
+
+        $loginInfo = DB::select('select * from loginInfo where userName = ?', [$res->userName]);
+
+        $exists = DB::select('select idPreferenceTags from preferenceTags '.
+                             'where preferenceName = ? ', [$res->userTag]);
+
+        if(count($exists) > 0)
+        {
+            DB::insert('insert into userProfileTags (idLoginInfo, idPreferenceTags) values (?, ?)',
+                       [$loginInfo[0]->idloginInfo, $exists[0]->idPreferenceTags]);
+        }
+        else
+        {
+            DB::insert('insert into preferenceTags (preferenceName) values (?)', [$res->userTag]);
+
+            $exists = DB::select('select idPreferenceTags from preferenceTags '.
+                                 'where preferenceName = ? ', [$res->userTag]);
+
+            DB::insert('insert into userProfileTags (idLoginInfo, idPreferenceTags) values (?, ?)',
+                [$loginInfo[0]->idloginInfo, $exists[0]->idPreferenceTags]);
+        }
+
+        return 200;
+    }
 }

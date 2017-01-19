@@ -89,6 +89,13 @@
                                         </button>
                                     </div>
                                 </div>
+
+                                <div class="btn-group" role="group">
+                                    <button class="form-control" role="group" ng-click="refresh()">
+                                        Освежи
+                                    </button>
+                                </div>
+
                                 <div class="col-sm-12 col-md-12 col-lg-12" role="group">
                                     <button ng-click="refresh()" class="btn btn-primary">
                                         Освежи
@@ -173,12 +180,43 @@
                                 <h2>Промените своје информације</h2>
                                 <div ng-repeat="info in responseObject track by $index" >
                                     <span>{{info.label}}</span>
-                                    <input class="settings-input" type="text" ng-model="savedData.selected[info.name]" ng-true-value="'{{info.name}}'"
-                                           ng-false-value="{{null}}" placeholder="{{info.value}}" ng-style="settingsInputStyle">
+                                    <input class="btn btn-default settings-input" type="text" ng-model="savedData.selected[info.name]"
+                                           ng-true-value="'{{info.name}}'" ng-false-value="{{null}}"
+                                           placeholder="{{info.value}}" ng-style="settingsInputStyle">
                                     <span class="help">{{info.hoverMessage}}</span>
                                 </div>
                                 <div>
                                     <button ng-click="saveData()" class="btn btn-primary">Сачувај</button>
+                                </div>
+                                <h2>Опишите се</h2>
+                                <div class="btn-group btn-group-justified">
+                                    <div class="btn-group" role="group">
+                                        <form ng-submit="saveTag(tag)">
+                                            <input ng-model="tag" type="text"
+                                                   class="btn btn-default" placeholder="Унеси ознаку">
+                                        </form>
+                                    </div>
+                                    <div class="btn-group" role="group">
+                                        <button ng-click="saveTag(tag)" class="btn btn-primary">Сачувај</button>
+                                    </div>
+                                </div>
+                                <div ng-repeat="userTag in userTags track by $index">
+                                    <span class="btn-success">{{userTag.preferenceName}}</span>
+                                </div>
+                                <h2>Шта тражите?</h2>
+                                <div class="btn-group btn-group-justified">
+                                    <div class="btn-group" role="group">
+                                        <form ng-submit="savePrefTag(prefTag)">
+                                            <input ng-model="prefTag" type="text"
+                                                   class="btn btn-default" placeholder="Унеси ознаку">
+                                        </form>
+                                    </div>
+                                    <div class="btn-group" role="group">
+                                        <button ng-click="savePrefTag(prefTag)" class="btn btn-primary">Сачувај</button>
+                                    </div>
+                                </div>
+                                <div ng-repeat="userPrefTag in userPrefTags track by $index">
+                                    <span class="btn-success">{{userPrefTag.preferenceName}}|{{userPrefTag.value}}</span>
                                 </div>
                             </div>
                         </section><!-- /.settings-text -->

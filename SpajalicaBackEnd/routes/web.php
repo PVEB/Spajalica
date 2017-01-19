@@ -15,12 +15,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('ID/{id}',function($id){
     echo 'ID: '.$id;
-});
-
-Route::get('hello', function () {
-    return '<h1>Hello World</h1>';
 });
 
 Route::post('ShowProfile', 'ProfileController@Show')->middleware(\App\Http\Middleware\Cors::class);
@@ -48,3 +45,11 @@ Route::post('FollowUser', 'SearchController@FollowUser')->middleware(\App\Http\M
 Route::post('WriteStatus', 'NewsController@WriteStatus')->middleware(\App\Http\Middleware\Cors::class);
 
 Route::post('GetStatusUpdates', 'NewsController@GetStatusUpdates')->middleware(\App\Http\Middleware\Cors::class);
+
+Route::post('GetPrefTags', 'SettingsController@GetPrefTags')->middleware(\App\Http\Middleware\Cors::class);
+
+Route::post('InsertPrefTag', 'SettingsController@InsertPrefTag')->middleware(\App\Http\Middleware\Cors::class);
+
+Route::post('GetUserTags', 'SettingsController@GetUserTags')->middleware(\App\Http\Middleware\Cors::class);
+
+Route::post('InsertUserTag', 'SettingsController@InsertUserTag')->middleware(\App\Http\Middleware\Cors::class);

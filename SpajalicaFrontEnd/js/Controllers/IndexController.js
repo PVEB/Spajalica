@@ -72,17 +72,17 @@ angular.module("SpajalicaFrontEnd", [])
                     console.log(response.data);
 
                     userInfo.push({label: "Име: ", value: response.data.firstName,
-                        name: "firstName", hoverMessage: "Ниска до 45 карактера"});
+                        name: "firstName", hoverMessage: "До 45 карактера"});
                     userInfo.push({label: "Презиме: ", value: response.data.lastName,
-                        name: "lastName", hoverMessage: "Ниска до 45 карактера"});
+                        name: "lastName", hoverMessage: "До 45 карактера"});
                     userInfo.push({label: "Датум рођења: ", value: response.data.birthDate,
-                        name: "birthDate", hoverMessage: "Само уноси у датом формату су исправни"});
+                        name: "birthDate", hoverMessage: "ГГГГ-ММ-ДД"});
                     userInfo.push({label: "Пол: ", value: response.data.sex,
                         name: "sex", hoverMessage: "Један карактер: М, Z"});
                     userInfo.push({label: "Место: ", value: response.data.location,
-                        name: "location", hoverMessage: "Ниска до 45 карактера"});
+                        name: "location", hoverMessage: "До 45 карактера"});
                     userInfo.push({label: "Статус везе: ", value: response.data.relationshipStatus,
-                        name: "relationshipStatus", hoverMessage: "Ниска до 45 карактера"});
+                        name: "relationshipStatus", hoverMessage: "До 45 карактера"});
 
                     $scope.responseObject = userInfo;
                 }
@@ -118,6 +118,57 @@ angular.module("SpajalicaFrontEnd", [])
                         response.statusText + "|");
 
                     $scope.settingsInputStyle = {'border': '3px solid red'};
+                });
+        };
+
+        var refresh = function () {
+            var data = {
+                userName: $window.sessionStorage.device
+            };
+
+            $http.post('http://localhost:8000/GetUserTags', data).then(
+                function (response) {
+                    if (response.data)
+                    {
+                        console.log("Successfully get useTags");
+                        console.log(response.data);
+                        $scope.userTags = angular.copy(response.data);
+                    }
+                    else
+                    {
+                        console.log("Not found userTags");
+                    }
+                }, function (response) {
+                    console.log("Service not Exists: " +
+                        response.status + "|" +
+                        response.statusText + "|");
+                });
+        };
+
+        refresh();
+
+        $scope.saveTag = function (tag) {
+            var data = {
+                userName: $window.sessionStorage.device,
+                userTag: tag
+            };
+
+            $http.post('http://localhost:8000/InsertUserTag', data).then(
+                function (response) {
+                    if (response.data)
+                    {
+                        console.log("Successfully inserted userTags");
+                        console.log(response.data);
+                        refresh();
+                    }
+                    else
+                    {
+                        console.log("Couldn't insert userTags");
+                    }
+                }, function (response) {
+                    console.log("Service not Exists: " +
+                        response.status + "|" +
+                        response.statusText + "|");
                 });
         };
     })
@@ -350,6 +401,8 @@ angular.module("SpajalicaFrontEnd", [])
                     {
                         console.log("Successfully set status update");
                         console.log(response.data);
+                        refresh();
+                        $scope.status = "";
                     }
                     else
                     {
