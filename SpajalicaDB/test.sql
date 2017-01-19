@@ -1,5 +1,9 @@
 use spajalicadb;
 
+select l.userName, u.statusMessage, u.statusTime, u.statusLocation '.
+                               'from userstatusupdates u join logininfo l on l.idloginInfo = u.idloginInfo'.
+                               'where l.idloginInfo <> ?
+
 SELECT li.userName
 FROM loginInfo li
 WHERE li.idloginInfo <> 1

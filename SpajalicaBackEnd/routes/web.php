@@ -44,3 +44,7 @@ Route::post('SearchUserCriteria', 'SearchController@SearchUsers')->middleware(\A
 Route::post('BlockUser', 'SearchController@BlockUser')->middleware(\App\Http\Middleware\Cors::class);
 
 Route::post('FollowUser', 'SearchController@FollowUser')->middleware(\App\Http\Middleware\Cors::class);
+
+Route::post('WriteStatus', 'NewsController@WriteStatus')->middleware(\App\Http\Middleware\Cors::class);
+
+Route::post('GetStatusUpdates', 'NewsController@GetStatusUpdates')->middleware(\App\Http\Middleware\Cors::class);

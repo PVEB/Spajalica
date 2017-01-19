@@ -16,3 +16,5 @@ LIMIT 0, 1000
 INSERT INTO `usersinfo` (`firstName`,`lastName`,`birthDate`,`joinedDate`,`sex`,`location`,`idloginInfo`,`profilePicture`,`relationshipStatus`) VALUES ('ТестниКорисникИме','ТестниКорисникПрезиме','1980-01-01','2017-01-15','М','Београд',1,NULL,'Самац');
 INSERT INTO `usersinfo` (`firstName`,`lastName`,`birthDate`,`joinedDate`,`sex`,`location`,`idloginInfo`,`profilePicture`,`relationshipStatus`) VALUES ('Opaki','Admin','1800-01-01','2017-01-15','M','Brasil',2,NULL,'Admini nisu u vezi!');
 INSERT INTO `usersinfo` (`firstName`,`lastName`,`birthDate`,`joinedDate`,`sex`,`location`,`idloginInfo`,`profilePicture`,`relationshipStatus`) VALUES (NULL,NULL,NULL,'2017-01-16',NULL,NULL,3,NULL,NULL);
+
+INSERT INTO `spajalicadb`.`userstatusupdates` (`statusMessage`, `statusTime`, `statusLocation`, `idloginInfo`) VALUES ('Neki status, potpuno nebitno', NOW(), 'Belgrade', '1');
