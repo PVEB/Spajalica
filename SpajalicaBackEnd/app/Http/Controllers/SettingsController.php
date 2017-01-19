@@ -60,13 +60,43 @@ class SettingsController extends Controller
         $data = Input::all();
         $res = json_decode(json_encode($data));
 
-        $loginInfo = DB::select('select * from loginInfo where userName = ?', [$res->userName]);
+        $userPrefTags = DB::select('select pt.preferenceName, upt.value '.
+                                   'from preferenceTags pt join userPrefTag upt '.
+                                   'on pt.idPreferenceTags = upt.idPreferenceTags '.
+						           'join loginInfo li on li.idloginInfo = upt.idloginInfo '.
+                                   'where li.userName = ?',
+                                   [$res->userName]);
+
+        return json_encode($userPrefTags);
     }
 
     public function InsertPrefTag()
     {
         $data = Input::all();
         $res = json_decode(json_encode($data));
+
+        $loginInfo = DB::select('select * from loginInfo where userName = ?', [$res->userName]);
+
+        $exists = DB::select('select idPreferenceTags from preferenceTags '.
+                             'where preferenceName = ? ', [$res->userTag]);
+
+        if(count($exists) > 0)
+        {
+            DB::insert('insert into userPrefTag (idLoginInfo, idPreferenceTags, value) values (?, ?, ?)',
+                [$loginInfo[0]->idloginInfo, $exists[0]->idPreferenceTags, $res->value]);
+        }
+        else
+        {
+            DB::insert('insert into preferenceTags (preferenceName) values (?)', [$res->userTag]);
+
+            $exists = DB::select('select idPreferenceTags from preferenceTags '.
+                                 'where preferenceName = ? ', [$res->userTag]);
+
+            DB::insert('insert into userPrefTag (idLoginInfo, idPreferenceTags, value) values (?, ?, ?)',
+                       [$loginInfo[0]->idloginInfo, $exists[0]->idPreferenceTags, $res->value]);
+        }
+
+        return 200;
     }
 
     public function GetUserTags()

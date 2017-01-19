@@ -171,6 +171,58 @@ angular.module("SpajalicaFrontEnd", [])
                         response.statusText + "|");
                 });
         };
+
+        $scope.savePrefTag = function (prefTag, value) {
+            var data = {
+                userName: $window.sessionStorage.device,
+                userTag: prefTag,
+                value: value
+            };
+
+            $http.post('http://localhost:8000/InsertPrefTag', data).then(
+                function (response) {
+                    if (response.data)
+                    {
+                        console.log("Successfully inserted userTags");
+                        console.log(response.data);
+                        refreshPref();
+                    }
+                    else
+                    {
+                        console.log("Couldn't insert userTags");
+                    }
+                }, function (response) {
+                    console.log("Service not Exists: " +
+                        response.status + "|" +
+                        response.statusText + "|");
+                });
+        };
+
+        var refreshPref = function () {
+            var data = {
+                userName: $window.sessionStorage.device
+            };
+
+            $http.post('http://localhost:8000/GetPrefTags', data).then(
+                function (response) {
+                    if (response.data)
+                    {
+                        console.log("Successfully get useTags");
+                        console.log(response.data);
+                        $scope.userPrefTags = angular.copy(response.data);
+                    }
+                    else
+                    {
+                        console.log("Not found userTags");
+                    }
+                }, function (response) {
+                    console.log("Service not Exists: " +
+                        response.status + "|" +
+                        response.statusText + "|");
+                });
+        };
+
+        refreshPref();
     })
     .controller("LogoutController", function ($scope, $window) {
         $scope.LogOut = function () {

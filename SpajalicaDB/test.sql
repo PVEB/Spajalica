@@ -32,3 +32,17 @@ where li.userName = 'test';
 select idPreferenceTags from preferenceTags
 where preferenceName = 'plavuse'
 
+use spajalicadb;
+select pt.preferenceName, upt.value
+from preferenceTags pt join userPrefTag upt
+on pt.idPreferenceTags = upt.idPreferenceTags 
+						join loginInfo li on li.idloginInfo = upt.idloginInfo
+where li.userName = 'test';
+
+
+
+
+
+
+
+
