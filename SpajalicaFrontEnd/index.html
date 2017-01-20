@@ -33,7 +33,19 @@
                         <img src="images/btn-menu-1.png" alt="main menu" id="m-btn" class="pull-right visible-xs visible-sm" >
                 </h1>
 
-                <ul id="responsive" style="display:none" class="hidden-lg hidden-md"></ul><!-- /.responsive -->
+                <ul id="responsive" style="display:none" class="hidden-lg hidden-md">
+                    <li class="home-menu active"><a href="#home">Профил</a></li>
+                    <li class="news-menu"><a href="#news">Новости</a></li>
+                    <li class="match-menu"><a href="#match">Споји!</a></li>
+                    <li class="messages-menu"><a href="#messages">Поруке</a></li>
+                    <li class="suggestions-menu"><a href="#suggestions">Претрага</a></li>
+                    <li class="settings-menu"><a href="#settings">Подешавања</a></li>
+                </ul><!-- /.responsive -->
+                <ul id="logout" style="display:none" class="hidden-lg hidden-md">
+                    <li class="logout-menu" ng-controller="LogoutController">
+                        <a ng-click="LogOut()">Излогуј се</a>
+                    </li>
+                </ul><!-- /.logout -->
             </div>
 
             <div class="menu visible-md visible-lg">
@@ -44,8 +56,10 @@
                     <li class="messages-menu"><a href="#messages">Поруке</a></li>
                     <li class="suggestions-menu"><a href="#suggestions">Претрага</a></li>
                     <li class="settings-menu"><a href="#settings">Подешавања</a></li>
+                </ul>
+                <ul id="logout-menu">
                     <li class="logout-menu" ng-controller="LogoutController">
-                        <a href="#" ng-click="LogOut()">Излогуј се</a>
+                        <a ng-click="LogOut()">Излогуј се</a>
                     </li>
                 </ul>
             </div><!-- /.menu -->
@@ -217,7 +231,10 @@
                                 </div>
                                 <div ng-repeat="userPrefTag in userPrefTags track by $index">
                                     <span class="btn-success">{{userPrefTag.preferenceName}}|{{userPrefTag.value}}</span>
-                                    <button class="btn-xs btn-danger">Избриши</button>
+                                    <button class="btn-xs btn-danger"
+                                            ng-click="delPrefTag(userPrefTag[$index].preferenceName, userPrefTag[$index].value)">
+                                        Избриши
+                                    </button>
                                 </div>
                             </div>
                         </section><!-- /.settings-text -->

@@ -241,27 +241,6 @@ img.slide {
     }
 }
 
-/*button {*/
-    /*background-color: white;*/
-    /*border: 2px solid #4CAF50;*/
-    /*color: black;*/
-    /*!*padding: 16px 32px;*!*/
-    /*text-align: center;*/
-    /*text-decoration: none;*/
-    /*display: inline-block;*/
-    /*font-size: 13px;*/
-    /*margin: 4px 2px;*/
-    /*-webkit-transition-duration: 0.4s; !* Safari *!*/
-    /*transition-duration: 0.4s;*/
-    /*cursor: pointer;*/
-    /*border-radius:40px;*/
-/*}*/
-
-/*button:hover {*/
-    /*background-color: #4CAF50;*/
-    /*color: white;*/
-/*}*/
-
 .settings-input {
     /*float: right;*/
 }
@@ -333,3 +312,51 @@ img.slide {
     /*padding: 8px;*/
     z-index: 100;
 }
+
+#logout-menu {
+    background-color: rgba(0, 0, 0,0.5);
+    font-size: 16px;
+    padding: 0;
+}
+
+#logout-menu > li {
+    display: block;
+}
+
+
+#logout-menu > li > a {
+    font-family: 'Raleway', sans-serif;
+    padding: 10px 0 10px 30px;
+    text-decoration: none;
+    display: block;
+    color: #fff;
+}
+
+#logout-menu > .active > a,
+#logout-menu > li > a:hover {
+    background-color: rgba(255,255,255,0.25);
+}
+
+#logout {
+    font-size: 16px;
+    padding: 0;
+    background-color: rgba(0,0,0,0.5);
+}
+
+#logout li {
+    display: block;
+}
+
+#logout li a {
+    font-family: 'Raleway', sans-serif;
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 0;
+    display: block;
+}
+
+#logout > .active > a,
+#logout li a:hover {
+    background-color: rgba(0,0,0,0.5);
+}
+

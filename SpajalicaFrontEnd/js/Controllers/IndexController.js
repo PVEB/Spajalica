@@ -196,6 +196,11 @@ angular.module("SpajalicaFrontEnd", [])
                         response.status + "|" +
                         response.statusText + "|");
                 });
+
+            $scope.delPrefTag = function (name, value) {
+                console.log("reaguje");
+                console.log(name+'|'+value);
+            };
         };
 
         var refreshPref = function () {

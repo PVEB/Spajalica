@@ -9,36 +9,42 @@ jQuery(function($) {
     });
     
     $(document).ready( function() {
-        
+
         // backstretch for background image
         var defaultImgSrc = $('img.main-img').attr('src');
         $.backstretch(defaultImgSrc, {speed: 500});
-	
-	// for responsive-menu
-	$("#m-btn").click(function(){
-		$("#responsive").toggle();
-	});
-	
-        // copy menu list to responsive menu
-        var mainMenuList = $('#menu-list').html();
-        $('#responsive').html(mainMenuList);
-	
-	//for image slide on menu item click(normal) and responsive
-	$("#menu-list a, #responsive a").on('click',function(e){
 
-			if(this.className == "external") {
+        // for responsive-menu
+        $("#m-btn").click(function(){
+            $("#responsive").toggle();
+            $("#logout").toggle();
+        });
+
+        // copy menu list to responsive menu + logout
+        //var mainMenuList = $('#menu-list').html();
+        //var logoutMenu = $('#logout-menu').html();
+        //$('#responsive').html(mainMenuList);
+        //$('#logout').html(logoutMenu);
+
+        //for image slide on menu item click(normal) and responsive
+        $("#menu-list a, #responsive a").on('click',function(e){
+
+            var object = this;
+
+            if(this.className == "external") {
                 return;
             }
-			
-			e.preventDefault();
+
+            e.preventDefault();
 
             if (menuDisabled == false) // check the menu has disabled?
             {
                 menuDisabled = true; // disable to menu
-                
+
                 var name = $(this).attr('href');
                 $('#menu-list li').removeClass('active');
                 $('#responsive li').removeClass('active');
+                $('#logout li').removeClass('active');
 
                 //  set active to both menu
                 var menuClass = $(this).parent('li').attr('class');
@@ -46,11 +52,12 @@ jQuery(function($) {
 
                 // hide responsive menu
                 $("#responsive").hide();
-                
+                $("#logout").hide();
+
                 // get image url and assign to backstretch for background
                 var imgSrc = $("img"+name+"-img").attr('src');
                 $.backstretch(imgSrc, {speed: 500}); //backstretch for background fade in/out
-                
+
                 // content slide in/out
                 $("section.active").animate({left:$("section.active").outerWidth()}, 600,function(){
                     $(this).removeClass("active");
@@ -60,15 +67,13 @@ jQuery(function($) {
                         $(this).addClass("active");
 
                         $.backstretch("resize"); // resize the background image
-                        
+
                         menuDisabled = false; // enable the menu
                     });
                 });
-                
+
             }
             return;
-	});
-        
+        });
     });
-
 });
