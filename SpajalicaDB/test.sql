@@ -40,7 +40,24 @@ on pt.idPreferenceTags = upt.idPreferenceTags
 where li.userName = 'test';
 
 
+use spajalicadb;  
+select li.userName 
+from loginInfo li
+where userName <> 'test'
+		and exists (select *
+					from userFollows uf
+					where uf.idloginInfo = li.idloginInfo and uf.idFollowed = 1
+						or uf.idloginInfo = 1 and uf.idFollowed = li.idloginInfo)
+		and not exists (select *
+						from userBlocks ub
+                        where ub.idloginInfo = li.idloginInfo and ub.idBlocked = 1)
+		and not exists (select *
+						from userBlocks ub
+                        where ub.idloginInfo = 1 and ub.idBlocked = li.idloginInfo);
 
+SELECT li.userName, ui.firstName, ui.lastName, ui.birthDate, ui.joinedDate, ui.sex, ui.location, ui.profilePicture, 
+FROM loginInfo li join usersInfo ui 
+on ui.idloginInfo = li.idloginInfo
 
 
 

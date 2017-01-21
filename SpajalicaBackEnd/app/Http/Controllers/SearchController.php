@@ -36,7 +36,11 @@ class SearchController extends Controller
 
         $userID = DB::select('select idloginInfo from loginInfo where userName = ?', [$res->userName]);
 
-        $users = DB::select('SELECT li.userName FROM loginInfo li WHERE li.idloginInfo <> ? '.
+        $users = DB::select('SELECT li.userName, ui.firstName, ui.lastName, ui.birthDate, ui.joinedDate, '.
+            'ui.sex, ui.location, ui.profilePicture, ui.relationshipStatus '.
+            'FROM loginInfo li join usersInfo ui '.
+            'ON ui.idloginInfo = li.idloginInfo '.
+            'WHERE li.idloginInfo <> ? '.
             'AND NOT EXISTS(SELECT ub.idloginInfo, ub.idBlocked '.
             'FROM userBlocks ub '.
             'WHERE ub.idloginInfo = ? AND ub.idBlocked = li.idloginInfo OR '.
@@ -47,44 +51,43 @@ class SearchController extends Controller
             'ORDER BY li.userName',
             [$userID[0]->idloginInfo, $userID[0]->idloginInfo, $userID[0]->idloginInfo, $userID[0]->idloginInfo]);
 
+        $searchedUsers = [];
+
         for ($i = 0; $i < count($users); $i++)
         {
-            if (strpos($users[$i]->userName, $res->criteria) !== false) {
+            if (strstr($users[$i]->userName, $res->criteria) !== false ||
+                strstr($users[$i]->firstName, $res->criteria) !== false ||
+                strstr($users[$i]->lastName, $res->criteria) !== false ||
+                strstr($users[$i]->location, $res->criteria) !== false ||
+                strstr($users[$i]->relationshipStatus, $res->criteria) !== false)
+            {
+                array_push($searchedUsers, $users[$i]);
                 continue;
             }
 
             if(strlen($res->criteria) > 3 && strlen($res->criteria) < strlen($users[$i]->userName))
             {
-
                 $substrLen = ceil(0.7*strlen($res->criteria));
 
                 $begin = 0;
-                $indicator = 0;
 
                 while($begin + $substrLen <= strlen($res->criteria))
                 {
                     $subcriteria = substr($res->criteria, $begin, $substrLen);
-                    if (strpos($users[$i]->userName, $subcriteria) !== false) {
-                        $indicator = 1;
+                    if (strstr($users[$i]->userName, $subcriteria) !== false ||
+                        strstr($users[$i]->firstName, $subcriteria) !== false ||
+                        strstr($users[$i]->lastName, $subcriteria) !== false ||
+                        strstr($users[$i]->location, $subcriteria) !== false ||
+                        strstr($users[$i]->relationshipStatus, $subcriteria) !== false)
+                    {
+                        array_push($searchedUsers, $users[$i]);
                     }
                     $begin++;
                 }
-
-                if($indicator == 0)
-                {
-                    unset($users[$i]);
-                    $users = array_values($users);
-                }
-
-            }
-            else
-            {
-                unset($users[$i]);
-                $users = array_values($users);
             }
         }
 
-        return json_encode($users);
+        return json_encode($searchedUsers);
     }
 
     public function FollowUser()

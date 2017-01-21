@@ -340,6 +340,8 @@ angular.module("SpajalicaFrontEnd", [])
         refresh();
 
         $scope.search = function (criteria) {
+            console.log(criteria);
+
             var data = {
                 userName: $window.sessionStorage.device,
                 criteria: criteria
@@ -349,9 +351,9 @@ angular.module("SpajalicaFrontEnd", [])
                 function (response) {
                     if (response.data)
                     {
-                        console.log("Successfully get the list of users to follow or block");
+                        console.log("Successfully get the list of searched users");
                         console.log(response.data);
-                        $scope.searchedUsers = response.data;
+                        $scope.searchedUsers = angular.copy(response.data);
                     }
                     else
                     {
@@ -365,7 +367,6 @@ angular.module("SpajalicaFrontEnd", [])
         };
 
         $scope.follow = function (userName) {
-            //console.log(userName);
             var data = {
                 userName: $window.sessionStorage.device,
                 userFollowed: userName

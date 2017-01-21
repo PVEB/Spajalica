@@ -72,7 +72,19 @@ class MessagesController extends Controller
         $data = Input::all();
         $res = json_decode(json_encode($data));
 
-        $usersInfo = DB::select('select userName from loginInfo where userName <> ?', [$res->userName]);
+        $senderInfo = DB::select('select * from loginInfo where userName = ?', [$res->userName]);
+        $senderId = $senderInfo[0]->idloginInfo;
+
+        $usersInfo = DB::select('select li.userName from loginInfo li '.
+                                'where userName <> ? '.
+                                'and exists (select * from userFollows uf '.
+                                'where uf.idloginInfo = li.idloginInfo and uf.idFollowed = ? '.
+                                'or uf.idloginInfo = ? and uf.idFollowed = li.idloginInfo) '.
+                                'and not exists (select * from userBlocks ub '.
+                                'where ub.idloginInfo = li.idloginInfo and ub.idBlocked = ?) '.
+                                'and not exists (select * from userBlocks ub '.
+                                'where ub.idloginInfo = ? and ub.idBlocked = li.idloginInfo) ',
+                                [$res->userName, $senderId, $senderId, $senderId, $senderId]);
 
         return json_encode($usersInfo);
     }

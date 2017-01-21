@@ -126,6 +126,11 @@ img.slide {
     font-family: 'Raleway', sans-serif;
 }
 
+.temp-content h6 {
+    color: #fff;
+    font-family: 'Raleway', sans-serif;
+}
+
 .temp-content a {
     color: #eca;
     font-style: italic;
