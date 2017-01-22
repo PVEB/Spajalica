@@ -471,4 +471,88 @@ angular.module("SpajalicaFrontEnd", [])
                         response.statusText + "|");
                 });
         }
+    })
+    .controller("MatchController", function ($scope, $window, $http) {
+        var refresh = function () {
+            var data = {
+                userName: $window.sessionStorage.device
+            };
+        }
+        var data = {
+            userName: $window.sessionStorage.device
+        };
+        //console.log("TEST: " + data.userName)
+        $http.post('http://localhost:8000/GetListOfPeople', data).then(
+            function (response) {
+                if (response.data)
+                {
+                    console.log("Successfully get the List of people");
+                    console.log(response.data);
+
+                    $scope.responseObject = angular.copy(response.data);
+
+                }
+                else
+                {
+                    console.log("Couldn't get the List of people");
+                }
+            }, function (response) {
+                console.log("Service not Exists: " +
+                    response.status + "|" +
+                    response.statusText + "|");
+            });
+
+        $scope.followUser = function (usernameFollowed) {
+            var data = {
+                userName: $window.sessionStorage.device,
+                usernameFollowed: usernameFollowed
+            };
+
+            $http.post('http://localhost:8000/FollowUser1', data).then(
+                function (response) {
+                    if (response.data)
+                    {
+
+                        console.log("Successfully followed user");
+                        console.log(response.data);
+                        $scope.responseObject = angular.copy(response.data);
+                        refresh();
+                    }
+                    else
+                    {
+                        console.log("Couldn't follow user");
+                    }
+                }, function (response) {
+                    console.log("Service not Exists: " +
+                        response.status + "|" +
+                        response.statusText + "|");
+                });
+        }
+
+        $scope.blockUser = function (usernameBlocked) {
+            var data = {
+                userName: $window.sessionStorage.device,
+                usernameBlocked: usernameBlocked
+            };
+
+            $http.post('http://localhost:8000/BlockUser1', data).then(
+                function (response) {
+                    if (response.data)
+                    {
+                        console.log("Successfully blocked user");
+                        console.log(data);
+                        console.log(response.data);
+                        $scope.responseObject = angular.copy(response.data);
+                        refresh();
+                    }
+                    else
+                    {
+                        console.log("Couldn't block user");
+                    }
+                }, function (response) {
+                    console.log("Service not Exists: " +
+                        response.status + "|" +
+                        response.statusText + "|");
+                });
+        }
     });
