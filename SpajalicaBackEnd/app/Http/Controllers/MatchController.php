@@ -10,7 +10,6 @@ class UserAndScore
 {
     public $userName = -1;
     public $userScore = 0;
-
 }
 
 class MatchController extends Controller

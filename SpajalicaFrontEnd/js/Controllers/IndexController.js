@@ -474,34 +474,31 @@ angular.module("SpajalicaFrontEnd", [])
         }
     })
     .controller("MatchController", function ($scope, $window, $http) {
-        var refresh = function () {
+        $scope.refresh = function () {
             var data = {
                 userName: $window.sessionStorage.device
             };
-        }
-        var data = {
-            userName: $window.sessionStorage.device
+
+            $http.post('http://localhost:8000/GetListOfPeople', data).then(
+                function (response) {
+                    if (response.data)
+                    {
+                        console.log("Successfully get the List of people");
+                        console.log(response.data);
+
+                        $scope.responseObject = angular.copy(response.data);
+
+                    }
+                    else
+                    {
+                        console.log("Couldn't get the List of people");
+                    }
+                }, function (response) {
+                    console.log("Service not Exists: " +
+                        response.status + "|" +
+                        response.statusText + "|");
+                });
         };
-        //console.log("TEST: " + data.userName)
-        $http.post('http://localhost:8000/GetListOfPeople', data).then(
-            function (response) {
-                if (response.data)
-                {
-                    console.log("Successfully get the List of people");
-                    console.log(response.data);
-
-                    $scope.responseObject = angular.copy(response.data);
-
-                }
-                else
-                {
-                    console.log("Couldn't get the List of people");
-                }
-            }, function (response) {
-                console.log("Service not Exists: " +
-                    response.status + "|" +
-                    response.statusText + "|");
-            });
 
         $scope.followUser = function (usernameFollowed) {
             var data = {
@@ -528,7 +525,7 @@ angular.module("SpajalicaFrontEnd", [])
                         response.status + "|" +
                         response.statusText + "|");
                 });
-        }
+        };
 
         $scope.blockUser = function (usernameBlocked) {
             var data = {
@@ -555,5 +552,5 @@ angular.module("SpajalicaFrontEnd", [])
                         response.status + "|" +
                         response.statusText + "|");
                 });
-        }
+        };
     });

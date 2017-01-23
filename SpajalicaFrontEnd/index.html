@@ -119,7 +119,9 @@
                         <section id="match-text" class="inactive">
                             <h2 class="text-center">Споји!</h2>
                             <div class="col-sm-12 col-md-12 col-lg-12" ng-controller="MatchController">
-
+                                <button ng-click="refresh()" class="form-control btn btn-primary">
+                                    Предложени људи
+                                </button>
                                 <div ng-repeat="user in responseObject track by $index">
                                     <div class="btn-group" role="group">
                                         <label class="form-control" role="group">
@@ -142,16 +144,8 @@
                                                 Блокирај
                                             </button>
                                         </div>
+                                    </div>
                                 </div>
-                               <!-- <h3>Jedan sektor</h3>
-                                <p>Nullam vitae lectus dui. Donec vulputate ac tortor id convallis. Sed nisi mauris,
-                                    laoreet vitae lacus at, viverra viverra neque. Curabitur nec aliquam lacus.</p>
-                                <h3>Drugi sektor</h3>
-                                <p>Maecenas aliquam vitae urna sit amet elementum. Cras consequat libero nisi, vel
-                                    condimentum nibh eleifend ut. Donec consequat arcu.</p>
-                                <h3>Treći sektor</h3>
-                                <p>In tellus ipsum, ullamcorper vitae justo sit amet, mattis consequat tortor.
-                                    Suspendisse risus urna, posuere id orci ut, facilisis accumsan ipsum.</p> -->
                             </div>
                         </section><!-- /.match-text -->
 
@@ -263,7 +257,7 @@
                             </div>
                         </section><!-- /.settings-text -->
 
-                        <section id="suggestions-text" >
+                        <section id="suggestions-text" class="inactive">
                             <div class="col-sm-12 col-md-12" ng-controller="SearchController">
                                 <h2>Претрага</h2>
 
