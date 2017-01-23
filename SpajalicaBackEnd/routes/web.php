@@ -53,3 +53,9 @@ Route::post('InsertPrefTag', 'SettingsController@InsertPrefTag')->middleware(\Ap
 Route::post('GetUserTags', 'SettingsController@GetUserTags')->middleware(\App\Http\Middleware\Cors::class);
 
 Route::post('InsertUserTag', 'SettingsController@InsertUserTag')->middleware(\App\Http\Middleware\Cors::class);
+
+Route::post('GetListOfPeople', 'MatchController@GetListOfPeople')->middleware(\App\Http\Middleware\Cors::class);
+
+Route::post('FollowUser1', 'MatchController@FollowUser')->middleware(\App\Http\Middleware\Cors::class);
+
+Route::post('BlockUser1', 'MatchController@BlockUser')->middleware(\App\Http\Middleware\Cors::class);
