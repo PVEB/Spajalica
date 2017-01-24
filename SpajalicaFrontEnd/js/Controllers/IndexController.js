@@ -500,17 +500,18 @@ angular.module("SpajalicaFrontEnd", [])
                 });
         };
 
-        $scope.followUser = function (usernameFollowed) {
+        var refresh = $scope.refresh;
+
+        $scope.follow = function (userName) {
             var data = {
                 userName: $window.sessionStorage.device,
-                usernameFollowed: usernameFollowed
+                userFollowed: userName
             };
 
-            $http.post('http://localhost:8000/FollowUser1', data).then(
+            $http.post('http://localhost:8000/FollowUser', data).then(
                 function (response) {
                     if (response.data)
                     {
-
                         console.log("Successfully followed user");
                         console.log(response.data);
                         $scope.responseObject = angular.copy(response.data);
@@ -518,7 +519,7 @@ angular.module("SpajalicaFrontEnd", [])
                     }
                     else
                     {
-                        console.log("Couldn't follow user");
+                        console.log("Couldn't followed user");
                     }
                 }, function (response) {
                     console.log("Service not Exists: " +
@@ -527,18 +528,18 @@ angular.module("SpajalicaFrontEnd", [])
                 });
         };
 
-        $scope.blockUser = function (usernameBlocked) {
+        $scope.block = function (userName) {
+            console.log(userName);
             var data = {
                 userName: $window.sessionStorage.device,
-                usernameBlocked: usernameBlocked
+                userBlocked: userName
             };
 
-            $http.post('http://localhost:8000/BlockUser1', data).then(
+            $http.post('http://localhost:8000/BlockUser', data).then(
                 function (response) {
                     if (response.data)
                     {
                         console.log("Successfully blocked user");
-                        console.log(data);
                         console.log(response.data);
                         $scope.responseObject = angular.copy(response.data);
                         refresh();
