@@ -55,7 +55,7 @@ where userName <> 'test'
 						from userBlocks ub
                         where ub.idloginInfo = 1 and ub.idBlocked = li.idloginInfo);
 
-SELECT li.userName, ui.firstName, ui.lastName, ui.birthDate, ui.joinedDate, ui.sex, ui.location, ui.profilePicture, 
+SELECT li.userName, ui.firstName, ui.lastName, ui.birthDate, ui.joinedDate, ui.sex, ui.location, ui.profilePicture, ui.relationshipStatus
 FROM loginInfo li join usersInfo ui 
 on ui.idloginInfo = li.idloginInfo
 

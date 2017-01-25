@@ -148,16 +148,16 @@ UPDATE `usersinfo` SET `firstName` = 'Jakova', `lastName` = 'Bonovic', `birthDat
 INSERT INTO `logininfo` (`idloginInfo`,`userName`,`email`,`password`) VALUES (50,'CviTroKo71040550','ctrosicko71040550@yahoo.com','cvitroko71040550');
 UPDATE `usersinfo` SET `firstName` = 'Cvijan', `lastName` = 'Trosic', `birthDate` = '1971-04-05', `sex` = 'M', `location` = 'Koceljeva', `relationshipStatus` = 'U vezi' WHERE `idloginInfo` = 50;
 
-INSERT INTO `logininfo` (`idloginInfo`,`userName`,`email`,`password`) VALUES (1,'SerVukZa8703031','svukanacza8703031@gmail.com','servukza8703031');
+INSERT INTO `logininfo` (`idloginInfo`,`userName`,`email`,`password`) VALUES (51,'SerVukZa8703031','svukanacza8703031@gmail.com','servukza8703031');
 UPDATE `usersinfo` SET `firstName` = 'Sergej', `lastName` = 'Sergej', `birthDate` = 'Sergej', `sex` = 'Sergej', `location` = 'Sergej', `relationshipStatus` = 'Sergej' WHERE `idloginInfo` = Sergej;
 
-INSERT INTO `logininfo` (`idloginInfo`,`userName`,`email`,`password`) VALUES (2,'KosZabBe6506202','kzabunovicbe6506202@msn.com','koszabbe6506202');
+INSERT INTO `logininfo` (`idloginInfo`,`userName`,`email`,`password`) VALUES (52,'KosZabBe6506202','kzabunovicbe6506202@msn.com','koszabbe6506202');
 UPDATE `usersinfo` SET `firstName` = 'Kostadin', `lastName` = 'Kostadin', `birthDate` = 'Kostadin', `sex` = 'Kostadin', `location` = 'Kostadin', `relationshipStatus` = 'Kostadin' WHERE `idloginInfo` = Kostadin;
 
-INSERT INTO `logininfo` (`idloginInfo`,`userName`,`email`,`password`) VALUES (3,'VasBreBa6604223','vbreberinaba6604223@hotmail.com','vasbreba6604223');
+INSERT INTO `logininfo` (`idloginInfo`,`userName`,`email`,`password`) VALUES (53,'VasBreBa6604223','vbreberinaba6604223@hotmail.com','vasbreba6604223');
 UPDATE `usersinfo` SET `firstName` = 'Vaskrsije', `lastName` = 'Vaskrsije', `birthDate` = 'Vaskrsije', `sex` = 'Vaskrsije', `location` = 'Vaskrsije', `relationshipStatus` = 'Vaskrsije' WHERE `idloginInfo` = Vaskrsije;
 
-INSERT INTO `logininfo` (`idloginInfo`,`userName`,`email`,`password`) VALUES (4,'VitGamPr9502274','vgambelicpr9502274@yahoo.com','vitgampr9502274');
+INSERT INTO `logininfo` (`idloginInfo`,`userName`,`email`,`password`) VALUES (54,'VitGamPr9502274','vgambelicpr9502274@yahoo.com','vitgampr9502274');
 UPDATE `usersinfo` SET `firstName` = 'Vitka', `lastName` = 'Vitka', `birthDate` = 'Vitka', `sex` = 'Vitka', `location` = 'Vitka', `relationshipStatus` = 'Vitka' WHERE `idloginInfo` = Vitka;
 
 INSERT INTO `logininfo` (`idloginInfo`,`userName`,`email`,`password`) VALUES (5,'DzeUbiBu8305085','dubiparipovicbu8305085@gmail.com','dzeubibu8305085');

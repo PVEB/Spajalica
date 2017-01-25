@@ -4,9 +4,9 @@ LIMIT 0, 1000
 
 -- Date: 2017-01-17 23:11
 */
-INSERT INTO `logininfo` (`idloginInfo`,`userName`,`email`,`password`) VALUES ('test','test@gmail.com','test');
-INSERT INTO `logininfo` (`idloginInfo`,`userName`,`email`,`password`) VALUES ('admin','admin@admin.com','admin');
-INSERT INTO `logininfo` (`idloginInfo`,`userName`,`email`,`password`) VALUES ('Marko','marko@gmail.com','marko');
+INSERT INTO `logininfo` (`userName`,`email`,`password`) VALUES ('test','test@gmail.com','test');
+INSERT INTO `logininfo` (`userName`,`email`,`password`) VALUES ('admin','admin@admin.com','admin');
+INSERT INTO `logininfo` (`userName`,`email`,`password`) VALUES ('Marko','marko@gmail.com','marko');
 /*
 -- Query: SELECT * FROM spajalicadb.usersinfo
 LIMIT 0, 1000
