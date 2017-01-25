@@ -255,7 +255,7 @@ angular.module("SpajalicaFrontEnd", [])
                     response.status + "|" +
                     response.statusText + "|");
             });
-        
+
         $scope.submitOnEnter = function (receiver, message) {
             var getMessagesData = {
                 sender: $window.sessionStorage.device,
@@ -446,7 +446,7 @@ angular.module("SpajalicaFrontEnd", [])
 
         $scope.refresh = refresh;
         refresh();
-        
+
         $scope.sendStatus = function (status) {
             var data = {
                 userName: $window.sessionStorage.device,
@@ -500,7 +500,6 @@ angular.module("SpajalicaFrontEnd", [])
                 });
         };
 
-        var refresh = $scope.refresh;
 
         $scope.follow = function (userName) {
             var data = {
@@ -514,8 +513,7 @@ angular.module("SpajalicaFrontEnd", [])
                     {
                         console.log("Successfully followed user");
                         console.log(response.data);
-                        $scope.responseObject = angular.copy(response.data);
-                        refresh();
+                        $scope.refresh();
                     }
                     else
                     {
@@ -540,6 +538,59 @@ angular.module("SpajalicaFrontEnd", [])
                     if (response.data)
                     {
                         console.log("Successfully blocked user");
+                        console.log(response.data);
+                        $scope.refresh();
+                    }
+                    else
+                    {
+                        console.log("Couldn't block user");
+                    }
+                }, function (response) {
+                    console.log("Service not Exists: " +
+                        response.status + "|" +
+                        response.statusText + "|");
+                });
+        };
+
+        $scope.followUser = function (usernameFollowed) {
+            var data = {
+                userName: $window.sessionStorage.device,
+                usernameFollowed: usernameFollowed
+            };
+
+            $http.post('http://localhost:8000/FollowUser1', data).then(
+                function (response) {
+                    if (response.data)
+                    {
+
+                        console.log("Successfully followed user");
+                        console.log(response.data);
+                        $scope.responseObject = angular.copy(response.data);
+                        refresh();
+                    }
+                    else
+                    {
+                        console.log("Couldn't follow user");
+                    }
+                }, function (response) {
+                    console.log("Service not Exists: " +
+                        response.status + "|" +
+                        response.statusText + "|");
+                });
+        };
+
+        $scope.blockUser = function (usernameBlocked) {
+            var data = {
+                userName: $window.sessionStorage.device,
+                userBlocked: usernameBlocked
+            };
+
+            $http.post('http://localhost:8000/BlockUser1', data).then(
+                function (response) {
+                    if (response.data)
+                    {
+                        console.log("Successfully blocked user");
+                        console.log(data);
                         console.log(response.data);
                         $scope.responseObject = angular.copy(response.data);
                         refresh();

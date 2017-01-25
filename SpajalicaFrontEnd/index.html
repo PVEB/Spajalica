@@ -14,9 +14,16 @@
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/style_main.css">
 
-        <script src="js/angular.min.js"></script>
-        <!--<script src="js/app.js"></script>-->
-        <script src="js/Controllers/IndexController.js"></script>
+        <script src="js/angular.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/Controllers/LogoutController.js"></script>
+        <script src="js/Controllers/TitleController.js"></script>
+        <script src="js/Controllers/ProfileController.js"></script>
+        <script src="js/Controllers/NewsController.js"></script>
+        <script src="js/Controllers/MatchController.js"></script>
+        <script src="js/Controllers/MessagesController.js"></script>
+        <script src="js/Controllers/SettingsController.js"></script>
+        <script src="js/Controllers/SearchController.js"></script>
     </head>
     <body>
         <div id="main-wrapper">
@@ -27,9 +34,9 @@
                         activate Google Chrome Frame</a> to improve your experience.</p>
             <![endif]-->
 
-            <div ng-controller="TitleController" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 affix text-center" style="z-index: 1;">
-                <h1 class="temp-site-title">
-                        <a href="#">{{nickname}}</a>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 affix text-center" style="z-index: 1;">
+                <h1 class="temp-site-title" ng-controller = "TitleController">
+                        <span href="#">{{nickname}}</span>
                         <img src="images/btn-menu-1.png" alt="main menu" id="m-btn" class="pull-right visible-xs visible-sm" >
                 </h1>
 
@@ -43,7 +50,7 @@
                 </ul><!-- /.responsive -->
                 <ul id="logout" style="display:none" class="hidden-lg hidden-md">
                     <li class="logout-menu" ng-controller="LogoutController">
-                        <a ng-click="LogOut()">Излогуј се</a>
+                        <a ng-click= "LogOut()" >Излогуј се</a>
                     </li>
                 </ul><!-- /.logout -->
             </div>
