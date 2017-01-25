@@ -142,4 +142,49 @@ class SettingsController extends Controller
 
         return 200;
     }
+
+    public function DelPrefTag()
+    {
+        $data = Input::all();
+        $res = json_decode(json_encode($data));
+
+        $loginInfo = DB::select('select * from loginInfo where userName = ?',
+                                [$res->userName]);
+        $idPrefTag = DB::select('select idPreferenceTags from preferenceTags where preferenceName = ?',
+                                [$res->userPrefTagName]);
+
+        $num = DB::delete('DELETE FROM userpreftag WHERE idpreferenceTags = ? and idloginInfo = ?',
+            [$idPrefTag[0]->idPreferenceTags, $loginInfo[0]->idloginInfo]);
+
+        if($num < 0)
+            return 500;
+
+        return 200;
+    }
+
+    public function DelUserTag()
+    {
+        $data = Input::all();
+        $res = json_decode(json_encode($data));
+
+        $loginInfo = DB::select('select * from loginInfo where userName = ?',
+                                [$res->userName]);
+        $idPrefTag = DB::select('select idPreferenceTags from preferenceTags where preferenceName = ?',
+                                [$res->userTagName]);
+
+        $num = DB::delete('DELETE FROM userprofiletags WHERE idpreferenceTags = ? and idloginInfo = ?',
+                    [$idPrefTag[0]->idPreferenceTags, $loginInfo[0]->idloginInfo]);
+
+        if($num < 0)
+            return 500;
+
+        return 200;
+    }
+
+    public function GetAllTags()
+    {
+        $tags = DB::select('select preferenceName from preferenceTags');
+
+        return json_encode($tags);
+    }
 }

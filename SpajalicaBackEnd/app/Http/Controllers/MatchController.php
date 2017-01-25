@@ -143,7 +143,7 @@ class MatchController extends Controller
 
         $userBlockerIDArray = DB::select('SELECT li.idloginInfo FROM logininfo li WHERE li.userName = ?', [$res->userName]);
         $userBlockerID = $userBlockerIDArray[0]->idloginInfo;
-        $userBlockedIDArray = DB::select("SELECT li.idloginInfo FROM logininfo li WHERE li.userName = ?", [$res->usernameBlocked]);
+        $userBlockedIDArray = DB::select("SELECT li.idloginInfo FROM logininfo li WHERE li.userName = ?", [$res->userBlocked]);
         $userBlockedID = $userBlockedIDArray[0]->idloginInfo;
 
 

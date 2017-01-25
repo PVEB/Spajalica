@@ -14,9 +14,16 @@
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/style_main.css">
 
-        <script src="js/angular.min.js"></script>
-        <!--<script src="js/app.js"></script>-->
-        <script src="js/Controllers/IndexController.js"></script>
+        <script src="js/angular.js"></script>
+        <script src="js/app.js"></script>
+        <script src="js/Controllers/LogoutController.js"></script>
+        <script src="js/Controllers/TitleController.js"></script>
+        <script src="js/Controllers/ProfileController.js"></script>
+        <script src="js/Controllers/NewsController.js"></script>
+        <script src="js/Controllers/MatchController.js"></script>
+        <script src="js/Controllers/MessagesController.js"></script>
+        <script src="js/Controllers/SettingsController.js"></script>
+        <script src="js/Controllers/SearchController.js"></script>
     </head>
     <body>
         <div id="main-wrapper">
@@ -27,9 +34,9 @@
                         activate Google Chrome Frame</a> to improve your experience.</p>
             <![endif]-->
 
-            <div ng-controller="TitleController" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 affix text-center" style="z-index: 1;">
-                <h1 class="temp-site-title">
-                        <a href="#">{{nickname}}</a>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 affix text-center" style="z-index: 1;">
+                <h1 class="temp-site-title" ng-controller = "TitleController">
+                        <span href="#">{{nickname}}</span>
                         <img src="images/btn-menu-1.png" alt="main menu" id="m-btn" class="pull-right visible-xs visible-sm" >
                 </h1>
 
@@ -43,7 +50,7 @@
                 </ul><!-- /.responsive -->
                 <ul id="logout" style="display:none" class="hidden-lg hidden-md">
                     <li class="logout-menu" ng-controller="LogoutController">
-                        <a ng-click="LogOut()">Излогуј се</a>
+                        <a ng-click= "LogOut()" >Излогуј се</a>
                     </li>
                 </ul><!-- /.logout -->
             </div>
@@ -78,236 +85,34 @@
             <div class="row">
                 <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12 col-lg-offset-4 col-md-offset-4 temp-content-wrapper">
                     <div class="temp-content">
-                        <section id="home-text" class="active">
-                            <div ng-controller = "ProfileController" class="col-sm-12 col-md-12 col-lg-12">
-                                <h2>Корисник: {{nickname}}</h2>
-
-                                <div ng-repeat="info in responseObject track by $index">
-                                    <p> {{ info }} </p>
-                                </div>
-                            </div>
+                        <section id="home-text" class="active"
+                                 ng-controller = "ProfileController"
+                                 ng-include = "ProfilePageUrl">
                         </section><!-- /.home-text -->
 
-                        <section id="news-text" class="inactive">
-                            <h2 class="text-center">Новости</h2>
-                            <div class="col-sm-12 col-md-12 col-lg-12" ng-controller="NewsController">
-                                <div class="btn-group btn-group-justified">
-                                    <div class="col-sm-10 col-md-10 col-lg-10">
-                                        <form ng-submit="sendStatus(status)">
-                                            <input ng-model="status" placeholder="Напиши нешто..." class="form-control" />
-                                        </form>
-                                    </div>
-                                    <div class="col-sm-2 col-md-2 col-lg-2">
-                                        <button type="button" ng-click="sendStatus(status)" class="btn btn-primary">
-                                            Пошаљи
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="col-sm-12 col-md-12 col-lg-12" role="group">
-                                    <button ng-click="refresh()" class="btn btn-primary">
-                                        Освежи
-                                    </button>
-                                </div>
-                                <div class="col-sm-12 col-md-12 col-lg-12" ng-repeat="news in userNews track by $index">
-                                    <h4 class=""> {{news.userName}} </h4>
-                                    <p class="bg-primary">{{news.statusMessage}}</p>
-                                    <h6><span class="label label-default"> {{news.statusTime}}|{{news.statusLocation}} </span></h6>
-                                </div>
-                            </div>
+                        <section id="news-text" class="inactive"
+                                 ng-controller="NewsController"
+                                 ng-include="NewsPageUrl">
                         </section><!-- /.news-text -->
 
-                        <section id="match-text" class="inactive">
-                            <h2 class="text-center">Споји!</h2>
-                            <div class="col-sm-12 col-md-12 col-lg-12" ng-controller="MatchController">
-                                <button ng-click="refresh()" class="form-control btn btn-primary">
-                                    Предложени људи
-                                </button>
-                                <div ng-repeat="user in responseObject track by $index">
-                                    <div class="btn-group" role="group">
-                                        <label class="form-control" role="group">
-                                            {{user.userName}}
-                                        </label>
-                                    </div>
-                                    <div class="btn-group" role="group">
-                                        <label class="form-control" role="group">
-                                            {{user.userScore}}
-                                        </label>
-                                    </div>
-                                    <div class="btn-group" role="group">
-                                        <div class="btn-group" role="group">
-                                            <button ng-click="followUser(user.userName)" class="btn btn-primary">
-                                                Прати
-                                            </button>
-                                        </div>
-                                        <div class="btn-group" role="group">
-                                            <button ng-click="blockUser(user.userName)" class="btn btn-primary">
-                                                Блокирај
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <section id="match-text" class="inactive"
+                                 ng-controller="MatchController"
+                                 ng-include="MatchPageUrl">
                         </section><!-- /.match-text -->
 
-                        <section id="messages-text" class="inactive">
-                            <div class="col-sm-12 col-md-12" ng-controller="MessagesController">
-                                <h2>Поруке</h2>
-                                <div class="col-sm-12 col-md-12">
-                                    <form>
-                                        <div class="btn-group btn-group-justified">
-                                            <div class="btn-group" role="group">
-                                                <form ng-submit="submitOnEnter(receiver, message)">
-                                                    <input ng-model="receiver" type="text" class="btn btn-default"
-                                                           placeholder="Корисничко име" list="users">
-                                                    <datalist id="users">
-                                                        <option ng-repeat="userName in userNames track by $index">
-                                                            {{userName.userName}}
-                                                        </option>
-                                                    </datalist>
-                                                </form>
-                                            </div>
-                                            <div class="btn-group" role="group">
-                                                <button ng-click="submitOnEnter(receiver, message)" class="btn btn-primary">
-                                                    Освежи
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="messages-container">
-                                                <div ng-repeat="message in messageArray track by $index">
-                                                    <div>
-                                                        <p class="sender">{{message.sent.messageText}}</p>
-                                                        <span class="message-time">{{message.sent.messageTime}}</span>
-                                                    </div>
-                                                    <div>
-                                                        <p class="recipient">{{message.received.messageText}}</p>
-                                                        <span class="message-time">{{message.received.messageTime}}</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <!--<label for="contact_message">Message:</label>-->
-                                            <form ng-submit="sendMessage(receiver, message)">
-                                                <input ng-model="message" type="text" id="contact_message" class="form-control"
-                                                       placeholder="Куцајте поруку"/>
-                                            </form>
-                                        </div>
-                                        <button ng-click="sendMessage(receiver, message)" class="btn btn-primary">Пошаљи</button>
-
-                                    </form>
-                                </div>
-                            </div>
+                        <section id="messages-text" class="inactive"
+                                 ng-controller="MessagesController"
+                                 ng-include="MessagesPageUrl">
                         </section><!-- /.messages-text -->
 
-                        <section id="settings-text" class="inactive">
-                            <div ng-controller="SettingsController" class="col-sm-12 col-md-12">
-                                <h2>Промените своје информације</h2>
-                                <div ng-repeat="info in responseObject track by $index" >
-                                    <span>{{info.label}}</span>
-                                    <input class="btn btn-default settings-input" type="text" ng-model="savedData.selected[info.name]"
-                                           ng-true-value="'{{info.name}}'" ng-false-value="{{null}}"
-                                           placeholder="{{info.value}}" ng-style="settingsInputStyle">
-                                    <span class="help">{{info.hoverMessage}}</span>
-                                </div>
-                                <div>
-                                    <button ng-click="saveData()" class="btn btn-primary">Сачувај</button>
-                                </div>
-                                <h2>Опишите се</h2>
-                                <div class="btn-group btn-group-justified">
-                                    <div class="btn-group" role="group">
-                                        <form ng-submit="saveTag(tag)">
-                                            <input ng-model="tag" type="text"
-                                                   class="btn btn-default" placeholder="Унеси ознаку">
-                                        </form>
-                                    </div>
-                                    <div class="btn-group" role="group">
-                                        <button ng-click="saveTag(tag)" class="btn btn-primary">Сачувај</button>
-                                    </div>
-                                </div>
-                                <div ng-repeat="userTag in userTags track by $index">
-                                    <span class="btn-success">{{userTag.preferenceName}}</span>
-                                    <button class="btn-xs btn-danger">Избриши</button>
-                                </div>
-                                <h2>Шта тражите?</h2>
-                                <div class="btn-group btn-group-justified">
-                                    <div class="btn-group" role="group">
-                                        <form ng-submit="savePrefTag(prefTag, value)">
-                                            <input ng-model="prefTag" type="text"
-                                                   class="btn btn-default" placeholder="Унеси ознаку">
-                                        </form>
-                                    </div>
-                                    <div class="btn-group" role="group">
-                                        <form ng-submit="savePrefTag(prefTag, value)">
-                                            <input ng-model="value" type="number"
-                                                   class="btn btn-default" placeholder="Значај од -10 до 10">
-                                        </form>
-                                    </div>
-                                    <div class="btn-group" role="group">
-                                        <button ng-click="savePrefTag(prefTag, value)" class="btn btn-primary">Сачувај</button>
-                                    </div>
-                                </div>
-                                <div ng-repeat="userPrefTag in userPrefTags track by $index">
-                                    <span class="btn-success">{{userPrefTag.preferenceName}}|{{userPrefTag.value}}</span>
-                                    <button class="btn-xs btn-danger"
-                                            ng-click="delPrefTag(userPrefTag[$index].preferenceName, userPrefTag[$index].value)">
-                                        Избриши
-                                    </button>
-                                </div>
-                            </div>
+                        <section id="settings-text" class="inactive"
+                                 ng-controller="SettingsController"
+                                 ng-include="SettingsPageUrl">
                         </section><!-- /.settings-text -->
 
-                        <section id="suggestions-text" class="inactive">
-                            <div class="col-sm-12 col-md-12" ng-controller="SearchController">
-                                <h2>Претрага</h2>
-
-                                <div class="btn-group btn-group-justified">
-                                    <div class="btn-group" role="group">
-                                        <form ng-submit="search(criteria)">
-                                            <input ng-model="criteria" placeholder="Критеријум претраге"
-                                                   class="form-control" list="usersSearch"/>
-                                            <datalist id="usersSearch">
-                                                <option ng-repeat="userName in userNames track by $index">
-                                                    {{userName.userName}}
-                                                </option>
-                                            </datalist>
-                                        </form>
-                                    </div>
-                                    <div class="btn-group" role="group">
-                                        <button ng-click="search(criteria)" class="btn btn-primary">
-                                            Тражи
-                                        </button>
-                                    </div>
-                                </div>
-                                <div class="btn-group-justified" ng-repeat="searchedUser in searchedUsers track by $index">
-                                    <div class="btn-group" role="group">
-                                        <label class="form-control" role="group">
-                                            {{searchedUser.userName}}
-                                        </label>
-                                        <h6>Име: {{searchedUser.firstName}}</h6>
-                                        <h6>Презиме: {{searchedUser.lastName}}</h6>
-                                        <h6>Датум рођења: {{searchedUser.birthDate}}</h6>
-                                        <h6>Датум приступа: {{searchedUser.joinedDate}}</h6>
-                                        <h6>Пол: {{searchedUser.sex}}</h6>
-                                        <h6>Место: {{searchedUser.location}}</h6>
-                                        <h6>{{searchedUser.profilePicture}}</h6>
-                                        <h6>Статус везе: {{searchedUser.relationshipStatus}}</h6>
-                                    </div>
-
-                                    <div class="btn-group btn-group-vertical" role="group">
-                                        <div class="btn-group" role="group">
-                                            <button ng-click="follow(searchedUser.userName)" class="btn btn-primary">
-                                                Прати
-                                            </button>
-                                        </div>
-                                        <div class="btn-group" role="group">
-                                            <button ng-click="block(searchedUser.userName)" class="btn btn-primary">
-                                                Блокирај
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                        <section id="suggestions-text" class="inactive"
+                                 ng-controller="SearchController"
+                                 ng-include="SearchPageUrl">
                         </section><!-- /.suggestions-text -->
                     </div><!-- /.temp-content -->
                 </div><!-- /.temp-content-wrapper -->
