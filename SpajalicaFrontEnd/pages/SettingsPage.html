@@ -13,31 +13,49 @@
     <h2>Опишите се</h2>
     <div class="btn-group btn-group-justified">
         <div class="btn-group" role="group">
-            <form ng-submit="saveTag(tag)">
+            <form ng-submit="saveUserTag(tag)">
                 <input ng-model="tag" type="text"
-                       class="btn btn-default" placeholder="Унеси ознаку">
+                       class="btn btn-default"
+                       placeholder="Унеси ознаку"
+                       list="userTagValues">
+                <datalist id="userTagValues">
+                    <option ng-repeat="userTagName in userTagNames track by $index">
+                        {{userTagName.preferenceName}}
+                    </option>
+                </datalist>
             </form>
         </div>
         <div class="btn-group" role="group">
-            <button ng-click="saveTag(tag)" class="btn btn-primary">Сачувај</button>
+            <button ng-click="saveUserTag(tag)" class="btn btn-primary">Сачувај</button>
         </div>
     </div>
     <div ng-repeat="userTag in userTags track by $index">
         <span class="btn-success">{{userTag.preferenceName}}</span>
-        <button class="btn-xs btn-danger">Избриши</button>
+        <button class="btn-xs btn-danger"
+                ng-click="delUserTag(userTags[$index].preferenceName)">
+            Избриши
+        </button>
     </div>
     <h2>Шта тражите?</h2>
     <div class="btn-group btn-group-justified">
         <div class="btn-group" role="group">
             <form ng-submit="savePrefTag(prefTag, value)">
                 <input ng-model="prefTag" type="text"
-                       class="btn btn-default" placeholder="Унеси ознаку">
+                       class="btn btn-default"
+                       placeholder="Унеси ознаку"
+                       list="prefTagValues">
+                <datalist id="prefTagValues">
+                    <option ng-repeat="userTagName in userTagNames track by $index">
+                        {{userTagName.preferenceName}}
+                    </option>
+                </datalist>
             </form>
         </div>
         <div class="btn-group" role="group">
             <form ng-submit="savePrefTag(prefTag, value)">
                 <input ng-model="value" type="number"
-                       class="btn btn-default" placeholder="Значај од -10 до 10">
+                       class="btn btn-default"
+                       placeholder="Значај од -10 до 10">
             </form>
         </div>
         <div class="btn-group" role="group">
@@ -47,7 +65,7 @@
     <div ng-repeat="userPrefTag in userPrefTags track by $index">
         <span class="btn-success">{{userPrefTag.preferenceName}}|{{userPrefTag.value}}</span>
         <button class="btn-xs btn-danger"
-                ng-click="delPrefTag(userPrefTag[$index].preferenceName, userPrefTag[$index].value)">
+                ng-click="delPrefTag(userPrefTags[$index].preferenceName, userPrefTags[$index].value)">
             Избриши
         </button>
     </div>

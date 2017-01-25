@@ -17,6 +17,25 @@ angular.module('SpajalicaFrontEnd').controller('SettingsController', function ($
         userName: $window.sessionStorage.device
     };
 
+    var getTags = function () {
+        $http.get('http://localhost:8000/GetTags').then(
+            function (response) {
+                if (response.data)
+                {
+                    console.log("All tags fetched");
+                    $scope.userTagNames = angular.copy(response.data);
+                }
+                else
+                {
+                    console.log("All tags not fetched");
+                }
+            }, function (response) {
+                console.log("Service not Exists: " +
+                    response.status + "|" +
+                    response.statusText + "|");
+            });
+    };
+
     $http.post('http://localhost:8000/ShowProfile', data).then(
         function (response) {
             if (response.data)
@@ -74,7 +93,7 @@ angular.module('SpajalicaFrontEnd').controller('SettingsController', function ($
             });
     };
 
-    var refresh = function () {
+    var refreshUserTags = function () {
         var data = {
             userName: $window.sessionStorage.device
         };
@@ -98,9 +117,7 @@ angular.module('SpajalicaFrontEnd').controller('SettingsController', function ($
             });
     };
 
-    refresh();
-
-    $scope.saveTag = function (tag) {
+    $scope.saveUserTag = function (tag) {
         var data = {
             userName: $window.sessionStorage.device,
             userTag: tag
@@ -112,7 +129,8 @@ angular.module('SpajalicaFrontEnd').controller('SettingsController', function ($
                 {
                     console.log("Successfully inserted userTags");
                     console.log(response.data);
-                    refresh();
+                    refreshUserTags();
+                    getTags();
                 }
                 else
                 {
@@ -138,7 +156,8 @@ angular.module('SpajalicaFrontEnd').controller('SettingsController', function ($
                 {
                     console.log("Successfully inserted userTags");
                     console.log(response.data);
-                    refreshPref();
+                    refreshPrefTags();
+                    getTags();
                 }
                 else
                 {
@@ -149,14 +168,9 @@ angular.module('SpajalicaFrontEnd').controller('SettingsController', function ($
                     response.status + "|" +
                     response.statusText + "|");
             });
-
-        $scope.delPrefTag = function (name, value) {
-            console.log("reaguje");
-            console.log(name+'|'+value);
-        };
     };
 
-    var refreshPref = function () {
+    var refreshPrefTags = function () {
         var data = {
             userName: $window.sessionStorage.device
         };
@@ -180,5 +194,64 @@ angular.module('SpajalicaFrontEnd').controller('SettingsController', function ($
             });
     };
 
-    refreshPref();
+    $scope.delPrefTag = function (name, value) {
+        console.log("reaguje");
+        console.log(name+'|'+value);
+
+        var data = {
+            userName: $window.sessionStorage.device,
+            userPrefTagName: name,
+            userPrefTagValue: value
+        };
+
+        $http.post('http://localhost:8000/DelPrefTag', data).then(
+            function (response) {
+                if (response.data)
+                {
+                    console.log("Successfully deleted prefTag");
+                    console.log(response.data);
+                    refreshPrefTags();
+                }
+                else
+                {
+                    console.log("Couldn't delete prefTag");
+                }
+            }, function (response) {
+                console.log("Service not Exists: " +
+                    response.status + "|" +
+                    response.statusText + "|");
+            });
+    };
+
+    $scope.delUserTag = function (name) {
+        console.log("reaguje");
+        console.log(name);
+
+        var data = {
+            userName: $window.sessionStorage.device,
+            userTagName: name
+        };
+
+        $http.post('http://localhost:8000/DelUserTag', data).then(
+            function (response) {
+                if (response.data)
+                {
+                    console.log("Successfully deleted userTag");
+                    console.log(response.data);
+                    refreshUserTags();
+                }
+                else
+                {
+                    console.log("Couldn't delete userTag");
+                }
+            }, function (response) {
+                console.log("Service not Exists: " +
+                    response.status + "|" +
+                    response.statusText + "|");
+            });
+    };
+
+    refreshUserTags();
+    refreshPrefTags();
+    getTags();
 });

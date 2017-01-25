@@ -55,3 +55,9 @@ Route::post('GetUserTags', 'SettingsController@GetUserTags')->middleware(\App\Ht
 Route::post('InsertUserTag', 'SettingsController@InsertUserTag')->middleware(\App\Http\Middleware\Cors::class);
 
 Route::post('GetListOfPeople', 'MatchController@GetListOfPeople')->middleware(\App\Http\Middleware\Cors::class);
+
+Route::post('DelUserTag', 'SettingsController@DelUserTag')->middleware(\App\Http\Middleware\Cors::class);
+
+Route::post('DelPrefTag', 'SettingsController@DelPrefTag')->middleware(\App\Http\Middleware\Cors::class);
+
+Route::get('GetTags', 'SettingsController@GetAllTags')->middleware(\App\Http\Middleware\Cors::class);
