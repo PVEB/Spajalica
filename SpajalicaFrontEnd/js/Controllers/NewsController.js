@@ -3,6 +3,9 @@
  */
 
 angular.module("SpajalicaFrontEnd").controller("NewsController", function ($scope, $window, $http) {
+
+    $scope.NewsPageUrl = 'pages/NewsPage.html';
+
     var refresh = function () {
         var data = {
             userName: $window.sessionStorage.device

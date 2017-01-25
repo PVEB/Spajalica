@@ -3,6 +3,9 @@
  */
 
 angular.module("SpajalicaFrontEnd").controller("MatchController", function ($scope, $window, $http) {
+
+    $scope.MatchPageUrl = 'pages/MatchPage.html';
+
     $scope.refresh = function () {
         var data = {
             userName: $window.sessionStorage.device

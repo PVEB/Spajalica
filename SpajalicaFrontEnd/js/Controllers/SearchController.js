@@ -3,6 +3,9 @@
  */
 
 angular.module("SpajalicaFrontEnd").controller("SearchController", function ($scope, $window, $http) {
+
+    $scope.SearchPageUrl = 'pages/SearchPage.html';
+
     var refresh = function () {
         var data = {
             userName: $window.sessionStorage.device

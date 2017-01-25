@@ -4,6 +4,8 @@
 
 angular.module('SpajalicaFrontEnd').controller('SettingsController', function ($scope, $window, $http) {
 
+    $scope.SettingsPageUrl = 'pages/SettingsPage.html';
+
     var data = {
         "userName": $window.sessionStorage.device
     };
@@ -81,7 +83,7 @@ angular.module('SpajalicaFrontEnd').controller('SettingsController', function ($
             function (response) {
                 if (response.data)
                 {
-                    console.log("Successfully get useTags");
+                    console.log("Successfully get userTags");
                     console.log(response.data);
                     $scope.userTags = angular.copy(response.data);
                 }
@@ -163,7 +165,7 @@ angular.module('SpajalicaFrontEnd').controller('SettingsController', function ($
             function (response) {
                 if (response.data)
                 {
-                    console.log("Successfully get useTags");
+                    console.log("Successfully get userTags");
                     console.log(response.data);
                     $scope.userPrefTags = angular.copy(response.data);
                 }

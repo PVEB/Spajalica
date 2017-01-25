@@ -3,6 +3,9 @@
  */
 
 angular.module("SpajalicaFrontEnd").controller("ProfileController", function ($scope, $http, $window) {
+
+    $scope.ProfilePageUrl = 'pages/ProfilePage.html';
+
     var data = {
         "userName": $window.sessionStorage.device
     };

@@ -4,6 +4,8 @@
 
 angular.module("SpajalicaFrontEnd").controller("MessagesController", function ($scope, $window, $http) {
 
+    $scope.MessagesPageUrl = 'pages/MessagesPage.html';
+
     $http.post('http://localhost:8000/GetUsers',
         {userName: $window.sessionStorage.device}).then(
         function (response) {

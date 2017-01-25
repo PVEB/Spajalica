@@ -19,4 +19,5 @@ INSERT INTO `usersinfo` (`firstName`,`lastName`,`birthDate`,`joinedDate`,`sex`,`
 
 INSERT INTO `spajalicadb`.`userstatusupdates` (`statusMessage`, `statusTime`, `statusLocation`, `idloginInfo`) VALUES ('Neki status, potpuno nebitno', NOW(), 'Belgrade', '1');
 
-
+DELETE FROM `spajalicadb`.`userblocks` WHERE `idloginInfo`='1';
+DELETE FROM `spajalicadb`.`userfollows` WHERE `idFollowed`='3';
