@@ -24,12 +24,16 @@
                 <div class="messages-container">
                     <div ng-repeat="message in messageArray track by $index">
                         <div>
-                            <p class="sender">{{message.sent.messageText}}</p>
-                            <span class="message-time">{{message.sent.messageTime}}</span>
+                            <p class="sender" data-toggle="tooltip" title="{{message.sent.messageTime}}">
+                                {{message.sent.messageText}}
+                            </p>
+                            <!--<span class="message-time">{{message.sent.messageTime}}</span>-->
                         </div>
                         <div>
-                            <p class="recipient">{{message.received.messageText}}</p>
-                            <span class="message-time">{{message.received.messageTime}}</span>
+                            <p class="recipient" data-toggle="tooltip" title="{{message.received.messageTime}}">
+                                {{message.received.messageText}}
+                            </p>
+                            <!--<span class="message-time">{{message.received.messageTime}}</span>-->
                         </div>
                     </div>
                 </div>

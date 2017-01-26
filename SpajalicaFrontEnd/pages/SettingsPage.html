@@ -3,12 +3,14 @@
     <!--<input  placeholder="2012-10-01" type="date" class='form-control'/>-->
 
     <h2>Промените своје информације</h2>
-    <div ng-repeat="info in responseObject track by $index" >
-        <span>{{info.label}}</span>
-        <input class="btn btn-default settings-input" type="text" ng-model="savedData.selected[info.name]"
+    <div ng-repeat="info in responseObject track by $index" class="row">
+        <span class="col-xs-6">{{info.label}}</span>
+        <input class="btn btn-default col-xs-6" type="text"
+               ng-model="savedData.selected[info.name]"
                ng-true-value="'{{info.name}}'" ng-false-value="{{null}}"
-               placeholder="{{info.value}}" ng-style="settingsInputStyle">
-        <span class="help">{{info.hoverMessage}}</span>
+               placeholder="{{info.value}}" ng-style="settingsInputStyle"
+               data-toggle="tooltip" title="{{info.hoverMessage}}">
+        <!--<span class="help">{{info.hoverMessage}}</span>-->
     </div>
     <div>
         <button ng-click="saveData()" class="btn btn-primary">Сачувај</button>
