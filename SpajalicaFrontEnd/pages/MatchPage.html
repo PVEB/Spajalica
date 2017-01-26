@@ -3,18 +3,18 @@
     <button ng-click="refresh()" class="form-control btn btn-primary">
         Предложени људи
     </button>
-    <div ng-repeat="user in responseObject track by $index">
-        <div class="btn-group" role="group">
+    <div ng-repeat="user in responseObject track by $index" class="row">
+        <div class="col-xs-4" role="group">
             <label class="form-control" role="group">
                 {{user.userName}}
             </label>
         </div>
-        <div class="btn-group" role="group">
+        <div class="col-xs-4" role="group">
             <label class="form-control" role="group">
                 {{user.userScore}}
             </label>
         </div>
-        <div class="btn-group" role="group">
+        <div class="col-xs-4 btn-group" role="group">
             <div class="btn-group" role="group">
                 <button ng-click="follow(user.userName)" class="btn btn-primary">
                     Прати
