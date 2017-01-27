@@ -14,11 +14,29 @@
             </form>
         </div>
         <div class="btn-group" role="group">
+            <select class="form-control" ng-model="category.model">
+                <option value="" disabled selected>Одабери категорију</option>
+                <option value='Нови корисници' data-toggle="tooltip"
+                        title="Тражи кориснике по критеријуму претраге">
+                    Нови корисници
+                </option>
+                <option value='Блокирани' data-toggle="tooltip"
+                        title="Не узима у обзир критеријум претраге">
+                    Блокирани
+                </option>
+                <option value='Запраћени' data-toggle="tooltip"
+                        title="Не узима у обзир критеријум претраге">
+                    Запраћени
+                </option>
+            </select>
+        </div>
+        <div class="btn-group" role="group">
             <button ng-click="search(criteria)" class="btn btn-primary">
                 Тражи
             </button>
         </div>
     </div>
+    <!--novi korisnici-->
     <div class="btn-group-justified" ng-repeat="searchedUser in searchedUsers track by $index">
         <div class="btn-group" role="group">
             <label class="form-control" role="group">
@@ -33,16 +51,63 @@
             <h6>{{searchedUser.profilePicture}}</h6>
             <h6>Статус везе: {{searchedUser.relationshipStatus}}</h6>
         </div>
-
         <div class="btn-group btn-group-vertical" role="group">
             <div class="btn-group" role="group">
-                <button ng-click="follow(searchedUser.userName)" class="btn btn-primary">
+                <button ng-click="follow(searchedUser.userName)" class="btn btn-success">
                     Прати
                 </button>
             </div>
             <div class="btn-group" role="group">
-                <button ng-click="block(searchedUser.userName)" class="btn btn-primary">
+                <button ng-click="block(searchedUser.userName)" class="btn btn-danger">
                     Блокирај
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!--blokirani korisnici-->
+    <div class="btn-group-justified" ng-repeat="searchedUser in blockedUsers track by $index">
+        <div class="btn-group" role="group">
+            <label class="form-control" role="group">
+                {{searchedUser.userName}}
+            </label>
+            <h6>Име: {{searchedUser.firstName}}</h6>
+            <h6>Презиме: {{searchedUser.lastName}}</h6>
+            <h6>Датум рођења: {{searchedUser.birthDate}}</h6>
+            <h6>Датум приступа: {{searchedUser.joinedDate}}</h6>
+            <h6>Пол: {{searchedUser.sex}}</h6>
+            <h6>Место: {{searchedUser.location}}</h6>
+            <h6>{{searchedUser.profilePicture}}</h6>
+            <h6>Статус везе: {{searchedUser.relationshipStatus}}</h6>
+        </div>
+        <div class="btn-group btn-group-vertical" role="group">
+            <div class="btn-group" role="group">
+                <button ng-click="unblock(searchedUser.userName)" class="btn btn-success">
+                    Одблокирај
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!--zapraceni korisnici-->
+    <div class="btn-group-justified" ng-repeat="searchedUser in followedUsers track by $index">
+        <div class="btn-group" role="group">
+            <label class="form-control" role="group">
+                {{searchedUser.userName}}
+            </label>
+            <h6>Име: {{searchedUser.firstName}}</h6>
+            <h6>Презиме: {{searchedUser.lastName}}</h6>
+            <h6>Датум рођења: {{searchedUser.birthDate}}</h6>
+            <h6>Датум приступа: {{searchedUser.joinedDate}}</h6>
+            <h6>Пол: {{searchedUser.sex}}</h6>
+            <h6>Место: {{searchedUser.location}}</h6>
+            <h6>{{searchedUser.profilePicture}}</h6>
+            <h6>Статус везе: {{searchedUser.relationshipStatus}}</h6>
+        </div>
+        <div class="btn-group btn-group-vertical" role="group">
+            <div class="btn-group" role="group">
+                <button ng-click="unfollow(searchedUser.userName)" class="btn btn-danger">
+                    Отпрати
                 </button>
             </div>
         </div>

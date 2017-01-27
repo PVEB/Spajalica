@@ -59,6 +59,13 @@ SELECT li.userName, ui.firstName, ui.lastName, ui.birthDate, ui.joinedDate, ui.s
 FROM loginInfo li join usersInfo ui 
 on ui.idloginInfo = li.idloginInfo
 
+use spajalicadb;
+SELECT li.userName, ui.firstName, ui.lastName, ui.birthDate, ui.joinedDate, ui.sex, ui.location, ui.profilePicture, ui.relationshipStatus
+FROM loginInfo li join usersInfo ui on ui.idloginInfo = li.idloginInfo
+				  join userBlocks ub on ub.idBlocked = li.idloginInfo
+where ub.idloginInfo = 1;
+
+
 
 
 

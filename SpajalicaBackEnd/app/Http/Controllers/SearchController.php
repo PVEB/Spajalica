@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\DB;
 
 class SearchController extends Controller
 {
-    public function GetUsers()
+    public function GetAvailableUsers()
     {
         $data = Input::all();
         $res = json_decode(json_encode($data));
@@ -112,6 +112,68 @@ class SearchController extends Controller
         $userBlocked = DB::select('select idloginInfo from loginInfo where userName = ?', [$res->userBlocked]);
         DB::insert('insert into userBlocks (idloginInfo, idBlocked) values (?, ?)',
                   [$blocker[0]->idloginInfo, $userBlocked[0]->idloginInfo]);
+
+        return 200;
+    }
+
+    public function SearchFollowedUsers()
+    {
+        $data = Input::all();
+        $res = json_decode(json_encode($data));
+
+        $follower = DB::select('select idloginInfo from loginInfo where userName = ?', [$res->userName]);
+
+        $usersFollowed = DB::select('select li.userName, ui.firstName, ui.lastName, ui.birthDate, '.
+                                    'ui.joinedDate, ui.sex, ui.location, ui.profilePicture, ui.relationshipStatus '.
+                                    'from loginInfo li join usersInfo ui on ui.idloginInfo = li.idloginInfo '.
+                                    'join userFollows uf on uf.idFollowed = li.idloginInfo '.
+                                    'where uf.idloginInfo = ? ',
+                                    [$follower[0]->idloginInfo]);
+
+        return json_encode($usersFollowed);
+    }
+
+    public function SearchBlockedUsers()
+    {
+        $data = Input::all();
+        $res = json_decode(json_encode($data));
+
+        $blocker = DB::select('select idloginInfo from loginInfo where userName = ?', [$res->userName]);
+
+        $usersBlocked = DB::select('select li.userName, ui.firstName, ui.lastName, ui.birthDate, '.
+                                    'ui.joinedDate, ui.sex, ui.location, ui.profilePicture, ui.relationshipStatus '.
+                                    'from loginInfo li join usersInfo ui on ui.idloginInfo = li.idloginInfo '.
+                                    'join userBlocks ub on ub.idBlocked = li.idloginInfo '.
+                                    'where ub.idloginInfo = ? ',
+                                    [$blocker[0]->idloginInfo]);
+
+        return json_encode($usersBlocked);
+    }
+
+    public function Unfollow()
+    {
+        $data = Input::all();
+        $res = json_decode(json_encode($data));
+
+        $follower = DB::select('select idloginInfo from loginInfo where userName = ?', [$res->userName]);
+        $userFollowed = DB::select('select idloginInfo from loginInfo where userName = ?', [$res->userFollowed]);
+
+        DB::delete('delete from userFollows where idloginInfo = ? and idFollowed = ? ',
+                   [$follower[0]->idloginInfo, $userFollowed[0]->idloginInfo]);
+
+        return 200;
+    }
+
+    public function Unblock()
+    {
+        $data = Input::all();
+        $res = json_decode(json_encode($data));
+
+        $blocker = DB::select('select idloginInfo from loginInfo where userName = ?', [$res->userName]);
+        $userBlocked = DB::select('select idloginInfo from loginInfo where userName = ?', [$res->userBlocked]);
+
+        DB::insert('delete from userBlocks where idloginInfo = ? and idBlocked = ? ',
+                   [$blocker[0]->idloginInfo, $userBlocked[0]->idloginInfo]);
 
         return 200;
     }

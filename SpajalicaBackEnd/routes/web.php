@@ -16,9 +16,9 @@ Route::get('/', function () {
 });
 
 
-Route::get('ID/{id}',function($id){
-    echo 'ID: '.$id;
-});
+//Route::get('ID/{id}',function($id){
+//    echo 'ID: '.$id;
+//});
 
 Route::post('ShowProfile', 'ProfileController@Show')->middleware(\App\Http\Middleware\Cors::class);
 
@@ -34,7 +34,7 @@ Route::post('GetMessages', 'MessagesController@GetMessages')->middleware(\App\Ht
 
 Route::post('GetUsers', 'MessagesController@GetUsers')->middleware(\App\Http\Middleware\Cors::class);
 
-Route::post('GetFollowListUsers', 'SearchController@GetUsers')->middleware(\App\Http\Middleware\Cors::class);
+Route::post('GetAvailableUsers', 'SearchController@GetAvailableUsers')->middleware(\App\Http\Middleware\Cors::class);
 
 Route::post('SearchUserCriteria', 'SearchController@SearchUsers')->middleware(\App\Http\Middleware\Cors::class);
 
@@ -61,3 +61,11 @@ Route::post('DelUserTag', 'SettingsController@DelUserTag')->middleware(\App\Http
 Route::post('DelPrefTag', 'SettingsController@DelPrefTag')->middleware(\App\Http\Middleware\Cors::class);
 
 Route::get('GetTags', 'SettingsController@GetAllTags')->middleware(\App\Http\Middleware\Cors::class);
+
+Route::post('SearchFollowCriteria', 'SearchController@SearchFollowedUsers')->middleware(\App\Http\Middleware\Cors::class);
+
+Route::post('SearchBlockedCriteria', 'SearchController@SearchBlockedUsers')->middleware(\App\Http\Middleware\Cors::class);
+
+Route::post('Unfollow', 'SearchController@Unfollow')->middleware(\App\Http\Middleware\Cors::class);
+
+Route::post('Unblock', 'SearchController@Unblock')->middleware(\App\Http\Middleware\Cors::class);

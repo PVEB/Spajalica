@@ -1,6 +1,6 @@
 <h2 class="text-center">Новости</h2>
 <div class="col-sm-12 col-md-12 col-lg-12">
-    <div class="btn-group btn-group-justified">
+    <div class="row form-group">
         <div class="col-sm-10 col-md-10 col-lg-10">
             <form ng-submit="sendStatus(status)">
                 <input ng-model="status" placeholder="Напиши нешто..." class="form-control" />
@@ -13,13 +13,20 @@
         </div>
     </div>
     <div class="col-sm-12 col-md-12 col-lg-12" role="group">
-        <button ng-click="refresh()" class="btn btn-primary">
+        <button ng-click="refresh()" class="btn btn-primary form-control">
             Освежи
         </button>
     </div>
     <div class="col-sm-12 col-md-12 col-lg-12" ng-repeat="news in userNews track by $index">
-        <h4 class=""> {{news.userName}} </h4>
-        <p class="bg-primary">{{news.statusMessage}}</p>
+        <div class="row">
+            <h4 style="float: left">
+                <span class="label label-success"> {{news.userName}} </span>
+            </h4>
+            <button class="btn btn-sm btn-danger" style="float: right" ng-click="deleteStatus">
+                X
+            </button>
+        </div>
+        <p>{{news.statusMessage}}</p>
         <h6><span class="label label-default"> {{news.statusTime}}|{{news.statusLocation}} </span></h6>
     </div>
 </div>

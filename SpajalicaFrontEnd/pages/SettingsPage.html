@@ -34,11 +34,14 @@
             <button ng-click="saveUserTag(tag)" class="form-control btn btn-primary">Сачувај</button>
         </div>
     </div>
-    <div ng-repeat="userTag in userTags track by $index">
-        <span class="btn-success">{{userTag.preferenceName}}</span>
-        <button class="btn-xs btn-danger"
+    <div class="input-group"
+         ng-repeat="userTag in userTags track by $index">
+        <span class="input-group-addon" style="color: #0f0f0f">
+            Ознака: {{userTag.preferenceName}}
+        </span>
+        <button class="btn btn-sm btn-danger"
                 ng-click="delUserTag(userTags[$index].preferenceName)">
-            Избриши
+            X
         </button>
     </div>
     <h2>Шта тражите?</h2>
@@ -58,20 +61,48 @@
         </div>
         <div class="btn-group" role="group">
             <form ng-submit="savePrefTag(prefTag, value)">
-                <input ng-model="value" type="number"
-                       class="btn btn-default"
-                       placeholder="Значај од -10 до 10">
+                <select ng-model="value"
+                        class="btn btn-default"
+                        placeholder="Значај од -10 до 10">
+                    <option value="" disabled selected>Значај од -10 до 10</option>
+                    <option value='-10'>-10</option>
+                    <option value='-9'>-9</option>
+                    <option value='-8'>-8</option>
+                    <option value='-7'>-7</option>
+                    <option value='-6'>-6</option>
+                    <option value='-5'>-5</option>
+                    <option value='-4'>-4</option>
+                    <option value='-3'>-3</option>
+                    <option value='-2'>-2</option>
+                    <option value='-1'>-1</option>
+                    <option value='1'>1</option>
+                    <option value='2'>2</option>
+                    <option value='3'>3</option>
+                    <option value='4'>4</option>
+                    <option value='5'>6</option>
+                    <option value='7'>7</option>
+                    <option value='8'>8</option>
+                    <option value='9'>9</option>
+                    <option value='10'>10</option>
+                </select>
+                <!--<input ng-model="value" type="number"-->
+                       <!--min="-10" max="10"-->
+                       <!--class="btn btn-default"-->
+                       <!--placeholder="Значај од -10 до 10">-->
             </form>
         </div>
         <div class="btn-group" role="group">
             <button ng-click="savePrefTag(prefTag, value)" class="btn btn-primary">Сачувај</button>
         </div>
     </div>
-    <div ng-repeat="userPrefTag in userPrefTags track by $index">
-        <span class="btn-success">{{userPrefTag.preferenceName}}|{{userPrefTag.value}}</span>
-        <button class="btn-xs btn-danger"
+    <div class="input-group"
+         ng-repeat="userPrefTag in userPrefTags track by $index">
+        <span class="input-group-addon" style="color: #0f0f0f">
+            Ознака: {{userPrefTag.preferenceName}} | Оцена: {{userPrefTag.value}}
+        </span>
+        <button class="btn btn-sm btn-danger"
                 ng-click="delPrefTag(userPrefTags[$index].preferenceName, userPrefTags[$index].value)">
-            Избриши
+            X
         </button>
     </div>
 </div>
