@@ -8,6 +8,7 @@ angular.module("SpajalicaFrontEnd").controller("SearchController", function ($sc
     $scope.category = {
         model: null
     };
+    var savedCriteria = "";
 
     var refresh = function () {
         var data = {
@@ -34,16 +35,18 @@ angular.module("SpajalicaFrontEnd").controller("SearchController", function ($sc
 
     $scope.search = function (criteria) {
 
-        // console.log("Reaguje");
-        // console.log($scope.category.model);
+        if(criteria != null || criteria != undefined)
+            savedCriteria = criteria;
 
-        if($scope.category.model == 'Нови корисници')
+        $scope.criteriaStyle = {};
+
+        var data = {
+            userName: $window.sessionStorage.device,
+            criteria: savedCriteria
+        };
+
+        if($scope.category.model == 'Нови корисници' && savedCriteria != "")
         {
-            var data = {
-                userName: $window.sessionStorage.device,
-                criteria: criteria
-            };
-
             $http.post('http://localhost:8000/SearchUserCriteria', data).then(
                 function (response) {
                     if (response.data)
@@ -64,14 +67,9 @@ angular.module("SpajalicaFrontEnd").controller("SearchController", function ($sc
                         response.statusText + "|");
                 });
         }
-
+        else
         if($scope.category.model == 'Запраћени')
         {
-            var data = {
-                userName: $window.sessionStorage.device,
-                criteria: criteria
-            };
-
             $http.post('http://localhost:8000/SearchFollowCriteria', data).then(
                 function (response) {
                     if (response.data)
@@ -92,14 +90,9 @@ angular.module("SpajalicaFrontEnd").controller("SearchController", function ($sc
                         response.statusText + "|");
                 });
         }
-
+        else
         if($scope.category.model == 'Блокирани')
         {
-            var data = {
-                userName: $window.sessionStorage.device,
-                criteria: criteria
-            };
-
             $http.post('http://localhost:8000/SearchBlockedCriteria', data).then(
                 function (response) {
                     if (response.data)
@@ -119,6 +112,10 @@ angular.module("SpajalicaFrontEnd").controller("SearchController", function ($sc
                         response.status + "|" +
                         response.statusText + "|");
                 });
+        }
+        else
+        {
+            $scope.criteriaStyle = {'border': '1px solid red'};
         }
     };
 

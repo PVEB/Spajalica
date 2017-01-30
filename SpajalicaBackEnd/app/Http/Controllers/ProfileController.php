@@ -45,5 +45,41 @@ class ProfileController extends Controller
             return 0;
         }
     }
+    public function GetUserUpdates()
+    {
+        $data = Input::all();
+        $res = json_decode(json_encode($data));
+
+        $userID = DB::select('select idloginInfo from loginInfo where userName = ?', [$res->userName]);
+
+        $statuses = DB::select(
+            'select u.iduserStatusUpdates, l.userName, u.statusMessage, u.statusTime, u.statusLocation '.
+            'from userstatusupdates u join logininfo l on l.idloginInfo = u.idloginInfo '.
+            'where l.idloginInfo = ? '.
+            'order by u.statusTime desc',
+            [$userID[0]->idloginInfo]);
+
+        return json_encode($statuses);
+    }
+
+    public function DeleteStatus()
+    {
+        $data = Input::all();
+        $res = json_decode(json_encode($data));
+
+        $userID = DB::select('select idloginInfo from loginInfo where userName = ?', [$res->userName]);
+
+        $deletedStatuses = DB::delete(
+            'delete from userStatusUpdates where iduserStatusUpdates = ? and idloginInfo = ?',
+            [$res->iduserStatusUpdates, $userID[0]->idloginInfo]);
+
+        //zapravo shvatimo da nije to taj korisnik
+        //prijavimo da smo prekinuli akciju
+        if(count($deletedStatuses) == 0)
+            abort(403, 'Unauthorized action.');
+
+
+        return 200;
+    }
 }
 

@@ -69,3 +69,7 @@ Route::post('SearchBlockedCriteria', 'SearchController@SearchBlockedUsers')->mid
 Route::post('Unfollow', 'SearchController@Unfollow')->middleware(\App\Http\Middleware\Cors::class);
 
 Route::post('Unblock', 'SearchController@Unblock')->middleware(\App\Http\Middleware\Cors::class);
+
+Route::post('GetUserUpdates', 'ProfileController@GetUserUpdates')->middleware(\App\Http\Middleware\Cors::class);
+
+Route::post('DeleteStatus', 'ProfileController@DeleteStatus')->middleware(\App\Http\Middleware\Cors::class);

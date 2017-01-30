@@ -4,7 +4,7 @@
         <form>
             <div class="btn-group btn-group-justified">
                 <div class="btn-group" role="group">
-                    <form ng-submit="submitOnEnter(receiver, message)">
+                    <form ng-submit="getMessages(receiver)">
                         <input ng-model="receiver" type="text" class="btn btn-default"
                                placeholder="Корисничко име" list="users">
                         <datalist id="users">
@@ -15,7 +15,7 @@
                     </form>
                 </div>
                 <div class="btn-group" role="group">
-                    <button ng-click="submitOnEnter(receiver, message)" class="btn btn-primary">
+                    <button ng-click="getMessages(receiver)" class="btn btn-primary">
                         Освежи
                     </button>
                 </div>

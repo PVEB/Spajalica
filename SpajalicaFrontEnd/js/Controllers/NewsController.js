@@ -31,7 +31,6 @@ angular.module("SpajalicaFrontEnd").controller("NewsController", function ($scop
     };
 
     $scope.refresh = refresh;
-    refresh();
 
     $scope.sendStatus = function (status) {
         var data = {
@@ -57,5 +56,9 @@ angular.module("SpajalicaFrontEnd").controller("NewsController", function ($scop
                     response.status + "|" +
                     response.statusText + "|");
             });
-    }
+    };
+
+    // setInterval(function(){
+    //     refresh();
+    // }, 2000);
 });

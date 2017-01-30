@@ -57,13 +57,27 @@ where userName <> 'test'
 
 SELECT li.userName, ui.firstName, ui.lastName, ui.birthDate, ui.joinedDate, ui.sex, ui.location, ui.profilePicture, ui.relationshipStatus
 FROM loginInfo li join usersInfo ui 
-on ui.idloginInfo = li.idloginInfo
+on ui.idloginInfo = li.idloginInfo;
 
 use spajalicadb;
-SELECT li.userName, ui.firstName, ui.lastName, ui.birthDate, ui.joinedDate, ui.sex, ui.location, ui.profilePicture, ui.relationshipStatus
-FROM loginInfo li join usersInfo ui on ui.idloginInfo = li.idloginInfo
-				  join userBlocks ub on ub.idBlocked = li.idloginInfo
-where ub.idloginInfo = 1;
+SELECT 
+    li.userName,
+    ui.firstName,
+    ui.lastName,
+    ui.birthDate,
+    ui.joinedDate,
+    ui.sex,
+    ui.location,
+    ui.profilePicture,
+    ui.relationshipStatus
+FROM
+    loginInfo li
+        JOIN
+    usersInfo ui ON ui.idloginInfo = li.idloginInfo
+        JOIN
+    userBlocks ub ON ub.idBlocked = li.idloginInfo
+WHERE
+    ub.idloginInfo = 1;
 
 
 

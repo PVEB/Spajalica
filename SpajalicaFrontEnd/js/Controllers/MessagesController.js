@@ -5,6 +5,7 @@
 angular.module("SpajalicaFrontEnd").controller("MessagesController", function ($scope, $window, $http) {
 
     $scope.MessagesPageUrl = 'pages/MessagesPage.html';
+    var getMessagesData = null;
 
     $http.post('http://localhost:8000/GetUsers',
         {userName: $window.sessionStorage.device}).then(
@@ -25,8 +26,8 @@ angular.module("SpajalicaFrontEnd").controller("MessagesController", function ($
                 response.statusText + "|");
         });
 
-    $scope.submitOnEnter = function (receiver) {
-        var getMessagesData = {
+    $scope.getMessages = function (receiver) {
+        getMessagesData = {
             sender: $window.sessionStorage.device,
             receiver: receiver
         };
@@ -80,5 +81,14 @@ angular.module("SpajalicaFrontEnd").controller("MessagesController", function ($
                     response.status + "|" +
                     response.statusText + "|");
             });
-    }
+    };
+
+    var refresh = function () {
+        if(getMessagesData != null)
+            $scope.getMessages(getMessagesData.receiver);
+    };
+
+    setInterval(function(){
+        refresh();
+    }, 5000);
 });

@@ -5,7 +5,7 @@
         <div class="btn-group" role="group">
             <form ng-submit="search(criteria)">
                 <input ng-model="criteria" placeholder="Критеријум претраге"
-                       class="form-control" list="usersSearch"/>
+                       class="form-control" list="usersSearch" ng-style="criteriaStyle"/>
                 <datalist id="usersSearch">
                     <option ng-repeat="userName in userNames track by $index">
                         {{userName.userName}}
@@ -14,7 +14,7 @@
             </form>
         </div>
         <div class="btn-group" role="group">
-            <select class="form-control" ng-model="category.model">
+            <select class="form-control" ng-model="category.model" ng-style="criteriaStyle">
                 <option value="" disabled selected>Одабери категорију</option>
                 <option value='Нови корисници' data-toggle="tooltip"
                         title="Тражи кориснике по критеријуму претраге">

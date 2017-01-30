@@ -41,5 +41,59 @@ angular.module("SpajalicaFrontEnd").controller("ProfileController", function ($s
                 response.statusText + "|");
         });
 
-    $scope.nickname = $window.sessionStorage.device;
+    //$scope.nickname = $window.sessionStorage.device;
+
+    var refresh = function () {
+        var data = {
+            userName: $window.sessionStorage.device
+        };
+
+        $http.post('http://localhost:8000/GetUserUpdates', data).then(
+            function (response) {
+                if (response.data)
+                {
+                    console.log("Successfully get the user status updates");
+                    console.log(response.data);
+                    $scope.userNews = angular.copy(response.data);
+                }
+                else
+                {
+                    console.log("Couldn't get the user status updates");
+                }
+            }, function (response) {
+                console.log("Service not Exists: " +
+                    response.status + "|" +
+                    response.statusText + "|");
+            });
+    };
+
+    $scope.refresh = refresh;
+    refresh();
+
+    $scope.deleteStatus = function (idStatus) {
+        var data = {
+            userName: $window.sessionStorage.device,
+            iduserStatusUpdates: idStatus
+        };
+
+        //console.log(data);
+
+        $http.post('http://localhost:8000/DeleteStatus', data).then(
+            function (response) {
+                if (response.data)
+                {
+                    console.log("Successfully deleted status");
+                    console.log(response.data);
+                    refresh();
+                }
+                else
+                {
+                    console.log("Couldn't delete status");
+                }
+            }, function (response) {
+                console.log("Service not Exists: " +
+                    response.status + "|" +
+                    response.statusText + "|");
+            });
+    };
 });

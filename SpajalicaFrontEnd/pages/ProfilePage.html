@@ -10,4 +10,25 @@
             </p>
         </div>
     </div>
+    <div class="col-sm-12 col-md-12 col-lg-12" role="group">
+        <h2> Моје новости </h2>
+        <button ng-click="refresh()" class="btn btn-primary form-control">
+            Освежи
+        </button>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-12" role="group"
+         ng-repeat="myNews in userNews track by $index" style="border: 1px dotted black">
+        <div class="row">
+            <h4 style="float: left">
+                <span class="label label-success"> {{myNews.userName}} </span>
+            </h4>
+            <h4 style="float: right" >
+                <button class="btn btn-sm btn-danger" ng-click="deleteStatus(myNews.iduserStatusUpdates)">
+                    X
+                </button>
+            </h4>
+        </div>
+        <p>{{myNews.statusMessage}}</p>
+        <h6><span class="label label-default"> {{myNews.statusTime}}|{{myNews.statusLocation}} </span></h6>
+    </div>
 </div>
