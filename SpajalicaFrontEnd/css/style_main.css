@@ -337,12 +337,3 @@ img.slide {
     width: 15%;
     height: 15%;
 }
-
-input[type="date"]::-webkit-datetime-edit {
-    color: transparent;
-}
-
-/* Include this to make it visible when input is clicked */
-input[type="date"]:focus::-webkit-datetime-edit{
-    color: #000;
-}

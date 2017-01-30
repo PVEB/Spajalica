@@ -10,9 +10,14 @@ angular.module('SpajalicaFrontEnd').controller('SettingsController', function ($
         "userName": $window.sessionStorage.device
     };
 
-    var userInfo = [];
+    // var userInfo = [];
+    //
+    // $scope.savedData = {
+    //     selected:{},
+    //     userName: $window.sessionStorage.device
+    // };
 
-    $scope.savedData = {
+    $scope.sendData = {
         selected:{},
         userName: $window.sessionStorage.device
     };
@@ -43,20 +48,21 @@ angular.module('SpajalicaFrontEnd').controller('SettingsController', function ($
                 $scope.msg = "Post Data Submitted Successfully!";
                 console.log(response.data);
 
-                userInfo.push({label: "Име: ", value: response.data.firstName,
-                    name: "firstName", hoverMessage: "До 45 карактера"});
-                userInfo.push({label: "Презиме: ", value: response.data.lastName,
-                    name: "lastName", hoverMessage: "До 45 карактера"});
-                userInfo.push({label: "Датум рођења: ", value: response.data.birthDate,
-                    name: "birthDate", hoverMessage: "ГГГГ-ММ-ДД"});
-                userInfo.push({label: "Пол: ", value: response.data.sex,
-                    name: "sex", hoverMessage: "Један карактер: М, Z"});
-                userInfo.push({label: "Место: ", value: response.data.location,
-                    name: "location", hoverMessage: "До 45 карактера"});
-                userInfo.push({label: "Статус везе: ", value: response.data.relationshipStatus,
-                    name: "relationshipStatus", hoverMessage: "До 45 карактера"});
-
-                $scope.responseObject = userInfo;
+                // userInfo.push({label: "Име: ", value: response.data.firstName,
+                //     name: "firstName", hoverMessage: "До 45 карактера"});
+                // userInfo.push({label: "Презиме: ", value: response.data.lastName,
+                //     name: "lastName", hoverMessage: "До 45 карактера"});
+                // userInfo.push({label: "Датум рођења: ", value: response.data.birthDate,
+                //     name: "birthDate", hoverMessage: "ГГГГ-ММ-ДД"});
+                // userInfo.push({label: "Пол: ", value: response.data.sex,
+                //     name: "sex", hoverMessage: "Један карактер: М, Z"});
+                // userInfo.push({label: "Место: ", value: response.data.location,
+                //     name: "location", hoverMessage: "До 45 карактера"});
+                // userInfo.push({label: "Статус везе: ", value: response.data.relationshipStatus,
+                //     name: "relationshipStatus", hoverMessage: "До 45 карактера"});
+                //
+                // $scope.responseObject = userInfo;
+                $scope.settingsData = angular.copy(response.data);
             }
             else
             {
@@ -69,28 +75,28 @@ angular.module('SpajalicaFrontEnd').controller('SettingsController', function ($
         });
 
     $scope.saveData = function () {
-        console.log($scope.savedData);
+        console.log($scope.sendData);
 
-        $http.post('http://localhost:8000/UpdateProfile', $scope.savedData).then(
-            function (response) {
-                if (response.data)
-                {
-                    console.log("Successfully sent data");
-                    console.log(response.data);
-                    $window.location.reload();
-                }
-                else
-                {
-                    console.log("User not found");
-                    $scope.settingsInputStyle = {'border': '3px solid red'};
-                }
-            }, function (response) {
-                console.log("Service not Exists: " +
-                    response.status + "|" +
-                    response.statusText + "|");
-
-                $scope.settingsInputStyle = {'border': '3px solid red'};
-            });
+        // $http.post('http://localhost:8000/UpdateProfile', $scope.sendData).then(
+        //     function (response) {
+        //         if (response.data)
+        //         {
+        //             console.log("Successfully sent data");
+        //             console.log(response.data);
+        //             $window.location.reload();
+        //         }
+        //         else
+        //         {
+        //             console.log("User not found");
+        //             $scope.settingsInputStyle = {'border': '3px solid red'};
+        //         }
+        //     }, function (response) {
+        //         console.log("Service not Exists: " +
+        //             response.status + "|" +
+        //             response.statusText + "|");
+        //
+        //         $scope.settingsInputStyle = {'border': '3px solid red'};
+        //     });
     };
 
     var refreshUserTags = function () {

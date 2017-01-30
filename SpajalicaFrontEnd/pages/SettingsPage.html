@@ -3,14 +3,83 @@
     <!--<input  placeholder="2012-10-01" type="date" class='form-control'/>-->
 
     <h2>Промените своје информације</h2>
-    <div ng-repeat="info in responseObject track by $index" class="row">
-        <span class="col-xs-6">{{info.label}}</span>
-        <input class="btn btn-default col-xs-6" type="text"
-               ng-model="savedData.selected[info.name]"
-               ng-true-value="'{{info.name}}'" ng-false-value="{{null}}"
-               placeholder="{{info.value}}" ng-style="settingsInputStyle"
-               data-toggle="tooltip" title="{{info.hoverMessage}}">
-        <!--<span class="help">{{info.hoverMessage}}</span>-->
+    <!--<div ng-repeat="info in responseObject track by $index" class="row">-->
+        <!--<span class="col-xs-6">{{info.label}}</span>-->
+        <!--<input class="btn btn-default col-xs-6" type="text"-->
+               <!--ng-model="savedData.selected[info.name]"-->
+               <!--ng-true-value="'{{info.name}}'" ng-false-value="{{null}}"-->
+               <!--placeholder="{{info.value}}" ng-style="settingsInputStyle"-->
+               <!--data-toggle="tooltip" title="{{info.hoverMessage}}">-->
+    <!--</div>-->
+    <div>
+        <div class="row">
+            <span class="col-xs-6">Име: </span>
+            <input class="btn btn-default col-xs-6" type="text"
+                   ng-model="sendData.selected.firstName"
+                   placeholder="{{settingsData.firstName}}"
+                   ng-style="settingsInputStyle"
+                   data-toggle="tooltip" title="До 45 карактера">
+        </div>
+        <div class="row">
+            <span class="col-xs-6">Презиме: </span>
+            <input class="btn btn-default col-xs-6" type="text"
+                   ng-model="sendData.selected.lastName"
+                   placeholder="{{settingsData.lastName}}"
+                   ng-style="settingsInputStyle"
+                   data-toggle="tooltip" title="До 45 карактера">
+        </div>
+        <div class="row">
+            <span class="col-xs-6">Датум рођења: </span>
+            <input class="input-medium btn btn-default col-xs-6" type="date"
+                   ng-model="sendData.selected.birthDate"
+                   placeholder="{{settingsData.birthDate}}"
+                   ng-style="settingsInputStyle"
+                   data-toggle="tooltip" title="ГГГГ-ММ-ДД">
+        </div>
+        <div class="row">
+            <span class="col-xs-6">Пол: </span>
+            <!--<input class="btn btn-default col-xs-6" type="text"-->
+                   <!--ng-model="sendData.selected.sex"-->
+                   <!--placeholder="{{settingsData.sex}}"-->
+                   <!--ng-style="settingsInputStyle"-->
+                   <!--data-toggle="tooltip" title="Један карактер: М, Z">-->
+            <select ng-model="sendData.selected.sex"
+                    class="btn btn-default col-xs-6"
+                    placeholder="{{settingsData.sex}}"
+                    data-toggle="tooltip" title="Један карактер: М, Z">
+                <option value="" disabled selected>
+                    {{settingsData.sex}}
+                </option>
+                <option value='M'>М</option>
+                <option value='Ж'>Ж</option>
+            </select>
+        </div>
+        <div class="row">
+            <span class="col-xs-6">Место: </span>
+            <input class="btn btn-default col-xs-6" type="text"
+                   ng-model="sendData.selected.location"
+                   placeholder="{{settingsData.location}}"
+                   ng-style="settingsInputStyle"
+                   data-toggle="tooltip" title="До 45 карактера">
+        </div>
+        <div class="row">
+            <span class="col-xs-6">Статус везе: </span>
+            <!--<input class="btn btn-default col-xs-6" type="text"-->
+                   <!--ng-model="sendData.selected.relationshipStatus"-->
+                   <!--placeholder="{{settingsData.relationshipStatus}}"-->
+                   <!--ng-style="settingsInputStyle"-->
+                   <!--data-toggle="tooltip" title="До 45 карактера">-->
+            <select ng-model="sendData.selected.relationshipStatus"
+                    class="btn btn-default col-xs-6"
+                    placeholder="{{settingsData.relationshipStatus}}"
+                    data-toggle="tooltip" title="До 45 карактера">
+                <option value="" disabled selected>
+                    {{settingsData.relationshipStatus}}
+                </option>
+                <option value='Сам/а'>Сам/а</option>
+                <option value='У вези'>У вези</option>
+            </select>
+        </div>
     </div>
     <div>
         <button ng-click="saveData()" class="btn btn-primary">Сачувај</button>
