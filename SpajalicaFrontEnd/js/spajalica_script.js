@@ -20,12 +20,6 @@ jQuery(function($) {
             $("#logout").toggle();
         });
 
-        // copy menu list to responsive menu + logout
-        //var mainMenuList = $('#menu-list').html();
-        //var logoutMenu = $('#logout-menu').html();
-        //$('#responsive').html(mainMenuList);
-        //$('#logout').html(logoutMenu);
-
         //for image slide on menu item click(normal) and responsive
         $("#menu-list a, #responsive a").on('click',function(e){
 

@@ -35,6 +35,18 @@ angular.module("SpajalicaFrontEnd").controller("ProfileController", function ($s
 
             $scope.responseObject = userInfo;
 
+            //check if there is pic in base
+            if(response.data.profilePicture != "")
+            {
+                $scope.convertString = 'data:image/*;base64,';
+                $scope.profilePicture = response.data.profilePicture.replace(/^data:image\/(png|jpg);base64,/, "");
+            }
+            else
+            {
+                $scope.convertString = '';
+                $scope.profilePicture = Constants.defaultProfilePicture;
+            }
+
         }, function (response) {
             console.log("Service not Exists: " +
                 response.status + "|" +

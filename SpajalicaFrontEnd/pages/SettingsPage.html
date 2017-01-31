@@ -93,6 +93,15 @@
                 </select>
             </div>
         </div>
+        <div class="row">
+            <span class="col-xs-6">Слика: </span>
+            <div class="col-xs-6">
+                <input class="form-control btn btn-default"
+                       type="file"  file-input="files"
+                       name="file" accept="image/*" fd-input/>
+            </div>
+            <img id="profile-pic" ng-src="data:image/*;base64,{{profilePicture}}"/>
+        </div>
     </div>
     <div>
         <button ng-click="saveData()" class="btn btn-primary">Сачувај</button>

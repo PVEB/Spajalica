@@ -36,6 +36,7 @@ class ProfileController extends Controller
         {
             //ne moze biti vise od jednog unosa,
             //to je reseno na nivou baze
+            $usersInfo[0]->profilePicture = base64_encode($usersInfo[0]->profilePicture);
             return json_encode($usersInfo[0]);
         }
         else
