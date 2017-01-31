@@ -2,16 +2,16 @@
  * Created by djnenadovic on 24.1.2017..
  */
 
-angular.module("SpajalicaFrontEnd").controller("NewsController", function ($scope, $window, $http) {
+angular.module("SpajalicaFrontEnd").controller("NewsController", function ($scope, $window, $http, Constants) {
 
-    $scope.NewsPageUrl = 'pages/NewsPage.html';
+    $scope.NewsPageUrl = Constants.NewsPageUrl;
 
     var refresh = function () {
         var data = {
             userName: $window.sessionStorage.device
         };
 
-        $http.post('http://localhost:8000/GetStatusUpdates', data).then(
+        $http.post(Constants.urlBE + 'GetStatusUpdates', data).then(
             function (response) {
                 if (response.data)
                 {
@@ -38,7 +38,7 @@ angular.module("SpajalicaFrontEnd").controller("NewsController", function ($scop
             statusMessage: status
         };
 
-        $http.post('http://localhost:8000/WriteStatus', data).then(
+        $http.post(Constants.urlBE + 'WriteStatus', data).then(
             function (response) {
                 if (response.data)
                 {
@@ -60,5 +60,5 @@ angular.module("SpajalicaFrontEnd").controller("NewsController", function ($scop
 
     // setInterval(function(){
     //     refresh();
-    // }, 2000);
+    // }, 10000);
 });

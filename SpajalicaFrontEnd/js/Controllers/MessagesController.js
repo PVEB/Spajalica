@@ -2,12 +2,12 @@
  * Created by djnenadovic on 24.1.2017..
  */
 
-angular.module("SpajalicaFrontEnd").controller("MessagesController", function ($scope, $window, $http) {
+angular.module("SpajalicaFrontEnd").controller("MessagesController", function ($scope, $window, $http, Constants) {
 
-    $scope.MessagesPageUrl = 'pages/MessagesPage.html';
+    $scope.MessagesPageUrl = Constants.MessagesPageUrl;
     var getMessagesData = null;
 
-    $http.post('http://localhost:8000/GetUsers',
+    $http.post(Constants.urlBE + 'GetUsers',
         {userName: $window.sessionStorage.device}).then(
         function (response) {
             if (response.data)
@@ -34,7 +34,7 @@ angular.module("SpajalicaFrontEnd").controller("MessagesController", function ($
 
         console.log(getMessagesData.receiver+"|"+getMessagesData.sender);
 
-        $http.post('http://localhost:8000/GetMessages', getMessagesData).then(
+        $http.post(Constants.urlBE + 'GetMessages', getMessagesData).then(
             function (response) {
                 if (response.data)
                 {
@@ -65,7 +65,7 @@ angular.module("SpajalicaFrontEnd").controller("MessagesController", function ($
             message: message
         };
 
-        $http.post('http://localhost:8000/SendMessage', data).then(
+        $http.post(Constants.urlBE + 'SendMessage', data).then(
             function (response) {
                 if (response.data)
                 {

@@ -18,38 +18,44 @@ class SettingsController extends Controller
 
         if (property_exists($res->selected, "firstName"))
         {
-            $affected = DB::update('update usersInfo set firstName = ? where idLoginInfo = ?',
-                                    [$res->selected->firstName, $userId]);
+            if($res->selected->firstName != null)
+                $affected = DB::update('update usersInfo set firstName = ? where idLoginInfo = ?',
+                    [$res->selected->firstName, $userId]);
         }
 
         if (property_exists($res->selected, "lastName"))
         {
-            $affected = DB::update('update usersInfo set lastName = ? where idLoginInfo = ?',
-                                    [$res->selected->lastName, $userId]);
+            if($res->selected->lastName != null)
+                $affected = DB::update('update usersInfo set lastName = ? where idLoginInfo = ?',
+                    [$res->selected->lastName, $userId]);
         }
 
         if (property_exists($res->selected, "birthDate"))
         {
-            $affected = DB::update('update usersInfo set birthDate = ? where idLoginInfo = ?',
-                [$res->selected->birthDate, $userId]);
+            if($res->selected->birthDate != null)
+                $affected = DB::update('update usersInfo set birthDate = ? where idLoginInfo = ?',
+                    [$res->selected->birthDate, $userId]);
         }
 
         if (property_exists($res->selected, "sex"))
         {
-            $affected = DB::update('update usersInfo set sex = ? where idLoginInfo = ?',
-                                    [$res->selected->sex, $userId]);
+            if($res->selected->sex != null)
+                $affected = DB::update('update usersInfo set sex = ? where idLoginInfo = ?',
+                    [$res->selected->sex, $userId]);
         }
 
         if (property_exists($res->selected, "location"))
         {
-            $affected = DB::update('update usersInfo set location = ? where idLoginInfo = ?',
-                                    [$res->selected->location, $userId]);
+            if($res->selected->location != null)
+                $affected = DB::update('update usersInfo set location = ? where idLoginInfo = ?',
+                    [$res->selected->location, $userId]);
         }
 
         if (property_exists($res->selected, "relationshipStatus"))
         {
-            $affected = DB::update('update usersInfo set relationshipStatus = ? where idLoginInfo = ?',
-                                    [$res->selected->relationshipStatus, $userId]);
+            if($res->selected->relationshipStatus != null)
+                $affected = DB::update('update usersInfo set relationshipStatus = ? where idLoginInfo = ?',
+                    [$res->selected->relationshipStatus, $userId]);
         }
 
         return 200;

@@ -2,16 +2,16 @@
  * Created by djnenadovic on 24.1.2017..
  */
 
-angular.module("SpajalicaFrontEnd").controller("MatchController", function ($scope, $window, $http) {
+angular.module("SpajalicaFrontEnd").controller("MatchController", function ($scope, $window, $http, Constants) {
 
-    $scope.MatchPageUrl = 'pages/MatchPage.html';
+    $scope.MatchPageUrl = Constants.MatchPageUrl;
 
     $scope.refresh = function () {
         var data = {
             userName: $window.sessionStorage.device
         };
 
-        $http.post('http://localhost:8000/GetListOfPeople', data).then(
+        $http.post(Constants.urlBE + 'GetListOfPeople', data).then(
             function (response) {
                 if (response.data)
                 {
@@ -38,7 +38,7 @@ angular.module("SpajalicaFrontEnd").controller("MatchController", function ($sco
             userFollowed: userName
         };
 
-        $http.post('http://localhost:8000/FollowUser', data).then(
+        $http.post(Constants.urlBE + 'FollowUser', data).then(
             function (response) {
                 if (response.data)
                 {
@@ -64,7 +64,7 @@ angular.module("SpajalicaFrontEnd").controller("MatchController", function ($sco
             userBlocked: userName
         };
 
-        $http.post('http://localhost:8000/BlockUser', data).then(
+        $http.post(Constants.urlBE + 'BlockUser', data).then(
             function (response) {
                 if (response.data)
                 {

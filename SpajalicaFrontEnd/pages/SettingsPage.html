@@ -14,27 +14,34 @@
     <div>
         <div class="row">
             <span class="col-xs-6">Име: </span>
-            <input class="btn btn-default col-xs-6" type="text"
-                   ng-model="sendData.selected.firstName"
-                   placeholder="{{settingsData.firstName}}"
-                   ng-style="settingsInputStyle"
-                   data-toggle="tooltip" title="До 45 карактера">
+            <div class="col-xs-6">
+                <input class="form-control col-xs-6" type="text"
+                       ng-model="sendData.selected.firstName"
+                       placeholder="{{settingsData.firstName}}"
+                       ng-style="settingsInputStyle"
+                       data-toggle="tooltip" title="До 45 карактера">
+            </div>
         </div>
         <div class="row">
             <span class="col-xs-6">Презиме: </span>
-            <input class="btn btn-default col-xs-6" type="text"
-                   ng-model="sendData.selected.lastName"
-                   placeholder="{{settingsData.lastName}}"
-                   ng-style="settingsInputStyle"
-                   data-toggle="tooltip" title="До 45 карактера">
+            <div class="col-xs-6">
+                <input class="form-control col-xs-6" type="text"
+                       ng-model="sendData.selected.lastName"
+                       placeholder="{{settingsData.lastName}}"
+                       ng-style="settingsInputStyle"
+                       data-toggle="tooltip" title="До 45 карактера">
+            </div>
         </div>
         <div class="row">
             <span class="col-xs-6">Датум рођења: </span>
-            <input class="input-medium btn btn-default col-xs-6" type="date"
-                   ng-model="sendData.selected.birthDate"
-                   placeholder="{{settingsData.birthDate}}"
-                   ng-style="settingsInputStyle"
-                   data-toggle="tooltip" title="ГГГГ-ММ-ДД">
+            <div class="col-xs-6">
+                <input class="form-control"
+                       type="date"
+                       ng-model="sendData.selected.birthDate"
+                       placeholder="{{settingsData.birthDate}}"
+                       ng-style="settingsInputStyle"
+                       data-toggle="tooltip" title="ГГГГ-ММ-ДД">
+            </div>
         </div>
         <div class="row">
             <span class="col-xs-6">Пол: </span>
@@ -43,24 +50,28 @@
                    <!--placeholder="{{settingsData.sex}}"-->
                    <!--ng-style="settingsInputStyle"-->
                    <!--data-toggle="tooltip" title="Један карактер: М, Z">-->
-            <select ng-model="sendData.selected.sex"
-                    class="btn btn-default col-xs-6"
-                    placeholder="{{settingsData.sex}}"
-                    data-toggle="tooltip" title="Један карактер: М, Z">
-                <option value="" disabled selected>
-                    {{settingsData.sex}}
-                </option>
-                <option value='M'>М</option>
-                <option value='Ж'>Ж</option>
-            </select>
+            <div class="col-xs-6">
+                <select ng-model="sendData.selected.sex"
+                        class="form-control col-xs-6"
+                        placeholder="{{settingsData.sex}}"
+                        data-toggle="tooltip" title="Један карактер: М, Z">
+                    <option value="" disabled selected>
+                        {{settingsData.sex}}
+                    </option>
+                    <option value='M'>М</option>
+                    <option value='Ж'>Ж</option>
+                </select>
+            </div>
         </div>
         <div class="row">
             <span class="col-xs-6">Место: </span>
-            <input class="btn btn-default col-xs-6" type="text"
-                   ng-model="sendData.selected.location"
-                   placeholder="{{settingsData.location}}"
-                   ng-style="settingsInputStyle"
-                   data-toggle="tooltip" title="До 45 карактера">
+            <div class="col-xs-6">
+                <input class="form-control col-xs-6" type="text"
+                       ng-model="sendData.selected.location"
+                       placeholder="{{settingsData.location}}"
+                       ng-style="settingsInputStyle"
+                       data-toggle="tooltip" title="До 45 карактера">
+            </div>
         </div>
         <div class="row">
             <span class="col-xs-6">Статус везе: </span>
@@ -69,16 +80,18 @@
                    <!--placeholder="{{settingsData.relationshipStatus}}"-->
                    <!--ng-style="settingsInputStyle"-->
                    <!--data-toggle="tooltip" title="До 45 карактера">-->
-            <select ng-model="sendData.selected.relationshipStatus"
-                    class="btn btn-default col-xs-6"
-                    placeholder="{{settingsData.relationshipStatus}}"
-                    data-toggle="tooltip" title="До 45 карактера">
-                <option value="" disabled selected>
-                    {{settingsData.relationshipStatus}}
-                </option>
-                <option value='Сам/а'>Сам/а</option>
-                <option value='У вези'>У вези</option>
-            </select>
+            <div class="col-xs-6">
+                <select ng-model="sendData.selected.relationshipStatus"
+                        class="form-control col-xs-6"
+                        placeholder="{{settingsData.relationshipStatus}}"
+                        data-toggle="tooltip" title="До 45 карактера">
+                    <option value="" disabled selected>
+                        {{settingsData.relationshipStatus}}
+                    </option>
+                    <option value='Сам/а'>Сам/а</option>
+                    <option value='У вези'>У вези</option>
+                </select>
+            </div>
         </div>
     </div>
     <div>

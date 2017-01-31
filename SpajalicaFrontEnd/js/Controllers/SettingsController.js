@@ -2,9 +2,9 @@
  * Created by djnenadovic on 15.1.2017..
  */
 
-angular.module('SpajalicaFrontEnd').controller('SettingsController', function ($scope, $window, $http) {
+angular.module('SpajalicaFrontEnd').controller('SettingsController', function ($scope, $window, $http, Constants) {
 
-    $scope.SettingsPageUrl = 'pages/SettingsPage.html';
+    $scope.SettingsPageUrl = Constants.SettingsPageUrl;
 
     var data = {
         "userName": $window.sessionStorage.device
@@ -75,28 +75,28 @@ angular.module('SpajalicaFrontEnd').controller('SettingsController', function ($
         });
 
     $scope.saveData = function () {
-        console.log($scope.sendData);
+        $scope.sendData.selected.birthDate = Constants.formatDate($scope.sendData.selected.birthDate);
 
-        // $http.post('http://localhost:8000/UpdateProfile', $scope.sendData).then(
-        //     function (response) {
-        //         if (response.data)
-        //         {
-        //             console.log("Successfully sent data");
-        //             console.log(response.data);
-        //             $window.location.reload();
-        //         }
-        //         else
-        //         {
-        //             console.log("User not found");
-        //             $scope.settingsInputStyle = {'border': '3px solid red'};
-        //         }
-        //     }, function (response) {
-        //         console.log("Service not Exists: " +
-        //             response.status + "|" +
-        //             response.statusText + "|");
-        //
-        //         $scope.settingsInputStyle = {'border': '3px solid red'};
-        //     });
+        $http.post(Constants.urlBE + 'UpdateProfile', $scope.sendData).then(
+            function (response) {
+                if (response.data)
+                {
+                    console.log("Successfully sent data");
+                    console.log(response.data);
+                    $window.location.reload();
+                }
+                else
+                {
+                    console.log("User not found");
+                    $scope.settingsInputStyle = {'border': '3px solid red'};
+                }
+            }, function (response) {
+                console.log("Service not Exists: " +
+                    response.status + "|" +
+                    response.statusText + "|");
+
+                $scope.settingsInputStyle = {'border': '3px solid red'};
+            });
     };
 
     var refreshUserTags = function () {
@@ -104,7 +104,7 @@ angular.module('SpajalicaFrontEnd').controller('SettingsController', function ($
             userName: $window.sessionStorage.device
         };
 
-        $http.post('http://localhost:8000/GetUserTags', data).then(
+        $http.post(Constants.urlBE + 'GetUserTags', data).then(
             function (response) {
                 if (response.data)
                 {
@@ -129,7 +129,7 @@ angular.module('SpajalicaFrontEnd').controller('SettingsController', function ($
             userTag: tag
         };
 
-        $http.post('http://localhost:8000/InsertUserTag', data).then(
+        $http.post(Constants.urlBE + 'InsertUserTag', data).then(
             function (response) {
                 if (response.data)
                 {
@@ -156,7 +156,7 @@ angular.module('SpajalicaFrontEnd').controller('SettingsController', function ($
             value: value
         };
 
-        $http.post('http://localhost:8000/InsertPrefTag', data).then(
+        $http.post(Constants.urlBE + 'InsertPrefTag', data).then(
             function (response) {
                 if (response.data)
                 {
@@ -181,7 +181,7 @@ angular.module('SpajalicaFrontEnd').controller('SettingsController', function ($
             userName: $window.sessionStorage.device
         };
 
-        $http.post('http://localhost:8000/GetPrefTags', data).then(
+        $http.post(Constants.urlBE + 'GetPrefTags', data).then(
             function (response) {
                 if (response.data)
                 {
@@ -210,7 +210,7 @@ angular.module('SpajalicaFrontEnd').controller('SettingsController', function ($
             userPrefTagValue: value
         };
 
-        $http.post('http://localhost:8000/DelPrefTag', data).then(
+        $http.post(Constants.urlBE + 'DelPrefTag', data).then(
             function (response) {
                 if (response.data)
                 {
@@ -238,7 +238,7 @@ angular.module('SpajalicaFrontEnd').controller('SettingsController', function ($
             userTagName: name
         };
 
-        $http.post('http://localhost:8000/DelUserTag', data).then(
+        $http.post(Constants.urlBE + 'DelUserTag', data).then(
             function (response) {
                 if (response.data)
                 {

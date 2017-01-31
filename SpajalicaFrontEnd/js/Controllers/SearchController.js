@@ -2,9 +2,9 @@
  * Created by djnenadovic on 24.1.2017..
  */
 
-angular.module("SpajalicaFrontEnd").controller("SearchController", function ($scope, $window, $http) {
+angular.module("SpajalicaFrontEnd").controller("SearchController", function ($scope, $window, $http, Constants) {
 
-    $scope.SearchPageUrl = 'pages/SearchPage.html';
+    $scope.SearchPageUrl = Constants.SearchPageUrl;
     $scope.category = {
         model: null
     };
@@ -15,7 +15,7 @@ angular.module("SpajalicaFrontEnd").controller("SearchController", function ($sc
             userName: $window.sessionStorage.device
         };
 
-        $http.post('http://localhost:8000/GetAvailableUsers', data).then(
+        $http.post(Constants.urlBE + 'GetAvailableUsers', data).then(
             function (response) {
                 if (response.data)
                 {
@@ -47,7 +47,7 @@ angular.module("SpajalicaFrontEnd").controller("SearchController", function ($sc
 
         if($scope.category.model == 'Нови корисници' && savedCriteria != "")
         {
-            $http.post('http://localhost:8000/SearchUserCriteria', data).then(
+            $http.post(Constants.urlBE + 'SearchUserCriteria', data).then(
                 function (response) {
                     if (response.data)
                     {
@@ -70,7 +70,7 @@ angular.module("SpajalicaFrontEnd").controller("SearchController", function ($sc
         else
         if($scope.category.model == 'Запраћени')
         {
-            $http.post('http://localhost:8000/SearchFollowCriteria', data).then(
+            $http.post(Constants.urlBE + 'SearchFollowCriteria', data).then(
                 function (response) {
                     if (response.data)
                     {
@@ -93,7 +93,7 @@ angular.module("SpajalicaFrontEnd").controller("SearchController", function ($sc
         else
         if($scope.category.model == 'Блокирани')
         {
-            $http.post('http://localhost:8000/SearchBlockedCriteria', data).then(
+            $http.post(Constants.urlBE + 'SearchBlockedCriteria', data).then(
                 function (response) {
                     if (response.data)
                     {
@@ -125,7 +125,7 @@ angular.module("SpajalicaFrontEnd").controller("SearchController", function ($sc
             userFollowed: userName
         };
 
-        $http.post('http://localhost:8000/FollowUser', data).then(
+        $http.post(Constants.urlBE + 'FollowUser', data).then(
             function (response) {
                 if (response.data)
                 {
@@ -151,7 +151,7 @@ angular.module("SpajalicaFrontEnd").controller("SearchController", function ($sc
             userBlocked: userName
         };
 
-        $http.post('http://localhost:8000/BlockUser', data).then(
+        $http.post(Constants.urlBE + 'BlockUser', data).then(
             function (response) {
                 if (response.data)
                 {
@@ -177,7 +177,7 @@ angular.module("SpajalicaFrontEnd").controller("SearchController", function ($sc
             userBlocked: userName
         };
 
-        $http.post('http://localhost:8000/Unblock', data).then(
+        $http.post(Constants.urlBE + 'Unblock', data).then(
             function (response) {
                 if (response.data)
                 {
@@ -203,7 +203,7 @@ angular.module("SpajalicaFrontEnd").controller("SearchController", function ($sc
             userFollowed: userName
         };
 
-        $http.post('http://localhost:8000/Unfollow', data).then(
+        $http.post(Constants.urlBE + 'Unfollow', data).then(
             function (response) {
                 if (response.data)
                 {

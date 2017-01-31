@@ -2,9 +2,9 @@
  * Created by djnenadovic on 24.1.2017..
  */
 
-angular.module("SpajalicaFrontEnd").controller("ProfileController", function ($scope, $http, $window) {
+angular.module("SpajalicaFrontEnd").controller("ProfileController", function ($scope, $http, $window, Constants) {
 
-    $scope.ProfilePageUrl = 'pages/ProfilePage.html';
+    $scope.ProfilePageUrl = Constants.ProfilePageUrl;
 
     var data = {
         "userName": $window.sessionStorage.device
@@ -12,9 +12,9 @@ angular.module("SpajalicaFrontEnd").controller("ProfileController", function ($s
 
     var userInfo = [];
 
-    console.log("Ucitano: " + data.userName)
+    console.log("Ucitano: " + data.userName);
 
-    $http.post('http://localhost:8000/ShowProfile', data).then(
+    $http.post(Constants.urlBE + 'ShowProfile', data).then(
         function (response) {
             if (response.data)
             {
@@ -48,7 +48,7 @@ angular.module("SpajalicaFrontEnd").controller("ProfileController", function ($s
             userName: $window.sessionStorage.device
         };
 
-        $http.post('http://localhost:8000/GetUserUpdates', data).then(
+        $http.post(Constants.urlBE + 'GetUserUpdates', data).then(
             function (response) {
                 if (response.data)
                 {
@@ -78,7 +78,7 @@ angular.module("SpajalicaFrontEnd").controller("ProfileController", function ($s
 
         //console.log(data);
 
-        $http.post('http://localhost:8000/DeleteStatus', data).then(
+        $http.post(Constants.urlBE + 'DeleteStatus', data).then(
             function (response) {
                 if (response.data)
                 {
