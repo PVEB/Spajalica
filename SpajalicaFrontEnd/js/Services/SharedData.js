@@ -4,4 +4,5 @@
 
 angular.module("SpajalicaFrontEnd").service('SharedData', function SharedData(){
     this.userPicture = null;
+    this.pictureErrorCode = false;
 });

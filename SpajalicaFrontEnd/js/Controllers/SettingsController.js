@@ -89,6 +89,12 @@ angular.module('SpajalicaFrontEnd').controller('SettingsController', function ($
                 = SharedData.userPicture.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
         }
 
+        if(SharedData.pictureErrorCode)
+        {
+            $scope.settingsInputStyle = {'border': '3px solid red'};
+            return;
+        }
+
         $http.post(Constants.urlBE + 'UpdateProfile', $scope.sendData).then(
             function (response) {
                 if (response.data)
