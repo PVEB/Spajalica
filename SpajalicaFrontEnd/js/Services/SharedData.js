@@ -3,8 +3,5 @@
  */
 
 angular.module("SpajalicaFrontEnd").service('SharedData', function SharedData(){
-
-    var userData;
-
-    return userData;
+    this.userPicture = null;
 });

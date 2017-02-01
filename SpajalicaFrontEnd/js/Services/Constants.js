@@ -17,8 +17,9 @@ angular.module("SpajalicaFrontEnd").service('Constants', function () {
     this.LoginPage = './Login.html';
     this.IndexPage = './index.html';
 
-    //default profile pic
+    //pictures constants
     this.defaultProfilePicture = 'images/profile_default.png';
+    this.replaceString = '';
 
     //funkcija za prebacivanje datuma
     //u prigodan format za mysql

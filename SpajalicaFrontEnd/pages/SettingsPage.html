@@ -52,9 +52,10 @@
                    <!--data-toggle="tooltip" title="Један карактер: М, Z">-->
             <div class="col-xs-6">
                 <select ng-model="sendData.selected.sex"
+                        ng-style="settingsInputStyle"
                         class="form-control col-xs-6"
                         placeholder="{{settingsData.sex}}"
-                        data-toggle="tooltip" title="Један карактер: М, Z">
+                        data-toggle="tooltip" title="Један карактер: М, Ж">
                     <option value="" disabled selected>
                         {{settingsData.sex}}
                     </option>
@@ -83,6 +84,7 @@
             <div class="col-xs-6">
                 <select ng-model="sendData.selected.relationshipStatus"
                         class="form-control col-xs-6"
+                        ng-style="settingsInputStyle"
                         placeholder="{{settingsData.relationshipStatus}}"
                         data-toggle="tooltip" title="До 45 карактера">
                     <option value="" disabled selected>
@@ -97,10 +99,11 @@
             <span class="col-xs-6">Слика: </span>
             <div class="col-xs-6">
                 <input class="form-control btn btn-default"
+                       ng-style="settingsInputStyle"
                        type="file"  file-input="files"
+                       data-toggle="tooltip" title="Слика мања од 1 Мб"
                        name="file" accept="image/*" fd-input/>
             </div>
-            <img id="profile-pic" ng-src="data:image/*;base64,{{profilePicture}}"/>
         </div>
     </div>
     <div>

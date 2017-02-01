@@ -2,7 +2,7 @@
  * Created by djnenadovic on 15.1.2017..
  */
 
-angular.module('SpajalicaFrontEnd').controller('SettingsController', function ($scope, $window, $http, Constants) {
+angular.module('SpajalicaFrontEnd').controller('SettingsController', function ($scope, $window, $http, Constants, SharedData) {
 
     $scope.SettingsPageUrl = Constants.SettingsPageUrl;
 
@@ -75,44 +75,41 @@ angular.module('SpajalicaFrontEnd').controller('SettingsController', function ($
         });
 
     $scope.saveData = function () {
-        // $scope.sendData.selected.birthDate = Constants.formatDate($scope.sendData.selected.birthDate);
-        //
-        // $http.post(Constants.urlBE + 'UpdateProfile', $scope.sendData).then(
-        //     function (response) {
-        //         if (response.data)
-        //         {
-        //             console.log("Successfully sent data");
-        //             console.log(response.data);
-        //             $window.location.reload();
-        //         }
-        //         else
-        //         {
-        //             console.log("User not found");
-        //             $scope.settingsInputStyle = {'border': '3px solid red'};
-        //         }
-        //     }, function (response) {
-        //         console.log("Service not Exists: " +
-        //             response.status + "|" +
-        //             response.statusText + "|");
-        //
-        //         $scope.settingsInputStyle = {'border': '3px solid red'};
-        //     });
+
+        if(typeof($scope.sendData.selected.birthDate) != 'undefined' &&
+            $scope.sendData.selected.birthDate != null)
+        {
+            $scope.sendData.selected.birthDate =
+                Constants.formatDate($scope.sendData.selected.birthDate);
+        }
+
+        if(SharedData.userPicture != null)
+        {
+            $scope.sendData.selected.profilePicture
+                = SharedData.userPicture.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
+        }
+
+        $http.post(Constants.urlBE + 'UpdateProfile', $scope.sendData).then(
+            function (response) {
+                if (response.data)
+                {
+                    console.log("Successfully sent data");
+                    console.log(response.data);
+                    $window.location.reload();
+                }
+                else
+                {
+                    console.log("User not found");
+                    $scope.settingsInputStyle = {'border': '3px solid red'};
+                }
+            }, function (response) {
+                console.log("Service not Exists: " +
+                    response.status + "|" +
+                    response.statusText + "|");
+
+                $scope.settingsInputStyle = {'border': '3px solid red'};
+            });
     };
-
-    // $scope.file_changed = function(element) {
-    //
-    //     $scope.$apply(function(scope) {
-    //         var photofile = element.files[0];
-    //         var reader = new FileReader();
-    //         reader.onload = function(e) {
-    //             // handle onload
-    //         };
-    //         reader.readAsDataURL(photofile);
-    //         $scope.profilePicture = "W29iamVjdCBGaWxlTGlzdF0=";
-    //     });
-    // };
-
-    $scope.profilePicture = "W29iamVjdCBGaWxlTGlzdF0=";
 
     var refreshUserTags = function () {
         var data = {

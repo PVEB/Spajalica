@@ -58,6 +58,17 @@ class SettingsController extends Controller
                     [$res->selected->relationshipStatus, $userId]);
         }
 
+        if (property_exists($res->selected, "profilePicture"))
+        {
+            if($res->selected->profilePicture != null)
+            {
+                $userPic = base64_decode($res->selected->profilePicture);
+                DB::table('usersInfo')
+                    ->where('idLoginInfo', $userId)
+                    ->update(['profilePicture' => $userPic]);
+            }
+        }
+
         return 200;
     }
 

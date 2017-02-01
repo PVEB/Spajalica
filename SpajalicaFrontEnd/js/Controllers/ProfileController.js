@@ -39,7 +39,8 @@ angular.module("SpajalicaFrontEnd").controller("ProfileController", function ($s
             if(response.data.profilePicture != "")
             {
                 $scope.convertString = 'data:image/*;base64,';
-                $scope.profilePicture = response.data.profilePicture.replace(/^data:image\/(png|jpg);base64,/, "");
+                $scope.profilePicture =
+                    response.data.profilePicture.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
             }
             else
             {
