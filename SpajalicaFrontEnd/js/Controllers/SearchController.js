@@ -55,7 +55,28 @@ angular.module("SpajalicaFrontEnd").controller("SearchController", function ($sc
                         console.log(response.data);
                         $scope.followedUsers = null;
                         $scope.blockedUsers = null;
+
                         $scope.searchedUsers = angular.copy(response.data);
+
+                        for(var i = 0; i < $scope.searchedUsers.length; i++)
+                        {
+                            delete $scope.searchedUsers[i].profilePicture;
+
+                            //check if there is pic in base
+                            if(response.data[i].profilePicture != "" &&
+                                response.data[i].profilePicture != null)
+                            {
+                                $scope.searchedUsers[i].convertString = 'data:image/*;base64,';
+                                $scope.searchedUsers[i].profilePicture =
+                                    response.data[i].profilePicture
+                                        .replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
+                            }
+                            else
+                            {
+                                $scope.searchedUsers[i].convertString = '';
+                                $scope.searchedUsers[i].profilePicture = Constants.defaultProfilePicture;
+                            }
+                        }
                     }
                     else
                     {
@@ -78,7 +99,29 @@ angular.module("SpajalicaFrontEnd").controller("SearchController", function ($sc
                         console.log(response.data);
                         $scope.searchedUsers = null;
                         $scope.blockedUsers = null;
+
                         $scope.followedUsers = angular.copy(response.data);
+
+                        for(var i = 0; i < $scope.followedUsers.length; i++)
+                        {
+                            delete $scope.followedUsers[i].profilePicture;
+
+                            //check if there is pic in base
+                            if(response.data[i].profilePicture != "" &&
+                                response.data[i].profilePicture != null)
+                            {
+                                $scope.followedUsers[i].convertString = 'data:image/*;base64,';
+                                $scope.followedUsers[i].profilePicture =
+                                    response.data[i].profilePicture
+                                        .replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
+                            }
+                            else
+                            {
+                                $scope.followedUsers[i].convertString = '';
+                                $scope.followedUsers[i].profilePicture = Constants.defaultProfilePicture;
+                            }
+                        }
+
                     }
                     else
                     {
@@ -101,7 +144,28 @@ angular.module("SpajalicaFrontEnd").controller("SearchController", function ($sc
                         console.log(response.data);
                         $scope.followedUsers = null;
                         $scope.searchedUsers = null;
+
                         $scope.blockedUsers = angular.copy(response.data);
+
+                        for(var i = 0; i < $scope.blockedUsers.length; i++)
+                        {
+                            delete $scope.blockedUsers[i].profilePicture;
+
+                            //check if there is pic in base
+                            if(response.data[i].profilePicture != "" &&
+                                response.data[i].profilePicture != null)
+                            {
+                                $scope.blockedUsers[i].convertString = 'data:image/*;base64,';
+                                $scope.blockedUsers[i].profilePicture =
+                                    response.data[i].profilePicture
+                                        .replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
+                            }
+                            else
+                            {
+                                $scope.blockedUsers[i].convertString = '';
+                                $scope.blockedUsers[i].profilePicture = Constants.defaultProfilePicture;
+                            }
+                        }
                     }
                     else
                     {

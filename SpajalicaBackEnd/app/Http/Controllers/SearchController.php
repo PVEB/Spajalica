@@ -61,6 +61,7 @@ class SearchController extends Controller
                 strstr($users[$i]->location, $res->criteria) !== false ||
                 strstr($users[$i]->relationshipStatus, $res->criteria) !== false)
             {
+                $users[$i]->profilePicture = base64_encode($users[$i]->profilePicture);
                 array_push($searchedUsers, $users[$i]);
                 continue;
             }
@@ -80,6 +81,7 @@ class SearchController extends Controller
                         strstr($users[$i]->location, $subcriteria) !== false ||
                         strstr($users[$i]->relationshipStatus, $subcriteria) !== false)
                     {
+                        $users[$i]->profilePicture = base64_encode($users[$i]->profilePicture);
                         array_push($searchedUsers, $users[$i]);
                     }
                     $begin++;
@@ -130,7 +132,12 @@ class SearchController extends Controller
                                     'where uf.idloginInfo = ? ',
                                     [$follower[0]->idloginInfo]);
 
-        return json_encode($usersFollowed);
+        foreach ($usersFollowed as &$userFollowed)
+        {
+            $userFollowed->profilePicture = base64_encode($userFollowed->profilePicture);
+        }
+
+        return json_encode(array_values($usersFollowed));
     }
 
     public function SearchBlockedUsers()
@@ -146,6 +153,11 @@ class SearchController extends Controller
                                     'join userBlocks ub on ub.idBlocked = li.idloginInfo '.
                                     'where ub.idloginInfo = ? ',
                                     [$blocker[0]->idloginInfo]);
+
+        foreach ($usersBlocked as &$userBlocked)
+        {
+            $userBlocked->profilePicture = base64_encode($userBlocked->profilePicture);
+        }
 
         return json_encode($usersBlocked);
     }

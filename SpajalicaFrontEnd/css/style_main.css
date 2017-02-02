@@ -330,7 +330,7 @@ img.slide {
     background-color: rgba(0,0,0,0.5);
 }
 
-#profile-pic {
+.profile-pic {
     min-width: 200px;
     min-height: 200px;
     padding-top: 10px;
