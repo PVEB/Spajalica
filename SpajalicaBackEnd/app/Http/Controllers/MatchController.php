@@ -62,8 +62,52 @@ class MatchController extends Controller
         return json_encode(array_slice($userArray, 0, 30));
     }
 
+
+
     private function CalculateScore($mainUser, $otherUser) {
-        //echo($mainUser. " ". $otherUser."\n");
+        $score = 0;
+
+        $mainUserDetails = DB::select("SELECT * ".
+            "FROM usersInfo ui ".
+            "WHERE ui.idloginInfo = ? ", [$mainUser]
+        );
+
+        $otherUserDetails = DB::select("SELECT * ".
+            "FROM usersInfo ui ".
+            "WHERE ui.idloginInfo = ? ", [$otherUser]
+        );
+
+        if(!$this->isInRelationship($mainUserDetails[0]->relationshipStatus) && !$this->isInRelationship($otherUserDetails[0]->relationshipStatus)){
+            $score += 30;
+        } else{
+            $score -= 50;
+        }
+
+        if($this->isMale($mainUserDetails[0]->sex) && $this->isFemale($otherUserDetails[0]->sex)) {
+            $score += 30;
+        } elseif($this->isFemale($mainUserDetails[0]->sex) && $this->isMale($otherUserDetails[0]->sex)) {
+            $score += 30;
+        } elseif($this->isMale($mainUserDetails[0]->sex) && $this->isMale($otherUserDetails[0]->sex)) {
+            $score -= 30;
+        } elseif($this->isFemale($mainUserDetails[0]->sex) && $this->isFemale($otherUserDetails[0]->sex)) {
+            $score -= 30;
+        }
+
+        if($mainUserDetails[0]->location == $otherUserDetails[0]->location) {
+            $score += 15;
+        } else{
+            $score -= 5;
+        }
+
+        $ageDif = $this->getAgeDiff($mainUserDetails[0]->birthDate, $otherUserDetails[0]->birthDate);
+
+        if($ageDif > 0 && $ageDif <= 5) {
+            $score += 15;
+        } else {
+            $score -= 10 + $ageDif;
+        }
+        //echo ("test".$otherUserDetails[0]->birthDate."\n");
+
         $otherUserProfileTags = DB::select("SELECT upt.idpreferenceTags, 10 as value ".
             "FROM userprofileTags upt ".
             "WHERE upt.idloginInfo = ? ", [$otherUser]
@@ -80,7 +124,7 @@ class MatchController extends Controller
             "WHERE upt.idloginInfo = ? ", [$mainUser]
         );
 
-        $score = 0;
+
         //foreach ($mainUserPreferanceTags as $tag  ) {
         for($i = 0; $i < count($mainUserPreferanceTags); $i++) {
            //if(($index = array_search ($tag ,$otherUserProfileTags))!== FALSE) {
@@ -99,12 +143,47 @@ class MatchController extends Controller
             }
 
         }
-        //echo("SCORE = ".$score."\n");
+
         return $score;
 
         //return rand(-500, 500);
     }
 
+    private function getAgeDiff($age1, $age2) {
+
+        if($age1 == "" || $age2 == "") {
+            return -1;
+        }
+
+        $intAge1 = intval(substr($age1, 0, 4));
+        $intAge2 = intval(substr($age2, 0, 4));
+
+        return abs($intAge1 - $intAge2);
+    }
+
+    private function  isInRelationship($relationship) {
+        if($relationship == "U vezi" || $relationship == "Komplikovano"  || $relationship == "У вези") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private function isMale($sex) {
+        if($sex == "M" || $sex == "М") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    private function isFemale($sex) {
+        if($sex == "Z" ||$sex == "Ž"|| $sex == "Ж") {
+            return true;
+        } else {
+            return false;
+        }
+    }
     private function IndividualScoreValue($value1, $value2) {
         $product = $value1 * $value2;
         $sign = $product == 0 ? 0 : $product / abs($product);
