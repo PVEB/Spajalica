@@ -15,13 +15,11 @@ class User extends Model
 
 class AuthenticateController extends Controller
 {
-    private $user;
+    private $set;
     private $header;
 
-    public function __construct(User $user)
+    public function __construct()
     {
-        $this->user = $user;
-        $this->header = array('alg' => 'HS256', 'typ' => 'JWT');
     }
 
     public function register()
