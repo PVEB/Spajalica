@@ -114,44 +114,4 @@ class MatchController extends Controller
     }
 
     //usort($your_data, "cmp");
-
-    public function FollowUser()
-    {
-        $data = Input::all();
-        $res = json_decode(json_encode($data));
-
-        $userFollowerIDArray = DB::select('SELECT li.idloginInfo FROM logininfo li WHERE li.userName = ?', [$res->userName]);
-        $userFollowerID = $userFollowerIDArray[0]->idloginInfo;
-        $userFollowedIDArray = DB::select("SELECT li.idloginInfo FROM logininfo li WHERE li.userName = ?", [$res->usernameFollowed]);
-        $userFollowedID = $userFollowedIDArray[0]->idloginInfo;
-
-
-
-        DB::insert('INSERT INTO userfollows (idloginInfo, idFollowed) VALUES(?, ?)',
-            [$userFollowerID, $userFollowedID ]);
-        //DB::insert('insert into loginInfo (userName, email, password) values (?, ?, ?)',
-         //   [$res->userName, $res->email, $res->password]);
-        return $this->GetListOfPeople();
-    }
-
-    public function BlockUser()
-    {
-        $data = Input::all();
-        $res = json_decode(json_encode($data));
-
-
-
-        $userBlockerIDArray = DB::select('SELECT li.idloginInfo FROM logininfo li WHERE li.userName = ?', [$res->userName]);
-        $userBlockerID = $userBlockerIDArray[0]->idloginInfo;
-        $userBlockedIDArray = DB::select("SELECT li.idloginInfo FROM logininfo li WHERE li.userName = ?", [$res->userBlocked]);
-        $userBlockedID = $userBlockedIDArray[0]->idloginInfo;
-
-
-
-        DB::insert('INSERT INTO userblocks (idloginInfo, idBlocked) VALUES(?, ?)',
-            [$userBlockerID, $userBlockedID ]);
-        //DB::insert('insert into loginInfo (userName, email, password) values (?, ?, ?)',
-        //   [$res->userName, $res->email, $res->password]);
-        return $this->GetListOfPeople();
-    }
 }
