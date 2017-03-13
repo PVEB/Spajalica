@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-header('Access-Control-Allow-Origin: http://localhost:63342');
+header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Credentials: true');
 
 Route::get('/user', function (Request $request) {

@@ -17,8 +17,8 @@ Route::get('/', function () {
 
 Route::group(['prefix' => 'verify'], function()
 {
-    Route::post('login', 'AuthenticateController@login');
-    Route::post('register', 'AuthenticateController@register');
+    Route::post('login', 'AuthenticateController@login')->middleware(\App\Http\Middleware\Cors::class);
+    Route::post('register', 'AuthenticateController@register')->middleware(\App\Http\Middleware\Cors::class);
 });
 
 //Route::get('ID/{id}',function($id){

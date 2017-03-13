@@ -10,7 +10,8 @@ angular.module("SpajalicaFrontEnd").service('SharedData', function SharedData($w
     this.tokenCheck = function () {
         if(($window.sessionStorage.device == null) ||
             angular.isUndefined($window.sessionStorage.device) ||
-            $window.sessionStorage.device == 'null')
+            $window.sessionStorage.device == 'null' ||
+            $window.sessionStorage.device == '')
         {
             if(this.tokenValid)
             {
