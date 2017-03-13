@@ -7,7 +7,7 @@ angular.module("SpajalicaFrontEnd").controller("ProfileController", function ($s
     $scope.ProfilePageUrl = Constants.ProfilePageUrl;
 
     var data = {
-        "userName": $window.sessionStorage.device
+        token: $window.sessionStorage.device
     };
 
     var userInfo = [];
@@ -58,7 +58,7 @@ angular.module("SpajalicaFrontEnd").controller("ProfileController", function ($s
 
     var refresh = function () {
         var data = {
-            userName: $window.sessionStorage.device
+            token: $window.sessionStorage.device
         };
 
         $http.post(Constants.urlBE + 'GetUserUpdates', data).then(
@@ -85,7 +85,7 @@ angular.module("SpajalicaFrontEnd").controller("ProfileController", function ($s
 
     $scope.deleteStatus = function (idStatus) {
         var data = {
-            userName: $window.sessionStorage.device,
+            token: $window.sessionStorage.device,
             iduserStatusUpdates: idStatus
         };
 

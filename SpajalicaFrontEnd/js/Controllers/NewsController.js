@@ -8,7 +8,7 @@ angular.module("SpajalicaFrontEnd").controller("NewsController", function ($scop
 
     var refresh = function () {
         var data = {
-            userName: $window.sessionStorage.device
+            token: $window.sessionStorage.device
         };
 
         $http.post(Constants.urlBE + 'GetStatusUpdates', data).then(
@@ -34,7 +34,7 @@ angular.module("SpajalicaFrontEnd").controller("NewsController", function ($scop
 
     $scope.sendStatus = function (status) {
         var data = {
-            userName: $window.sessionStorage.device,
+            token: $window.sessionStorage.device,
             statusMessage: status
         };
 

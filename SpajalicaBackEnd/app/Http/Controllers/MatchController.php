@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
+use JWT;
 
 class UserAndScore
 {
@@ -20,7 +20,8 @@ class MatchController extends Controller
         $data = Input::all();
         $res = json_decode(json_encode($data));
 
-        $userID = DB::select('select idloginInfo from loginInfo where userName = ?', [$res->userName]);
+        $userID = DB::select('select idloginInfo from loginInfo where userName = ?',
+            [JWT::decode($res->token, config('app.key'), array('HS256'))->userName]);
 
         $users = DB::select('SELECT li.idloginInfo, li.userName FROM loginInfo li WHERE li.idloginInfo <> ? '.
             'AND NOT EXISTS(SELECT ub.idloginInfo, ub.idBlocked '.
@@ -193,44 +194,4 @@ class MatchController extends Controller
     }
 
     //usort($your_data, "cmp");
-
-    public function FollowUser()
-    {
-        $data = Input::all();
-        $res = json_decode(json_encode($data));
-
-        $userFollowerIDArray = DB::select('SELECT li.idloginInfo FROM logininfo li WHERE li.userName = ?', [$res->userName]);
-        $userFollowerID = $userFollowerIDArray[0]->idloginInfo;
-        $userFollowedIDArray = DB::select("SELECT li.idloginInfo FROM logininfo li WHERE li.userName = ?", [$res->usernameFollowed]);
-        $userFollowedID = $userFollowedIDArray[0]->idloginInfo;
-
-
-
-        DB::insert('INSERT INTO userfollows (idloginInfo, idFollowed) VALUES(?, ?)',
-            [$userFollowerID, $userFollowedID ]);
-        //DB::insert('insert into loginInfo (userName, email, password) values (?, ?, ?)',
-         //   [$res->userName, $res->email, $res->password]);
-        return $this->GetListOfPeople();
-    }
-
-    public function BlockUser()
-    {
-        $data = Input::all();
-        $res = json_decode(json_encode($data));
-
-
-
-        $userBlockerIDArray = DB::select('SELECT li.idloginInfo FROM logininfo li WHERE li.userName = ?', [$res->userName]);
-        $userBlockerID = $userBlockerIDArray[0]->idloginInfo;
-        $userBlockedIDArray = DB::select("SELECT li.idloginInfo FROM logininfo li WHERE li.userName = ?", [$res->userBlocked]);
-        $userBlockedID = $userBlockedIDArray[0]->idloginInfo;
-
-
-
-        DB::insert('INSERT INTO userblocks (idloginInfo, idBlocked) VALUES(?, ?)',
-            [$userBlockerID, $userBlockedID ]);
-        //DB::insert('insert into loginInfo (userName, email, password) values (?, ?, ?)',
-        //   [$res->userName, $res->email, $res->password]);
-        return $this->GetListOfPeople();
-    }
 }

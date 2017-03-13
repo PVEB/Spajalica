@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
+use JWT;
 
 class SearchController extends Controller
 {
@@ -13,7 +13,8 @@ class SearchController extends Controller
         $data = Input::all();
         $res = json_decode(json_encode($data));
 
-        $userID = DB::select('select idloginInfo from loginInfo where userName = ?', [$res->userName]);
+        $userID = DB::select('select idloginInfo from loginInfo where userName = ?',
+            [JWT::decode($res->token, config('app.key'), array('HS256'))->userName]);
 
         $users = DB::select('SELECT li.userName FROM loginInfo li WHERE li.idloginInfo <> ? '.
                             'AND NOT EXISTS(SELECT ub.idloginInfo, ub.idBlocked '.
@@ -34,7 +35,8 @@ class SearchController extends Controller
         $data = Input::all();
         $res = json_decode(json_encode($data));
 
-        $userID = DB::select('select idloginInfo from loginInfo where userName = ?', [$res->userName]);
+        $userID = DB::select('select idloginInfo from loginInfo where userName = ?',
+            [JWT::decode($res->token, config('app.key'), array('HS256'))->userName]);
 
         $users = DB::select('SELECT li.userName, ui.firstName, ui.lastName, ui.birthDate, ui.joinedDate, '.
             'ui.sex, ui.location, ui.profilePicture, ui.relationshipStatus '.
@@ -97,7 +99,9 @@ class SearchController extends Controller
         $data = Input::all();
         $res = json_decode(json_encode($data));
 
-        $follower = DB::select('select idloginInfo from loginInfo where userName = ?', [$res->userName]);
+        $follower = DB::select('select idloginInfo from loginInfo where userName = ?',
+            [JWT::decode($res->token, config('app.key'), array('HS256'))->userName]);
+
         $userFollowed = DB::select('select idloginInfo from loginInfo where userName = ?', [$res->userFollowed]);
         DB::insert('insert into userFollows (idloginInfo, idFollowed) values (?, ?)',
                   [$follower[0]->idloginInfo, $userFollowed[0]->idloginInfo]);
@@ -110,7 +114,9 @@ class SearchController extends Controller
         $data = Input::all();
         $res = json_decode(json_encode($data));
 
-        $blocker = DB::select('select idloginInfo from loginInfo where userName = ?', [$res->userName]);
+        $blocker = DB::select('select idloginInfo from loginInfo where userName = ?',
+            [JWT::decode($res->token, config('app.key'), array('HS256'))->userName]);
+
         $userBlocked = DB::select('select idloginInfo from loginInfo where userName = ?', [$res->userBlocked]);
         DB::insert('insert into userBlocks (idloginInfo, idBlocked) values (?, ?)',
                   [$blocker[0]->idloginInfo, $userBlocked[0]->idloginInfo]);
@@ -123,7 +129,8 @@ class SearchController extends Controller
         $data = Input::all();
         $res = json_decode(json_encode($data));
 
-        $follower = DB::select('select idloginInfo from loginInfo where userName = ?', [$res->userName]);
+        $follower = DB::select('select idloginInfo from loginInfo where userName = ?',
+            [JWT::decode($res->token, config('app.key'), array('HS256'))->userName]);
 
         $usersFollowed = DB::select('select li.userName, ui.firstName, ui.lastName, ui.birthDate, '.
                                     'ui.joinedDate, ui.sex, ui.location, ui.profilePicture, ui.relationshipStatus '.
@@ -145,7 +152,8 @@ class SearchController extends Controller
         $data = Input::all();
         $res = json_decode(json_encode($data));
 
-        $blocker = DB::select('select idloginInfo from loginInfo where userName = ?', [$res->userName]);
+        $blocker = DB::select('select idloginInfo from loginInfo where userName = ?',
+            [JWT::decode($res->token, config('app.key'), array('HS256'))->userName]);
 
         $usersBlocked = DB::select('select li.userName, ui.firstName, ui.lastName, ui.birthDate, '.
                                     'ui.joinedDate, ui.sex, ui.location, ui.profilePicture, ui.relationshipStatus '.
@@ -167,7 +175,9 @@ class SearchController extends Controller
         $data = Input::all();
         $res = json_decode(json_encode($data));
 
-        $follower = DB::select('select idloginInfo from loginInfo where userName = ?', [$res->userName]);
+        $follower = DB::select('select idloginInfo from loginInfo where userName = ?',
+            [JWT::decode($res->token, config('app.key'), array('HS256'))->userName]);
+
         $userFollowed = DB::select('select idloginInfo from loginInfo where userName = ?', [$res->userFollowed]);
 
         DB::delete('delete from userFollows where idloginInfo = ? and idFollowed = ? ',
@@ -181,7 +191,9 @@ class SearchController extends Controller
         $data = Input::all();
         $res = json_decode(json_encode($data));
 
-        $blocker = DB::select('select idloginInfo from loginInfo where userName = ?', [$res->userName]);
+        $blocker = DB::select('select idloginInfo from loginInfo where userName = ?',
+            [JWT::decode($res->token, config('app.key'), array('HS256'))->userName]);
+
         $userBlocked = DB::select('select idloginInfo from loginInfo where userName = ?', [$res->userBlocked]);
 
         DB::insert('delete from userBlocks where idloginInfo = ? and idBlocked = ? ',

@@ -8,7 +8,7 @@ angular.module("SpajalicaFrontEnd").controller("MessagesController", function ($
     var getMessagesData = null;
 
     $http.post(Constants.urlBE + 'GetUsers',
-        {userName: $window.sessionStorage.device}).then(
+        {token: $window.sessionStorage.device}).then(
         function (response) {
             if (response.data)
             {
@@ -28,11 +28,11 @@ angular.module("SpajalicaFrontEnd").controller("MessagesController", function ($
 
     $scope.getMessages = function (receiver) {
         getMessagesData = {
-            sender: $window.sessionStorage.device,
+            token: $window.sessionStorage.device,
             receiver: receiver
         };
 
-        console.log(getMessagesData.receiver+"|"+getMessagesData.sender);
+        console.log(getMessagesData.receiver+"|"+getMessagesData.token);
 
         $http.post(Constants.urlBE + 'GetMessages', getMessagesData).then(
             function (response) {
@@ -60,7 +60,7 @@ angular.module("SpajalicaFrontEnd").controller("MessagesController", function ($
             return;
 
         var data = {
-            sender: $window.sessionStorage.device,
+            token: $window.sessionStorage.device,
             receiver: receiver,
             message: message
         };
