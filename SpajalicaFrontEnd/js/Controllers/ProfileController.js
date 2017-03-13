@@ -2,7 +2,12 @@
  * Created by djnenadovic on 24.1.2017..
  */
 
-angular.module("SpajalicaFrontEnd").controller("ProfileController", function ($scope, $http, $window, Constants) {
+angular.module("SpajalicaFrontEnd").controller("ProfileController", function ($scope, $http, $window, Constants, SharedData) {
+
+    SharedData.tokenCheck();
+
+    if(!SharedData.tokenValid)
+        return;
 
     $scope.ProfilePageUrl = Constants.ProfilePageUrl;
 
@@ -12,7 +17,7 @@ angular.module("SpajalicaFrontEnd").controller("ProfileController", function ($s
 
     var userInfo = [];
 
-    console.log("Ucitano: " + data.userName);
+    console.log("Ucitano: " + data.token);
 
     $http.post(Constants.urlBE + 'ShowProfile', data).then(
         function (response) {

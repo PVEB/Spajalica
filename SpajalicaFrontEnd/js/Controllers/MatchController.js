@@ -2,7 +2,12 @@
  * Created by djnenadovic on 24.1.2017..
  */
 
-angular.module("SpajalicaFrontEnd").controller("MatchController", function ($scope, $window, $http, Constants) {
+angular.module("SpajalicaFrontEnd").controller("MatchController", function ($scope, $window, $http, Constants, SharedData) {
+
+    SharedData.tokenCheck();
+
+    if(!SharedData.tokenValid)
+        return;
 
     $scope.MatchPageUrl = Constants.MatchPageUrl;
 
