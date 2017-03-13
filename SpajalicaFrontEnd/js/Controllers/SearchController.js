@@ -12,7 +12,7 @@ angular.module("SpajalicaFrontEnd").controller("SearchController", function ($sc
 
     var refresh = function () {
         var data = {
-            userName: $window.sessionStorage.device
+            token: $window.sessionStorage.device
         };
 
         $http.post(Constants.urlBE + 'GetAvailableUsers', data).then(
@@ -41,7 +41,7 @@ angular.module("SpajalicaFrontEnd").controller("SearchController", function ($sc
         $scope.criteriaStyle = {};
 
         var data = {
-            userName: $window.sessionStorage.device,
+            token: $window.sessionStorage.device,
             criteria: savedCriteria
         };
 
@@ -185,7 +185,7 @@ angular.module("SpajalicaFrontEnd").controller("SearchController", function ($sc
 
     $scope.follow = function (userName) {
         var data = {
-            userName: $window.sessionStorage.device,
+            token: $window.sessionStorage.device,
             userFollowed: userName
         };
 
@@ -211,7 +211,7 @@ angular.module("SpajalicaFrontEnd").controller("SearchController", function ($sc
 
     $scope.block = function (userName) {
         var data = {
-            userName: $window.sessionStorage.device,
+            token: $window.sessionStorage.device,
             userBlocked: userName
         };
 
@@ -237,7 +237,7 @@ angular.module("SpajalicaFrontEnd").controller("SearchController", function ($sc
 
     $scope.unblock = function (userName) {
         var data = {
-            userName: $window.sessionStorage.device,
+            token: $window.sessionStorage.device,
             userBlocked: userName
         };
 
@@ -263,7 +263,7 @@ angular.module("SpajalicaFrontEnd").controller("SearchController", function ($sc
 
     $scope.unfollow = function (userName) {
         var data = {
-            userName: $window.sessionStorage.device,
+            token: $window.sessionStorage.device,
             userFollowed: userName
         };
 

@@ -7,7 +7,7 @@ angular.module('SpajalicaFrontEnd').controller('SettingsController', function ($
     $scope.SettingsPageUrl = Constants.SettingsPageUrl;
 
     var data = {
-        "userName": $window.sessionStorage.device
+        token: $window.sessionStorage.device
     };
 
     // var userInfo = [];
@@ -19,7 +19,7 @@ angular.module('SpajalicaFrontEnd').controller('SettingsController', function ($
 
     $scope.sendData = {
         selected:{},
-        userName: $window.sessionStorage.device
+        token: $window.sessionStorage.device
     };
 
     var getTags = function () {
@@ -48,20 +48,6 @@ angular.module('SpajalicaFrontEnd').controller('SettingsController', function ($
                 $scope.msg = "Post Data Submitted Successfully!";
                 console.log(response.data);
 
-                // userInfo.push({label: "Име: ", value: response.data.firstName,
-                //     name: "firstName", hoverMessage: "До 45 карактера"});
-                // userInfo.push({label: "Презиме: ", value: response.data.lastName,
-                //     name: "lastName", hoverMessage: "До 45 карактера"});
-                // userInfo.push({label: "Датум рођења: ", value: response.data.birthDate,
-                //     name: "birthDate", hoverMessage: "ГГГГ-ММ-ДД"});
-                // userInfo.push({label: "Пол: ", value: response.data.sex,
-                //     name: "sex", hoverMessage: "Један карактер: М, Z"});
-                // userInfo.push({label: "Место: ", value: response.data.location,
-                //     name: "location", hoverMessage: "До 45 карактера"});
-                // userInfo.push({label: "Статус везе: ", value: response.data.relationshipStatus,
-                //     name: "relationshipStatus", hoverMessage: "До 45 карактера"});
-                //
-                // $scope.responseObject = userInfo;
                 $scope.settingsData = angular.copy(response.data);
             }
             else
@@ -119,7 +105,7 @@ angular.module('SpajalicaFrontEnd').controller('SettingsController', function ($
 
     var refreshUserTags = function () {
         var data = {
-            userName: $window.sessionStorage.device
+            token: $window.sessionStorage.device
         };
 
         $http.post(Constants.urlBE + 'GetUserTags', data).then(
@@ -143,7 +129,7 @@ angular.module('SpajalicaFrontEnd').controller('SettingsController', function ($
 
     $scope.saveUserTag = function (tag) {
         var data = {
-            userName: $window.sessionStorage.device,
+            token: $window.sessionStorage.device,
             userTag: tag
         };
 
@@ -169,7 +155,7 @@ angular.module('SpajalicaFrontEnd').controller('SettingsController', function ($
 
     $scope.savePrefTag = function (prefTag, value) {
         var data = {
-            userName: $window.sessionStorage.device,
+            token: $window.sessionStorage.device,
             userTag: prefTag,
             value: value
         };
@@ -196,7 +182,7 @@ angular.module('SpajalicaFrontEnd').controller('SettingsController', function ($
 
     var refreshPrefTags = function () {
         var data = {
-            userName: $window.sessionStorage.device
+            token: $window.sessionStorage.device
         };
 
         $http.post(Constants.urlBE + 'GetPrefTags', data).then(
@@ -223,7 +209,7 @@ angular.module('SpajalicaFrontEnd').controller('SettingsController', function ($
         console.log(name+'|'+value);
 
         var data = {
-            userName: $window.sessionStorage.device,
+            token: $window.sessionStorage.device,
             userPrefTagName: name,
             userPrefTagValue: value
         };
@@ -252,7 +238,7 @@ angular.module('SpajalicaFrontEnd').controller('SettingsController', function ($
         console.log(name);
 
         var data = {
-            userName: $window.sessionStorage.device,
+            token: $window.sessionStorage.device,
             userTagName: name
         };
 

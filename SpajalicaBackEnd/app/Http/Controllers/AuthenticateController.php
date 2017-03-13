@@ -9,14 +9,13 @@ use Response;
 
 class AuthenticateController extends Controller
 {
-    private $header;
     private $payload;
     private $signature;
 
     public function __construct()
     {
-        $signature = config('app.key');
-        $payload = array(
+        $this->signature = config('app.key');
+        $this->payload = array(
             "iss" => "SpajalicaBackEnd",
             "aud" => "http://example.com",
         );
@@ -41,8 +40,8 @@ class AuthenticateController extends Controller
 
     public function login()
     {
-        $credentials = Input::all('email', 'userName');
-        $existingUser = UserLoginController::VerifyUser($credentials);
+        $credentials = Input::all('userName', 'password');
+        $existingUser = LoginController::VerifyUser($credentials);
 
         if (count($existingUser) == 1)
         {
@@ -56,21 +55,21 @@ class AuthenticateController extends Controller
         }
     }
 
-    public function authenticate()
-    {
-        $credentials = Input::all('email', 'userName');
-        $result = UserLoginController::VerifyUser($credentials);
-
-        if (count($result) == 1)
-        {
-            $this->payload['userName'] = $result[0]->userName;
-            $this->payload['timeIssued'] = date('Y-m-d H:i:s');
-            $token = JWT::encode($this->payload, $this->signature);
-            return json_encode(JWT::decode($token, $this->signature, array('HS256')));
-        }
-        else
-        {
-            return Response::json(['error' => 'User not found.'], IResponse::HTTP_NOT_FOUND);
-        }
-    }
+//    public function authenticate()
+//    {
+//        $credentials = Input::all('email', 'userName');
+//        $result = UserLoginController::VerifyUser($credentials);
+//
+//        if (count($result) == 1)
+//        {
+//            $this->payload['userName'] = $result[0]->userName;
+//            $this->payload['timeIssued'] = date('Y-m-d H:i:s');
+//            $token = JWT::encode($this->payload, $this->signature);
+//            return json_encode(JWT::decode($token, $this->signature, array('HS256')));
+//        }
+//        else
+//        {
+//            return Response::json(['error' => 'User not found.'], IResponse::HTTP_NOT_FOUND);
+//        }
+//    }
 }

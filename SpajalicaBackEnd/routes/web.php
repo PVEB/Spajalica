@@ -15,10 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::group(['prefix' => 'api'], function()
+Route::group(['prefix' => 'verify'], function()
 {
-    Route::resource('authenticate', 'AuthenticateController', ['only' => ['index']]);
-    Route::post('authenticate', 'AuthenticateController@authenticate');
+    Route::post('login', 'AuthenticateController@login');
+    Route::post('register', 'AuthenticateController@register');
 });
 
 //Route::get('ID/{id}',function($id){
@@ -27,9 +27,9 @@ Route::group(['prefix' => 'api'], function()
 
 Route::post('ShowProfile', 'ProfileController@Show')->middleware(\App\Http\Middleware\Cors::class);
 
-Route::post('LoginVerify', 'LoginController@VerifyUser')->middleware(\App\Http\Middleware\Cors::class);
+Route::post('LoginVerify', 'OldLoginController@VerifyUser')->middleware(\App\Http\Middleware\Cors::class);
 
-Route::post('LoginRegister', 'LoginController@AddUser')->middleware(\App\Http\Middleware\Cors::class);
+Route::post('LoginRegister', 'OldLoginController@AddUser')->middleware(\App\Http\Middleware\Cors::class);
 
 Route::post('UpdateProfile', 'SettingsController@Update')->middleware(\App\Http\Middleware\Cors::class);
 
@@ -78,3 +78,5 @@ Route::post('Unblock', 'SearchController@Unblock')->middleware(\App\Http\Middlew
 Route::post('GetUserUpdates', 'ProfileController@GetUserUpdates')->middleware(\App\Http\Middleware\Cors::class);
 
 Route::post('DeleteStatus', 'ProfileController@DeleteStatus')->middleware(\App\Http\Middleware\Cors::class);
+
+Route::post('GetUserName', 'UserInfoController@GetUserName')->middleware(\App\Http\Middleware\Cors::class);

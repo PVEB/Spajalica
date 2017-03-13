@@ -14,7 +14,7 @@ class Korisnik {
     public $lozinka;
 }
 
-class LoginController extends Controller
+class OldLoginController extends Controller
 {
     public function VerifyUser()
     {

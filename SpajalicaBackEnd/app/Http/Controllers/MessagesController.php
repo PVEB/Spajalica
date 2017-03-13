@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
+use JWT;
 
 class messageResponse
 {
@@ -19,7 +19,8 @@ class MessagesController extends Controller
         $data = Input::all();
         $res = json_decode(json_encode($data));
 
-        $senderInfo = DB::select('select * from loginInfo where userName = ?', [$res->sender]);
+        $senderInfo = DB::select('select * from loginInfo where userName = ?',
+            [JWT::decode($res->token, config('app.key'), array('HS256'))->userName]);
         $receiverInfo = DB::select('select * from loginInfo where userName = ?', [$res->receiver]);
         $senderId = $senderInfo[0]->idloginInfo;
         $receiverId = $receiverInfo[0]->idloginInfo;
@@ -35,7 +36,8 @@ class MessagesController extends Controller
         $data = Input::all();
         $res = json_decode(json_encode($data));
 
-        $senderInfo = DB::select('select * from loginInfo where userName = ?', [$res->sender]);
+        $senderInfo = DB::select('select * from loginInfo where userName = ?',
+            [JWT::decode($res->token, config('app.key'), array('HS256'))->userName]);
         $receiverInfo = DB::select('select * from loginInfo where userName = ?', [$res->receiver]);
         $senderId = $senderInfo[0]->idloginInfo;
         $receiverId = $receiverInfo[0]->idloginInfo;
@@ -72,7 +74,8 @@ class MessagesController extends Controller
         $data = Input::all();
         $res = json_decode(json_encode($data));
 
-        $senderInfo = DB::select('select * from loginInfo where userName = ?', [$res->userName]);
+        $senderInfo = DB::select('select * from loginInfo where userName = ?',
+            [JWT::decode($res->token, config('app.key'), array('HS256'))->userName]);
         $senderId = $senderInfo[0]->idloginInfo;
 
         $usersInfo = DB::select('select li.userName from loginInfo li '.
@@ -84,7 +87,8 @@ class MessagesController extends Controller
                                 'where ub.idloginInfo = li.idloginInfo and ub.idBlocked = ?) '.
                                 'and not exists (select * from userBlocks ub '.
                                 'where ub.idloginInfo = ? and ub.idBlocked = li.idloginInfo) ',
-                                [$res->userName, $senderId, $senderId, $senderId, $senderId]);
+                                [JWT::decode($res->token, config('app.key'), array('HS256'))->userName,
+                                    $senderId, $senderId, $senderId, $senderId]);
 
         return json_encode($usersInfo);
     }

@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
+use JWT;
 
 
-class UserInfo {
+class UserInfo
+{
     public $firstName = null;
     public $lastName = null;
     public $birthDate = null;
@@ -29,7 +30,8 @@ class ProfileController extends Controller
         $data = Input::all();
         $res = json_decode(json_encode($data));
 
-        $loginInfo = DB::select('select * from loginInfo where userName = ?', [$res->userName]);
+        $loginInfo = DB::select('select * from loginInfo where userName = ?',
+                [JWT::decode($res->token, config('app.key'), array('HS256'))->userName]);
         $usersInfo = DB::select('select * from usersInfo where idloginInfo = ?', [$loginInfo[0]->idloginInfo]);
 
         if (count($usersInfo) > 0)
@@ -51,7 +53,8 @@ class ProfileController extends Controller
         $data = Input::all();
         $res = json_decode(json_encode($data));
 
-        $userID = DB::select('select idloginInfo from loginInfo where userName = ?', [$res->userName]);
+        $userID = DB::select('select idloginInfo from loginInfo where userName = ?',
+            [JWT::decode($res->token, config('app.key'), array('HS256'))->userName]);
 
         $statuses = DB::select(
             'select u.iduserStatusUpdates, l.userName, u.statusMessage, u.statusTime, u.statusLocation '.
@@ -68,7 +71,8 @@ class ProfileController extends Controller
         $data = Input::all();
         $res = json_decode(json_encode($data));
 
-        $userID = DB::select('select idloginInfo from loginInfo where userName = ?', [$res->userName]);
+        $userID = DB::select('select idloginInfo from loginInfo where userName = ?',
+            [JWT::decode($res->token, config('app.key'), array('HS256'))->userName]);
 
         $deletedStatuses = DB::delete(
             'delete from userStatusUpdates where iduserStatusUpdates = ? and idloginInfo = ?',
@@ -76,7 +80,7 @@ class ProfileController extends Controller
 
         //zapravo shvatimo da nije to taj korisnik
         //prijavimo da smo prekinuli akciju
-        if(count($deletedStatuses) == 0)
+        if($deletedStatuses == 0)
             abort(403, 'Unauthorized action.');
 
 

@@ -2,7 +2,7 @@
  * Created by nevidjen on 8.1.2017..
  */
 
-angular.module("SpajalicaFrontEnd").controller("LoginController", function ($scope, $http, $window, Constants, Constants) {
+angular.module("SpajalicaFrontEnd").controller("LoginController", function ($scope, $http, $window, Constants) {
     $scope.login = function (userName, password) {
         var data = {
             userName: userName,
@@ -11,12 +11,12 @@ angular.module("SpajalicaFrontEnd").controller("LoginController", function ($sco
 
         console.log(userName + "|" + password);
 
-        $http.post(Constants.urlBE + 'LoginVerify', data).then(
+        $http.post(Constants.urlBE + 'verify/login', data).then(
             function (response) {
-                if (response.data != 0)
+                if (response.data)
                 {
                     console.log("I did something");
-                    $window.sessionStorage.device = userName;
+                    $window.sessionStorage.device = response.data;
                     $window.location.href = Constants.IndexPage;
                 }
                 else
@@ -45,12 +45,12 @@ angular.module("SpajalicaFrontEnd").controller("LoginController", function ($sco
 
         console.log(userNameReg + "|" + passReg + "|" + emailReg);
 
-        $http.post(Constants.urlBE + 'LoginRegister', data).then(
+        $http.post(Constants.urlBE + 'verify/register', data).then(
             function (response) {
                 if (response.data == 200)
                 {
                     console.log("I did something");
-                    $window.sessionStorage.device = userNameReg;
+                    $window.sessionStorage.device = response.data;
                     $window.location.href = Constants.IndexPage;
                 }
                 else

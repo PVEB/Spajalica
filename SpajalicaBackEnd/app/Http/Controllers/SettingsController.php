@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
+use JWT;
 
 class SettingsController extends Controller
 {
@@ -13,7 +13,8 @@ class SettingsController extends Controller
         $data = Input::all();
         $res = json_decode(json_encode($data));
 
-        $loginInfo = DB::select('select * from loginInfo where userName = ?', [$res->userName]);
+        $loginInfo = DB::select('select * from loginInfo where userName = ?',
+            [JWT::decode($res->token, config('app.key'), array('HS256'))->userName]);
         $userId = $loginInfo[0]->idloginInfo;
 
         if (property_exists($res->selected, "firstName"))
@@ -82,7 +83,7 @@ class SettingsController extends Controller
                                    'on pt.idPreferenceTags = upt.idPreferenceTags '.
 						           'join loginInfo li on li.idloginInfo = upt.idloginInfo '.
                                    'where li.userName = ?',
-                                   [$res->userName]);
+                                   [JWT::decode($res->token, config('app.key'), array('HS256'))->userName]);
 
         return json_encode($userPrefTags);
     }
@@ -92,7 +93,8 @@ class SettingsController extends Controller
         $data = Input::all();
         $res = json_decode(json_encode($data));
 
-        $loginInfo = DB::select('select * from loginInfo where userName = ?', [$res->userName]);
+        $loginInfo = DB::select('select * from loginInfo where userName = ?',
+            [JWT::decode($res->token, config('app.key'), array('HS256'))->userName]);
 
         $exists = DB::select('select idPreferenceTags from preferenceTags '.
                              'where preferenceName = ? ', [$res->userTag]);
@@ -126,7 +128,8 @@ class SettingsController extends Controller
                                'on pt.idPreferenceTags = upt.idPreferenceTags '.
                                'join loginInfo li '.
                                'on upt.idLoginInfo = li.idLoginInfo '.
-                               'where li.userName = ?', [$res->userName]);
+                               'where li.userName = ?',
+            [JWT::decode($res->token, config('app.key'), array('HS256'))->userName]);
 
         return json_encode($userTags);
     }
@@ -136,7 +139,8 @@ class SettingsController extends Controller
         $data = Input::all();
         $res = json_decode(json_encode($data));
 
-        $loginInfo = DB::select('select * from loginInfo where userName = ?', [$res->userName]);
+        $loginInfo = DB::select('select * from loginInfo where userName = ?',
+            [JWT::decode($res->token, config('app.key'), array('HS256'))->userName]);
 
         $exists = DB::select('select idPreferenceTags from preferenceTags '.
                              'where preferenceName = ? ', [$res->userTag]);
@@ -166,7 +170,7 @@ class SettingsController extends Controller
         $res = json_decode(json_encode($data));
 
         $loginInfo = DB::select('select * from loginInfo where userName = ?',
-                                [$res->userName]);
+                                [JWT::decode($res->token, config('app.key'), array('HS256'))->userName]);
         $idPrefTag = DB::select('select idPreferenceTags from preferenceTags where preferenceName = ?',
                                 [$res->userPrefTagName]);
 
@@ -185,7 +189,7 @@ class SettingsController extends Controller
         $res = json_decode(json_encode($data));
 
         $loginInfo = DB::select('select * from loginInfo where userName = ?',
-                                [$res->userName]);
+                                [JWT::decode($res->token, config('app.key'), array('HS256'))->userName]);
         $idPrefTag = DB::select('select idPreferenceTags from preferenceTags where preferenceName = ?',
                                 [$res->userTagName]);
 

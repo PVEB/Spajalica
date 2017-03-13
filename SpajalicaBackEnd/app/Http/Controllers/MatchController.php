@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
+use JWT;
 
 class UserAndScore
 {
@@ -20,7 +20,8 @@ class MatchController extends Controller
         $data = Input::all();
         $res = json_decode(json_encode($data));
 
-        $userID = DB::select('select idloginInfo from loginInfo where userName = ?', [$res->userName]);
+        $userID = DB::select('select idloginInfo from loginInfo where userName = ?',
+            [JWT::decode($res->token, config('app.key'), array('HS256'))->userName]);
 
         $users = DB::select('SELECT li.idloginInfo, li.userName FROM loginInfo li WHERE li.idloginInfo <> ? '.
             'AND NOT EXISTS(SELECT ub.idloginInfo, ub.idBlocked '.

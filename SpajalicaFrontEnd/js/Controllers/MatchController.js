@@ -8,7 +8,7 @@ angular.module("SpajalicaFrontEnd").controller("MatchController", function ($sco
 
     $scope.refresh = function () {
         var data = {
-            userName: $window.sessionStorage.device
+            token: $window.sessionStorage.device
         };
 
         $http.post(Constants.urlBE + 'GetListOfPeople', data).then(
@@ -34,7 +34,7 @@ angular.module("SpajalicaFrontEnd").controller("MatchController", function ($sco
 
     $scope.follow = function (userName) {
         var data = {
-            userName: $window.sessionStorage.device,
+            token: $window.sessionStorage.device,
             userFollowed: userName
         };
 
@@ -60,7 +60,7 @@ angular.module("SpajalicaFrontEnd").controller("MatchController", function ($sco
     $scope.block = function (userName) {
         console.log(userName);
         var data = {
-            userName: $window.sessionStorage.device,
+            token: $window.sessionStorage.device,
             userBlocked: userName
         };
 

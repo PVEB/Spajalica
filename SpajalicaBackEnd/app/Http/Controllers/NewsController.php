@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
+use JWT;
 
 class NewsController extends Controller
 {
@@ -13,7 +13,8 @@ class NewsController extends Controller
         $data = Input::all();
         $res = json_decode(json_encode($data));
 
-        $userID = DB::select('select idloginInfo from loginInfo where userName = ?', [$res->userName]);
+        $userID = DB::select('select idloginInfo from loginInfo where userName = ?',
+            [JWT::decode($res->token, config('app.key'), array('HS256'))->userName]);
 
         $statuses = DB::select('select l.userName, u.statusMessage, u.statusTime, u.statusLocation '.
                                'from userstatusupdates u join logininfo l on l.idloginInfo = u.idloginInfo '.
@@ -30,7 +31,8 @@ class NewsController extends Controller
         $data = Input::all();
         $res = json_decode(json_encode($data));
 
-        $userID = DB::select('select idloginInfo from loginInfo where userName = ?', [$res->userName]);
+        $userID = DB::select('select idloginInfo from loginInfo where userName = ?',
+            [JWT::decode($res->token, config('app.key'), array('HS256'))->userName]);
 
         DB::insert('INSERT INTO userstatusupdates (statusMessage, statusTime, statusLocation, idloginInfo) VALUES (?, NOW(), ?, ?)',
                     [$res->statusMessage, 'Default', $userID[0]->idloginInfo]);
