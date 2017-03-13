@@ -2,7 +2,12 @@
  * Created by djnenadovic on 15.1.2017..
  */
 
-angular.module('SpajalicaFrontEnd').controller('TitleController', function ($scope, $window, $http, Constants) {
+angular.module('SpajalicaFrontEnd').controller('TitleController', function ($scope, $window, $http, Constants, SharedData) {
+    SharedData.tokenCheck();
+
+    if(!SharedData.tokenValid)
+        return;
+
     var data = {
       token: $window.sessionStorage.device
     };
