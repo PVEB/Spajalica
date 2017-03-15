@@ -3,12 +3,6 @@
  */
 
 angular.module("SpajalicaFrontEnd").controller("MatchController", function ($scope, $window, $http, Constants, SharedData) {
-
-    SharedData.tokenCheck();
-
-    if(!SharedData.tokenValid)
-        return;
-
     $scope.MatchPageUrl = Constants.MatchPageUrl;
 
     $scope.refresh = function () {

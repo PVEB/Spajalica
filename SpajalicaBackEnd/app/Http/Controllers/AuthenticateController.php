@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Input;
 use JWT;
 use \Illuminate\Http\Response as IResponse;
 use Response;
+use DB;
 
 class AuthenticateController extends Controller
 {
@@ -55,21 +56,21 @@ class AuthenticateController extends Controller
         }
     }
 
-//    public function authenticate()
-//    {
-//        $credentials = Input::all('email', 'userName');
-//        $result = UserLoginController::VerifyUser($credentials);
-//
-//        if (count($result) == 1)
-//        {
-//            $this->payload['userName'] = $result[0]->userName;
-//            $this->payload['timeIssued'] = date('Y-m-d H:i:s');
-//            $token = JWT::encode($this->payload, $this->signature);
-//            return json_encode(JWT::decode($token, $this->signature, array('HS256')));
-//        }
-//        else
-//        {
-//            return Response::json(['error' => 'User not found.'], IResponse::HTTP_NOT_FOUND);
-//        }
-//    }
+    public function validateToken()
+    {
+        $credentials = Input::all('token');
+        $res = json_decode(json_encode($credentials));
+
+        $users = DB::select('select idloginInfo from loginInfo where userName = ?',
+            [JWT::decode($res->token, config('app.key'), array('HS256'))->userName]);
+
+        if(count($users) == 1)
+        {
+            return Response::json(['response' => 'Token validated.'], IResponse::HTTP_OK);
+        }
+        else
+        {
+            return Response::json(['response' => 'User does not exists.'], IResponse::HTTP_CONFLICT);
+        }
+    }
 }

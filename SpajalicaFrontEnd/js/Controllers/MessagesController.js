@@ -3,12 +3,6 @@
  */
 
 angular.module("SpajalicaFrontEnd").controller("MessagesController", function ($scope, $window, $http, Constants, SharedData) {
-
-    SharedData.tokenCheck();
-
-    if(!SharedData.tokenValid)
-        return;
-
     $scope.MessagesPageUrl = Constants.MessagesPageUrl;
     var getMessagesData = null;
 

@@ -3,10 +3,6 @@
  */
 
 angular.module('SpajalicaFrontEnd').controller('TitleController', function ($scope, $window, $http, Constants, SharedData) {
-    SharedData.tokenCheck();
-
-    if(!SharedData.tokenValid)
-        return;
 
     var data = {
       token: $window.sessionStorage.device
@@ -29,6 +25,4 @@ angular.module('SpajalicaFrontEnd').controller('TitleController', function ($sco
                 response.status + "|" +
                 response.statusText + "|");
         });
-
-    //$scope.nickname = $window.sessionStorage.device;
 });

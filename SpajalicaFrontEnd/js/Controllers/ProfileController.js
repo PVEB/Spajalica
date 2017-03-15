@@ -4,11 +4,6 @@
 
 angular.module("SpajalicaFrontEnd").controller("ProfileController", function ($scope, $http, $window, Constants, SharedData) {
 
-    SharedData.tokenCheck();
-
-    if(!SharedData.tokenValid)
-        return;
-
     $scope.ProfilePageUrl = Constants.ProfilePageUrl;
 
     var data = {

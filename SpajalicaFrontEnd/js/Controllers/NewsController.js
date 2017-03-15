@@ -4,11 +4,6 @@
 
 angular.module("SpajalicaFrontEnd").controller("NewsController", function ($scope, $window, $http, Constants, SharedData) {
 
-    SharedData.tokenCheck();
-
-    if(!SharedData.tokenValid)
-        return;
-
     $scope.NewsPageUrl = Constants.NewsPageUrl;
 
     var refresh = function () {

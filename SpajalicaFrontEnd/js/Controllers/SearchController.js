@@ -4,11 +4,6 @@
 
 angular.module("SpajalicaFrontEnd").controller("SearchController", function ($scope, $window, $http, Constants, SharedData) {
 
-    SharedData.tokenCheck();
-
-    if(!SharedData.tokenValid)
-        return;
-
     $scope.SearchPageUrl = Constants.SearchPageUrl;
     $scope.category = {
         model: null
