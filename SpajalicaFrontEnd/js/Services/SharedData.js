@@ -7,7 +7,7 @@ angular.module("SpajalicaFrontEnd").service('SharedData', function SharedData(){
     this.pictureErrorCode = false;
 });
 
-//check token
+//check token before loading index.html - just for functionality reasons
 angular.module("SpajalicaFrontEnd").run(function($rootScope, $window, $http, Constants)
 {
     var data = {

@@ -47,7 +47,7 @@ angular.module("SpajalicaFrontEnd").controller("LoginController", function ($sco
 
         $http.post(Constants.urlBE + 'verify/register', data).then(
             function (response) {
-                if (response.data == 200)
+                if (response.status == 200)
                 {
                     console.log("I did something");
                     $window.sessionStorage.device = response.data;
@@ -55,7 +55,7 @@ angular.module("SpajalicaFrontEnd").controller("LoginController", function ($sco
                 }
                 else
                 {
-                    console.log("User not found");
+                    console.log("User not created: " + response.status);
                     $scope.errorStyle = {'border': '1px solid red'};
                 }
             }, function (response) {
