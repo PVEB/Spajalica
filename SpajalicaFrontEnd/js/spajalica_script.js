@@ -23,8 +23,6 @@ jQuery(function($) {
         //for image slide on menu item click(normal) and responsive
         $("#menu-list a, #responsive a").on('click',function(e){
 
-            var object = this;
-
             if(this.className == "external") {
                 return;
             }
@@ -67,7 +65,6 @@ jQuery(function($) {
                 });
 
             }
-            return;
         });
     });
 });
